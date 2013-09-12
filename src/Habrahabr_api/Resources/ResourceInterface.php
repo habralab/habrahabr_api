@@ -1,15 +1,15 @@
 <?php
 
-	namespace Habrahabr_api\Resources;
+    namespace Habrahabr_api\Resources;
 
-	/**
-	 * Interface ResourceInterface
-	 *
-	 * @package Habrahabr_api\Resources
-	 *
-	 * @interface
-	 */
-	interface ResourceInterface
-	{
+    /**
+     * Interface ResourceInterface
+     *
+     * @package Habrahabr_api\Resources
+     *
+     * @interface
+     */
+    interface ResourceInterface
+    {
 
-	}
+    }
