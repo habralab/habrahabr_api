@@ -2,10 +2,15 @@
 
 	namespace Habrahabr_api\Resources;
 
-	use Habrahabr_api\Exception\IncorrectUsageException;
 	use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
 	use Habrahabr_api\HttpAdapter\traitAdapter;
 
+	/**
+	 * Trait - Basic Resource functions
+	 *
+	 * Class traitResource
+	 * @package Habrahabr_api\Resources
+	 */
 	trait traitResource
 	{
 		/**
@@ -25,11 +30,5 @@
 			return $this;
 		}
 
-		public function __clone()
-		{
-			throw new IncorrectUsageException('Please, no clone resources');
-		}
-
-
-		// @todo other magic methods ??
+		// @todo magic methods ??
 	}
