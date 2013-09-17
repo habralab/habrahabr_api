@@ -1,0 +1,17 @@
+{
+    "name": "tmtm/habrahabr_api",
+    "description": "write description here",
+    "authors": [
+        {
+            "name": "Rpsl",
+            "email": "rpsl@tmtm.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "files":["src/autoload.php"]
+    }
+}

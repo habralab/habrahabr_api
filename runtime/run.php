@@ -2,6 +2,7 @@
 
 
     require_once realpath( __DIR__ .'/../src/autoloader.php' );
+//    require_once realpath(__DIR__.'/../vendor/autoload.php');
 
     $adapter = new \Habrahabr_api\HttpAdapter\HttpRequestAdapter();
 
