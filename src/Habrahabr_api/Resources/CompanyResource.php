@@ -24,6 +24,13 @@
             return $this->adapter->get( sprintf('/company/%s?page=%d', $alias, $page ) );
         }
 
+        /**
+         * Получение информации о компании
+         *
+         * @param   string  $alias
+         *
+         * @return mixed
+         */
         public function getCompanyInfo( $alias )
         {
             return $this->adapter->get( sprintf('/company/%s/info', $alias ) );
