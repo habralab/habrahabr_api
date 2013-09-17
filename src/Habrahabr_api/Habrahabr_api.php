@@ -89,7 +89,16 @@
         {
             return $this->getResource('comments');
         }
-        
+
+        /**
+         * Прокси синглтон метод. Он не красивый и надо все поправить.
+         *
+         * @param $name
+         *
+         * @return mixed
+         *
+         * @throws Exception\ResourceNotExistsException
+         */
         private function getResource( $name )
         {
             $class_name = ucfirst( $name ) . 'Resource';
