@@ -4,6 +4,7 @@
 
     use Habrahabr_api\Exception\ResourceNotExistsException;
     use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
+    use Habrahabr_api\Resources\CommentsResource;
     use Habrahabr_api\Resources\CompanyResource;
     use Habrahabr_api\Resources\FeedResource;
     use Habrahabr_api\Resources\SearchResource;
@@ -121,6 +122,21 @@
             return $this->singleton['company_resource'];
         }
 
+        /**
+         * @return CommentsResource
+         */
+        public function getCommentsResource()
+        {
+            if( isset( $this->singleton['comments_resource'] ) )
+            {
+                return $this->singleton['comments_resource'];
+            }
+
+            $this->singleton['comments_resource'] = (new CommentsResource())->setAdapter( $this->adapter );
+
+            return $this->singleton['comments_resource'];
+        }
+        
 //        private function getResource( $name )
 //        {
 //            $cache_name = strtolower( $name ) . '_resource';
