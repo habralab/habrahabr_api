@@ -47,12 +47,16 @@
 
             $req->setHeaders( [ 'client' => $this->client, 'token' => $this->token  ] );
 
+            if( $method === HttpRequest::METH_PUT )
+            {
+                $req->addPutData( http_build_query($values ));
+                $req->setContentType('application/x-www-form-urlencoded');
+            }
+
             try
             {
                 $req->send();
-
                 $res = $req->getResponseBody();
-
                 return json_decode( $res, true );
             }
             catch( HttpException $e )
