@@ -51,4 +51,8 @@
 
 //    print_r( $FeedNew );
 
+//    $CompanyPosts = $Api->getCompanyResource()->getCompanyPosts('yandex');
+    $CompanyInfo = $Api->getCompanyResource()->getCompanyInfo('yandex');
+
+    print_r( $CompanyInfo );
 
