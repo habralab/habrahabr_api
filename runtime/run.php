@@ -58,6 +58,6 @@
 
 //    $CommentsForPost = $Api->getCommentsResource()->getCommentsForPost(2160);
 //    print_r( $CommentsForPost );
-//    $PostComment = $Api->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
-//    print_r( $PostComment );
+    $PostComment = $Api->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
+    print_r( $PostComment );
 
