@@ -3,7 +3,9 @@
     namespace Habrahabr_api;
 
     use Habrahabr_api\Exception\ResourceNotExistsException;
+
     use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
+
     use Habrahabr_api\Resources\CommentsResource;
     use Habrahabr_api\Resources\CompanyResource;
     use Habrahabr_api\Resources\FeedResource;
