@@ -2,7 +2,6 @@
 
     namespace Habrahabr_api;
 
-    use Habrahabr_api\Exception\ResourceNotExistsException;
     use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
     use Habrahabr_api\Resources\CommentsResource;
     use Habrahabr_api\Resources\CompanyResource;
@@ -13,7 +12,8 @@
     use Habrahabr_api\Resources\HubResource;
 
     /**
-     * Class Habrahabr_api
+     * Базовый класс, который работает как точка входа.
+     *
      * @package Habrahabr_api
      */
     class Habrahabr_api

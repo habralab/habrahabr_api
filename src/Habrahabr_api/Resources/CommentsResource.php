@@ -24,6 +24,15 @@
             return $this->adapter->get( sprintf( '/comments/%d', $id ) );
         }
 
+        /**
+         * Добавление комментария
+         *
+         * @param   int     $post_id
+         * @param   string  $text
+         * @param   int     $parent_id
+         *
+         * @return mixed
+         */
         public function postComment( $post_id, $text, $parent_id = 0 )
         {
             $params = [
