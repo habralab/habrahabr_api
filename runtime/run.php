@@ -35,9 +35,13 @@
 //    $Post = $Api->getPostResource()->getPost(2160);
 //    $VotePost = $Api->getPostResource()->vote(2160, 1);
 //    $FavoritePost = $Api->getPostResource()->addPostToFavorite(2160);
-    $unFavoritePost = $Api->getPostResource()->removePostFromFavorite(2160);
+//    $unFavoritePost = $Api->getPostResource()->removePostFromFavorite(2160);
 
 
-    var_dump( $unFavoritePost );
+//    $HubInfo = $Api->getHubResource()->getHubInfo('php');
+//    $HubHabred = $Api->getHubResource()->getFeedHabred('php', 2);
+//    $HubUnhabred = $Api->getHubResource()->getFeedUnhabred('php',2);
+//    $HubNew = $Api->getHubResource()->getFeedNew('php');
 
+//    print_r( $HubNew );
 ?>

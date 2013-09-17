@@ -7,6 +7,7 @@
     use Habrahabr_api\Resources\SearchResource;
     use Habrahabr_api\Resources\UserResource;
     use Habrahabr_api\Resources\PostResource;
+    use Habrahabr_api\Resources\HubResource;
 
     /**
      * Class Habrahabr_api
@@ -71,6 +72,21 @@
 
             return $this->singleton['post_resource'];
 
+        }
+
+        /**
+         * @return HubResource
+         */
+        public function getHubResource()
+        {
+            if( isset( $this->singleton['hub_resource'] ) )
+            {
+                return $this->singleton['hub_resource'];
+            }
+
+            $this->singleton['hub_resource'] = (new HubResource())->setAdapter( $this->adapter );
+
+            return $this->singleton['hub_resource'];
         }
 
 

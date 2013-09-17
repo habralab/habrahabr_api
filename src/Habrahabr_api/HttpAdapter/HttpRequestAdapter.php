@@ -57,6 +57,8 @@
             {
                 $req->send();
                 $res = $req->getResponseBody();
+
+                // @todo разбор ошибок?
                 return json_decode( $res, true );
             }
             catch( HttpException $e )
