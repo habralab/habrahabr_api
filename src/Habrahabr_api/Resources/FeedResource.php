@@ -2,6 +2,11 @@
 
     namespace Habrahabr_api\Resources;
 
+    /**
+     * Ресурс работы с "главной" лентой
+     *
+     * @package Habrahabr_api\Resources
+     */
     class FeedResource implements ResourceInterface
     {
         use traitResource;
