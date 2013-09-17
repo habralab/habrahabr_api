@@ -4,6 +4,7 @@
 
     use Habrahabr_api\Exception\ResourceNotExistsException;
     use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
+    use Habrahabr_api\Resources\FeedResource;
     use Habrahabr_api\Resources\SearchResource;
     use Habrahabr_api\Resources\UserResource;
     use Habrahabr_api\Resources\PostResource;
@@ -89,6 +90,20 @@
             return $this->singleton['hub_resource'];
         }
 
+        /**
+         * @return FeedResource
+         */
+        public function getFeedResource()
+        {
+            if( isset( $this->singleton['feed_resource'] ) )
+            {
+                return $this->singleton['feed_resource'];
+            }
+
+            $this->singleton['feed_resource'] = (new FeedResource())->setAdapter( $this->adapter );
+
+            return $this->singleton['feed_resource'];
+        }
 
 //        private function getResource( $name )
 //        {
