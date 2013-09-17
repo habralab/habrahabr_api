@@ -52,7 +52,12 @@
 //    print_r( $FeedNew );
 
 //    $CompanyPosts = $Api->getCompanyResource()->getCompanyPosts('yandex');
-    $CompanyInfo = $Api->getCompanyResource()->getCompanyInfo('yandex');
+//    $CompanyInfo = $Api->getCompanyResource()->getCompanyInfo('yandex');
 
-    print_r( $CompanyInfo );
+//    print_r( $CompanyInfo );
+
+//    $CommentsForPost = $Api->getCommentsResource()->getCommentsForPost(2160);
+//    print_r( $CommentsForPost );
+//    $PostComment = $Api->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
+//    print_r( $PostComment );
 
