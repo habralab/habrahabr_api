@@ -44,4 +44,9 @@
 //    $HubNew = $Api->getHubResource()->getFeedNew('php');
 
 //    print_r( $HubNew );
-?>
+
+//    $FeedHabred = $Api->getFeedResource()->getFeedHabred();
+//    $FeedUnhabred = $Api->getFeedResource()->getFeedUnhabred();
+//    $FeedNew = $Api->getFeedResource()->getFeedNew();
+
+//    print_r( $FeedNew );
