@@ -2,6 +2,8 @@
 
     namespace Habrahabr_api\Resources;
 
+    use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
+
     /**
      * Interface ResourceInterface
      *
@@ -11,5 +13,5 @@
      */
     interface ResourceInterface
     {
-
+        public function setAdapter( HttpAdapterInterface $adapter );
     }

@@ -7,10 +7,8 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class CommentsResource implements ResourceInterface
+    class CommentsResource extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
 
         /**
          * Получение списка комментариев к посту.

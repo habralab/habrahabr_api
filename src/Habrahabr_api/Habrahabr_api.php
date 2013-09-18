@@ -13,6 +13,7 @@
     use Habrahabr_api\Resources\UserResource;
     use Habrahabr_api\Resources\PostResource;
     use Habrahabr_api\Resources\HubResource;
+    use Habrahabr_api\Resources\ResourceInterface;
 
     /**
      * Базовый класс, который работает как точка входа.
@@ -115,7 +116,10 @@
 
             $full_name = "\\Habrahabr_api\\Resources\\" . $class_name;
 
-            $this->singleton[ $class_name ] = (new $full_name())->setAdapter( $this->adapter );
+            /** @var ResourceInterface $full_name */
+            $full_name = new $full_name();
+
+            $this->singleton[ $class_name ] = $full_name->setAdapter( $this->adapter );
 
             return $this->singleton[ $class_name ];
         }

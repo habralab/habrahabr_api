@@ -9,10 +9,8 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class PostResource implements ResourceInterface
+    class PostResource  extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
         /**
          * Получение поста по его id. ( без комментариве )
          *

@@ -8,10 +8,8 @@
      * Class UserResource
      * @package Habrahabr_api\Resources
      */
-    class UserResource implements ResourceInterface
+    class UserResource  extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
         /**
          * Информация о пользователе по логину
          *

@@ -7,10 +7,8 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class CompanyResource implements ResourceInterface
+    class CompanyResource  extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
         /**
          * Список постов компании, с пагинацией.
          *

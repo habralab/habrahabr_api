@@ -7,6 +7,13 @@
 
     use Habrahabr_api\Exception\ExtenstionNotLoadedException;
 
+    /**
+     * Адаптер построенный на php модуле Http
+     *
+     * @see http://www.php.net/manual/ru/book.http.php
+     *
+     * @package Habrahabr_api\HttpAdapter
+     */
     class HttpRequestAdapter implements HttpAdapterInterface
     {
         use traitAdapter;

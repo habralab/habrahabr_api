@@ -7,10 +7,8 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class FeedResource implements ResourceInterface
+    class FeedResource  extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
         /**
          * Список постов из ленты, с пагинацией, фильтр "Захабренные"
          *
