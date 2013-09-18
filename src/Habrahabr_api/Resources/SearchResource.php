@@ -7,10 +7,8 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class SearchResource implements ResourceInterface
+    class SearchResource  extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
         /**
          * Поиск постов, с пагинацией
          *

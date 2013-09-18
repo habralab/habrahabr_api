@@ -9,10 +9,8 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class HubResource implements ResourceInterface
+    class HubResource  extends abstractResource implements ResourceInterface
     {
-        use traitResource;
-
         /**
          * Получение информации о хабе по алиасу.
          *
