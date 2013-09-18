@@ -7,7 +7,6 @@
     /**
      * Basic Resource class
      *
-     * Class traitResource
      * @package Habrahabr_api\Resources
      */
     abstract class abstractResource
