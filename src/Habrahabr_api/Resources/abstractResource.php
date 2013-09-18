@@ -5,7 +5,7 @@
     use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
 
     /**
-     * Trait - Basic Resource functions
+     * Basic Resource class
      *
      * Class traitResource
      * @package Habrahabr_api\Resources
