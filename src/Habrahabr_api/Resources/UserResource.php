@@ -23,15 +23,13 @@
         }
 
         /**
-         * Список пользователей с пагинацией
-         *
-         * @param int $page
+         * Список пользователей
          *
          * @return mixed
          */
-        public function getUsersList( $page = 1 )
+        public function getUsersList()
         {
-            return $this->adapter->get( sprintf('/users?page=%d', $page ) );
+            return $this->adapter->get( '/users' );
         }
 
         /**
