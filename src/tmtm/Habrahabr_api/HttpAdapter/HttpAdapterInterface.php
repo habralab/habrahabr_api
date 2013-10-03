@@ -1,6 +1,6 @@
 <?php
 
-    namespace Habrahabr_api\HttpAdapter;
+    namespace tmtm\Habrahabr_api\HttpAdapter;
 
     interface HttpAdapterInterface
     {
