@@ -1,6 +1,6 @@
 <?php
 
-    namespace Habrahabr_api\Resources;
+    namespace tmtm\Habrahabr_api\Resources;
 
     /**
      * Ресурс работы с компаниями

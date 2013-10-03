@@ -1,8 +1,8 @@
 <?php
 
-    namespace Habrahabr_api\Resources;
+    namespace tmtm\Habrahabr_api\Resources;
 
-    use Habrahabr_api\Exception\IncorrectUsageException;
+    use tmtm\Habrahabr_api\Exception\IncorrectUsageException;
 
     /**
      * Ресурс работы с постами
@@ -36,7 +36,7 @@
          *
          * @return mixed
          *
-         * @throws \Habrahabr_api\Exception\IncorrectUsageException
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
         public function vote( $id,  $type )
         {

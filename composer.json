@@ -7,12 +7,12 @@
             "email": "rpsl@tmtm.ru"
         }
     ],
-    "version": "0.0.1",
+
     "require": {
         "php": ">=5.4.0"
     },
     "autoload": {
-        "files":["src/autoload.php"]
+        "psr-0": { "tmtm\\": "src/" }
     },
     "extra": {
         "branch-alias": {
