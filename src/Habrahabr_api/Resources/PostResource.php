@@ -26,8 +26,13 @@
         /**
          * Голосование за пост.
          *
+         * Этот метод может быть предоставлен дополнительно, по запросу.
+         * http://habrahabr.ru/feedback/
+         *
          * @param   int $id
          * @param   int $type [ -1, 0, 1 ]
+         *
+         * @deprecated
          *
          * @return mixed
          *
