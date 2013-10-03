@@ -1,6 +1,6 @@
 <?php
 
-	require_once realpath( __DIR__ . '/keys.php' );
+    require_once realpath( __DIR__ . '/keys.php' );
     require_once realpath(__DIR__.'/../vendor/autoload.php');
 
     $adapter = new \tmtm\Habrahabr_api\HttpAdapter\HttpRequestAdapter();
@@ -13,7 +13,7 @@
 
     $User          = $Api->getUserResource()->getUser( 'rpsl' );
 
-	print_r( $User );
+    print_r( $User );
 //    $Users         = $Api->getUserResource()->getUsersList( 2 );
 //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
 //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
