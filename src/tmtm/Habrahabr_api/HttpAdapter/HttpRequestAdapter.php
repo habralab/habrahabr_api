@@ -1,11 +1,11 @@
 <?php
 
-    namespace Habrahabr_api\HttpAdapter;
+    namespace tmtm\Habrahabr_api\HttpAdapter;
 
     use HttpRequest;
     use HttpException;
 
-    use Habrahabr_api\Exception\ExtenstionNotLoadedException;
+    use tmtm\Habrahabr_api\Exception\ExtenstionNotLoadedException;
 
     /**
      * Адаптер построенный на php модуле Http

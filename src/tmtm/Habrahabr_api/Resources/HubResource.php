@@ -1,8 +1,8 @@
 <?php
 
-    namespace Habrahabr_api\Resources;
+    namespace tmtm\Habrahabr_api\Resources;
 
-    use Habrahabr_api\Exception\IncorrectUsageException;
+    use tmtm\Habrahabr_api\Exception\IncorrectUsageException;
 
     /**
      * Ресурс для работы с Хабами
@@ -83,7 +83,7 @@
         /**
          * @param   string $alias
          *
-         * @throws \Habrahabr_api\Exception\IncorrectUsageException
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
         private function checkAliasName( $alias )
         {
