@@ -13,6 +13,7 @@
     use tmtm\Habrahabr_api\Resources\UserResource;
     use tmtm\Habrahabr_api\Resources\PostResource;
     use tmtm\Habrahabr_api\Resources\HubResource;
+    use tmtm\Habrahabr_api\Resources\TrackerResource;
     use tmtm\Habrahabr_api\Resources\ResourceInterface;
 
     /**
@@ -89,6 +90,14 @@
         public function getCommentsResource()
         {
             return $this->getResource('comments');
+        }
+
+        /**
+         * @return TrackerResource
+         */
+        public function getTrackerResource()
+        {
+            return $this->getResource('tracker');
         }
 
         /**
