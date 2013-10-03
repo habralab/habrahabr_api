@@ -1,26 +1,26 @@
 <?php
 
-    namespace Habrahabr_api;
+    namespace tmtm\Habrahabr_api;
 
-    use Habrahabr_api\Exception\ResourceNotExistsException;
+    use tmtm\Habrahabr_api\Exception\ResourceNotExistsException;
 
-    use Habrahabr_api\HttpAdapter\HttpAdapterInterface;
+    use tmtm\Habrahabr_api\HttpAdapter\HttpAdapterInterface;
 
-    use Habrahabr_api\Resources\CommentsResource;
-    use Habrahabr_api\Resources\CompanyResource;
-    use Habrahabr_api\Resources\FeedResource;
-    use Habrahabr_api\Resources\SearchResource;
-    use Habrahabr_api\Resources\UserResource;
-    use Habrahabr_api\Resources\PostResource;
-    use Habrahabr_api\Resources\HubResource;
-    use Habrahabr_api\Resources\ResourceInterface;
+    use tmtm\Habrahabr_api\Resources\CommentsResource;
+    use tmtm\Habrahabr_api\Resources\CompanyResource;
+    use tmtm\Habrahabr_api\Resources\FeedResource;
+    use tmtm\Habrahabr_api\Resources\SearchResource;
+    use tmtm\Habrahabr_api\Resources\UserResource;
+    use tmtm\Habrahabr_api\Resources\PostResource;
+    use tmtm\Habrahabr_api\Resources\HubResource;
+    use tmtm\Habrahabr_api\Resources\ResourceInterface;
 
     /**
      * Базовый класс, который работает как точка входа.
      *
      * @package Habrahabr_api
      */
-    class Habrahabr_api
+    class Api
     {
         protected   $adapter;
 
@@ -104,7 +104,7 @@
         {
             $class_name = ucfirst( $name ) . 'Resource';
 
-            if( !class_exists( "\\Habrahabr_api\\Resources\\" . $class_name ) )
+            if( !class_exists( "\\tmtm\\Habrahabr_api\\Resources\\" . $class_name ) )
             {
                 throw new ResourceNotExistsException( $class_name );
             }
@@ -114,7 +114,7 @@
                 return $this->singleton[ $class_name ];
             }
 
-            $full_name = "\\Habrahabr_api\\Resources\\" . $class_name;
+            $full_name = "\\tmtm\\Habrahabr_api\\Resources\\" . $class_name;
 
             /** @var ResourceInterface $full_name */
             $full_name = new $full_name();
