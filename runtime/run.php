@@ -1,18 +1,19 @@
 <?php
 
+	require_once realpath( __DIR__ . '/keys.php' );
+    require_once realpath(__DIR__.'/../vendor/autoload.php');
 
-    require_once realpath( __DIR__ .'/../src/autoload.php' );
-//    require_once realpath(__DIR__.'/../vendor/autoload.php');
+    $adapter = new \tmtm\Habrahabr_api\HttpAdapter\HttpRequestAdapter();
 
-    $adapter = new \Habrahabr_api\HttpAdapter\HttpRequestAdapter();
+    $adapter->setEndpoint( $endpoint );
+    $adapter->setToken( $token );
+    $adapter->setClient( $client );
 
-    $adapter->setEndpoint('http://api.rpsl.habratest.net/v1');
-    $adapter->setToken('55e1f222a8fb50fa7e500b443e0075d48bf21297');
-    $adapter->setClient('252370d0d156958.66501983');
+    $Api = new \tmtm\Habrahabr_api\Api( $adapter );
 
-    $Api = new \Habrahabr_api\Habrahabr_api( $adapter );
+    $User          = $Api->getUserResource()->getUser( 'rpsl' );
 
-//    $User          = $Api->getUserResource()->getUser( 'rpsl' );
+	print_r( $User );
 //    $Users         = $Api->getUserResource()->getUsersList( 2 );
 //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
 //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
@@ -23,7 +24,7 @@
 //
 //    $voteKarmaPlus = $Api->getUserResource()->voteKarmaPlus('habrahabr');
 //    print_r( $voteKarmaPlus );
-//
+
 //    $voteKarmaMinus= $Api->getUserResource()->voteKarmaMinus('habrahabr');
 //    print_r( $voteKarmaMinus );
 //
@@ -59,6 +60,6 @@
 
 //    $CommentsForPost = $Api->getCommentsResource()->getCommentsForPost(2160);
 //    print_r( $CommentsForPost );
-    $PostComment = $Api->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
-    print_r( $PostComment );
+//    $PostComment = $Api->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
+//    print_r( $PostComment );
 
