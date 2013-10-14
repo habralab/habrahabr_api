@@ -10,9 +10,9 @@
 
         public function get( $url );
 
-        public function post( $url, array $values = [] );
+        public function post( $url, array $values = [ ] );
 
         public function delete( $url );
 
-        public function put( $url, array $values = [] );
+        public function put( $url, array $values = [ ] );
     }

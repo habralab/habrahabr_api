@@ -6,9 +6,10 @@
      * Ресурс для работы с пользователеми.
      *
      * Class UserResource
+     *
      * @package Habrahabr_api\Resources
      */
-    class UserResource  extends abstractResource implements ResourceInterface
+    class UserResource extends abstractResource implements ResourceInterface
     {
         /**
          * Информация о пользователе по логину
@@ -19,7 +20,7 @@
          */
         public function getUser( $login )
         {
-            return $this->adapter->get( sprintf('/users/%s', $login ) );
+            return $this->adapter->get( sprintf( '/users/%s', $login ) );
         }
 
         /**
@@ -42,7 +43,7 @@
          */
         public function getUserComments( $login, $page = 1 )
         {
-            return $this->adapter->get( sprintf('/users/%s/comments?page=%d', $login, $page ) );
+            return $this->adapter->get( sprintf( '/users/%s/comments?page=%d', $login, $page ) );
         }
 
         /**
@@ -55,7 +56,7 @@
          */
         public function getUserPosts( $login, $page = 1 )
         {
-            return $this->adapter->get( sprintf('/users/%s/posts?page=%d', $login, $page ) );
+            return $this->adapter->get( sprintf( '/users/%s/posts?page=%d', $login, $page ) );
         }
 
         /**
@@ -67,7 +68,7 @@
          */
         public function getUserHubs( $login )
         {
-            return $this->adapter->get( sprintf('/users/%s/hubs', $login ) );
+            return $this->adapter->get( sprintf( '/users/%s/hubs', $login ) );
         }
 
         /**
@@ -79,7 +80,7 @@
          */
         public function getUserCompanies( $login )
         {
-            return $this->adapter->get( sprintf('/users/%s/companies', $login) );
+            return $this->adapter->get( sprintf( '/users/%s/companies', $login ) );
         }
 
 
@@ -93,7 +94,7 @@
          */
         public function getUserFollowers( $login, $page = 1 )
         {
-            return $this->adapter->get( sprintf('/users/%s/followers?page=%d', $login, $page ) );
+            return $this->adapter->get( sprintf( '/users/%s/followers?page=%d', $login, $page ) );
         }
 
         /**
@@ -106,7 +107,7 @@
          */
         public function getUserFollowed( $login, $page = 1 )
         {
-            return $this->adapter->get( sprintf('/users/%s/followed?page=%d', $login, $page ) );
+            return $this->adapter->get( sprintf( '/users/%s/followed?page=%d', $login, $page ) );
         }
 
         /**
@@ -123,7 +124,7 @@
          */
         public function voteKarmaPlus( $target )
         {
-            return $this->adapter->put( sprintf('/users/%s/vote', $target ) );
+            return $this->adapter->put( sprintf( '/users/%s/vote', $target ) );
         }
 
         /**
@@ -140,6 +141,6 @@
          */
         public function voteKarmaMinus( $target )
         {
-            return $this->adapter->delete( sprintf('/users/%s/vote', $target ) );
+            return $this->adapter->delete( sprintf( '/users/%s/vote', $target ) );
         }
     }

@@ -25,9 +25,9 @@
         /**
          * Добавление комментария
          *
-         * @param   int     $post_id
-         * @param   string  $text
-         * @param   int     $parent_id
+         * @param   int    $post_id
+         * @param   string $text
+         * @param   int    $parent_id
          *
          * @return mixed
          */
@@ -38,6 +38,6 @@
                 'parent_id' => $parent_id
             ];
 
-            return $this->adapter->put( sprintf('/comments/%d', $post_id ), $params );
+            return $this->adapter->put( sprintf( '/comments/%d', $post_id ), $params );
         }
     }

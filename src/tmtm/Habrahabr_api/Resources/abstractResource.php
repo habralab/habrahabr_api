@@ -14,7 +14,7 @@
         /**
          * @var HttpAdapterInterface
          */
-        protected  $adapter;
+        protected $adapter;
 
         /**
          * @param HttpAdapterInterface $adapter

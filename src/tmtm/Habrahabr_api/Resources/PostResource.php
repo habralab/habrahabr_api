@@ -9,7 +9,7 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class PostResource  extends abstractResource implements ResourceInterface
+    class PostResource extends abstractResource implements ResourceInterface
     {
         /**
          * Получение поста по его id. ( без комментариве )
@@ -20,7 +20,7 @@
          */
         public function getPost( $id )
         {
-            return $this->adapter->get( sprintf('/post/%d', $id ) );
+            return $this->adapter->get( sprintf( '/post/%d', $id ) );
         }
 
         /**
@@ -38,17 +38,17 @@
          *
          * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
-        public function vote( $id,  $type )
+        public function vote( $id, $type )
         {
 
-            if( !in_array( $type, [ -1, 0, 1 ] , 1 ) )
+            if( !in_array( $type, [ -1, 0, 1 ], 1 ) )
             {
-                throw new IncorrectUsageException('vote type incorrect');
+                throw new IncorrectUsageException( 'vote type incorrect' );
             }
 
             $params = [ 'vote' => $type ];
 
-            return $this->adapter->put( sprintf('/post/%d/vote', $id ), $params );
+            return $this->adapter->put( sprintf( '/post/%d/vote', $id ), $params );
         }
 
         /**
@@ -60,7 +60,7 @@
          */
         public function addPostToFavorite( $id )
         {
-            return $this->adapter->put( sprintf('/post/%d/favorite', $id ), [] );
+            return $this->adapter->put( sprintf( '/post/%d/favorite', $id ), [ ] );
         }
 
         /**
@@ -72,6 +72,6 @@
          */
         public function removePostFromFavorite( $id )
         {
-            return $this->adapter->delete( sprintf('/post/%d/favorite', $id ) );
+            return $this->adapter->delete( sprintf( '/post/%d/favorite', $id ) );
         }
     }
