@@ -5,16 +5,15 @@
     use tmtm\Habrahabr_api\Exception\ResourceNotExistsException;
 
     use tmtm\Habrahabr_api\HttpAdapter\HttpAdapterInterface;
-
     use tmtm\Habrahabr_api\Resources\CommentsResource;
     use tmtm\Habrahabr_api\Resources\CompanyResource;
     use tmtm\Habrahabr_api\Resources\FeedResource;
-    use tmtm\Habrahabr_api\Resources\SearchResource;
-    use tmtm\Habrahabr_api\Resources\UserResource;
-    use tmtm\Habrahabr_api\Resources\PostResource;
     use tmtm\Habrahabr_api\Resources\HubResource;
-    use tmtm\Habrahabr_api\Resources\TrackerResource;
+    use tmtm\Habrahabr_api\Resources\PostResource;
     use tmtm\Habrahabr_api\Resources\ResourceInterface;
+    use tmtm\Habrahabr_api\Resources\SearchResource;
+    use tmtm\Habrahabr_api\Resources\TrackerResource;
+    use tmtm\Habrahabr_api\Resources\UserResource;
 
     /**
      * Базовый класс, который работает как точка входа.
@@ -23,9 +22,9 @@
      */
     class Api
     {
-        protected   $adapter;
+        protected $adapter;
 
-        private     $singleton = [];
+        private $singleton = [ ];
 
         /**
          * @param HttpAdapterInterface $adapter
@@ -41,7 +40,7 @@
          */
         public function getUserResource()
         {
-            return $this->getResource('user');
+            return $this->getResource( 'user' );
         }
 
         /**
@@ -49,7 +48,7 @@
          */
         public function getSearchResource()
         {
-            return $this->getResource('search');
+            return $this->getResource( 'search' );
         }
 
         /**
@@ -57,7 +56,7 @@
          */
         public function getPostResource()
         {
-            return $this->getResource('post');
+            return $this->getResource( 'post' );
         }
 
         /**
@@ -65,7 +64,7 @@
          */
         public function getHubResource()
         {
-            return $this->getResource('hub');
+            return $this->getResource( 'hub' );
         }
 
         /**
@@ -73,7 +72,7 @@
          */
         public function getFeedResource()
         {
-            return $this->getResource('feed');
+            return $this->getResource( 'feed' );
         }
 
         /**
@@ -81,7 +80,7 @@
          */
         public function getCompanyResource()
         {
-            return $this->getResource('company');
+            return $this->getResource( 'company' );
         }
 
         /**
@@ -89,7 +88,7 @@
          */
         public function getCommentsResource()
         {
-            return $this->getResource('comments');
+            return $this->getResource( 'comments' );
         }
 
         /**
@@ -97,7 +96,7 @@
          */
         public function getTrackerResource()
         {
-            return $this->getResource('tracker');
+            return $this->getResource( 'tracker' );
         }
 
         /**
@@ -113,23 +112,23 @@
         {
             $class_name = ucfirst( $name ) . 'Resource';
 
-            if( !class_exists( "\\tmtm\\Habrahabr_api\\Resources\\" . $class_name ) )
+            if( !class_exists( '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name ) )
             {
                 throw new ResourceNotExistsException( $class_name );
             }
 
-            if( isset( $this->singleton[ $class_name ] ) )
+            if( isset( $this->singleton[$class_name] ) )
             {
-                return $this->singleton[ $class_name ];
+                return $this->singleton[$class_name];
             }
 
-            $full_name = "\\tmtm\\Habrahabr_api\\Resources\\" . $class_name;
+            $full_name = '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name;
 
             /** @var ResourceInterface $full_name */
             $full_name = new $full_name();
 
-            $this->singleton[ $class_name ] = $full_name->setAdapter( $this->adapter );
+            $this->singleton[$class_name] = $full_name->setAdapter( $this->adapter );
 
-            return $this->singleton[ $class_name ];
+            return $this->singleton[$class_name];
         }
     }
