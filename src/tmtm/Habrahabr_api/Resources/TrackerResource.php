@@ -4,7 +4,7 @@
 
     use tmtm\Habrahabr_api\Exception\IncorrectUsageException;
 
-    class TrackerResource  extends abstractResource implements ResourceInterface
+    class TrackerResource extends abstractResource implements ResourceInterface
     {
         /**
          * Отправляем сообщение в трекер пользователя.
@@ -22,10 +22,10 @@
 
             if( !is_string( $title ) || !is_string( $text ) )
             {
-                throw new IncorrectUsageException('title or text invalid');
+                throw new IncorrectUsageException( 'title or text invalid' );
             }
 
-            return $this->adapter->put('/tracker', [ 'title' => $title, 'text' => $text ] );
+            return $this->adapter->put( '/tracker', [ 'title' => $title, 'text' => $text ] );
         }
 
         /**
@@ -37,7 +37,7 @@
          */
         public function getCounters()
         {
-            return $this->adapter->get('/tracker/counters' );
+            return $this->adapter->get( '/tracker/counters' );
         }
 
         /**
@@ -49,7 +49,7 @@
          */
         public function getPostsFeed()
         {
-            return $this->adapter->get('/tracker/posts');
+            return $this->adapter->get( '/tracker/posts' );
         }
 
         /**
@@ -61,7 +61,7 @@
          */
         public function getSubscribersFeed()
         {
-            return $this->adapter->get('/tracker/subscribers' );
+            return $this->adapter->get( '/tracker/subscribers' );
         }
 
 
@@ -74,7 +74,7 @@
          */
         public function getMentions()
         {
-            return $this->adapter->get('/tracker/mentions');
+            return $this->adapter->get( '/tracker/mentions' );
         }
 
         /**
@@ -86,7 +86,7 @@
          */
         public function getAppsFeed()
         {
-            return $this->adapter->get('/tracker/apps');
+            return $this->adapter->get( '/tracker/apps' );
         }
 
     }

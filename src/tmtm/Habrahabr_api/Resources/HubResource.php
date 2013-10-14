@@ -9,7 +9,7 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class HubResource  extends abstractResource implements ResourceInterface
+    class HubResource extends abstractResource implements ResourceInterface
     {
         /**
          * Получение информации о хабе по алиасу.
@@ -24,14 +24,14 @@
         {
             $this->checkAliasName( $alias );
 
-            return $this->adapter->get( sprintf('/hub/%s/info', $alias ) );
+            return $this->adapter->get( sprintf( '/hub/%s/info', $alias ) );
         }
 
         /**
          * Получение ленты хаба, с пагинацией, фильтр "Захабренные"
          *
-         * @param   string  $alias
-         * @param   int     $page
+         * @param   string $alias
+         * @param   int    $page
          *
          * @throws IncorrectUsageException
          *
@@ -41,14 +41,14 @@
         {
             $this->checkAliasName( $alias );
 
-            return $this->adapter->get( sprintf('/hub/%s/habred?page=%d', $alias, $page ) );
+            return $this->adapter->get( sprintf( '/hub/%s/habred?page=%d', $alias, $page ) );
         }
 
         /**
          * Получение ленты хаба, с пагинацией, фильтр "Отхабренные"
          *
-         * @param   string  $alias
-         * @param   int     $page
+         * @param   string $alias
+         * @param   int    $page
          *
          * @throws IncorrectUsageException
          *
@@ -58,15 +58,15 @@
         {
             $this->checkAliasName( $alias );
 
-            return $this->adapter->get( sprintf('/hub/%s/unhabred?page=%d', $alias, $page ) );
+            return $this->adapter->get( sprintf( '/hub/%s/unhabred?page=%d', $alias, $page ) );
 
         }
 
         /**
          * Получение ленты хаба, с пагинацией, фильтр "Новые"
          *
-         * @param   string  $alias
-         * @param   int     $page
+         * @param   string $alias
+         * @param   int    $page
          *
          * @throws IncorrectUsageException
          *
@@ -76,7 +76,7 @@
         {
             $this->checkAliasName( $alias );
 
-            return $this->adapter->get( sprintf('/hub/%s/new?page=%d', $alias, $page ) );
+            return $this->adapter->get( sprintf( '/hub/%s/new?page=%d', $alias, $page ) );
 
         }
 
@@ -87,9 +87,9 @@
          */
         private function checkAliasName( $alias )
         {
-            if( !preg_match('/^[a-z0-9\-_]+$/i', $alias) )
+            if( !preg_match( '/^[a-z0-9\-_]+$/i', $alias ) )
             {
-                throw new IncorrectUsageException('bad alias - ' . $alias );
+                throw new IncorrectUsageException( 'bad alias - ' . $alias );
             }
         }
     }

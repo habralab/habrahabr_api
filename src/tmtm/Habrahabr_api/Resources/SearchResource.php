@@ -7,13 +7,13 @@
      *
      * @package Habrahabr_api\Resources
      */
-    class SearchResource  extends abstractResource implements ResourceInterface
+    class SearchResource extends abstractResource implements ResourceInterface
     {
         /**
          * Поиск постов, с пагинацией
          *
-         * @param string    $string
-         * @param int       $page
+         * @param string $string
+         * @param int    $page
          *
          * @return mixed
          */
@@ -25,8 +25,8 @@
         /**
          * Поиск пользователей, с пагинацией
          *
-         * @param string    $string
-         * @param int       $page
+         * @param string $string
+         * @param int    $page
          *
          * @return mixed
          */
