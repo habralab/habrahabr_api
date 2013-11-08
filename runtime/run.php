@@ -11,9 +11,9 @@
 
     $Api = new \tmtm\Habrahabr_api\Api( $adapter );
 
-//    $User          = $Api->getUserResource()->getUser( 'rpsl' );
+   $User          = $Api->getUserResource()->getUser( 'me' );
 
-//    print_r( $User );
+   print_r( $User );
 //    $Users         = $Api->getUserResource()->getUsersList( 2 );
 //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
 //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
@@ -68,6 +68,6 @@
 //	$subs = $Api->getTrackerResource()->getSubscribersFeed();
 //	$apps = $Api->getTrackerResource()->getAppsFeed();
 
-//	$mentions = $Api->getTrackerResource()->getMentions();
+	// $mentions = $Api->getTrackerResource()->getMentions();
 
-//	var_dump( $mentions );
+	// var_dump( $mentions );

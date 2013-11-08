@@ -2,6 +2,8 @@
 
     namespace tmtm\Habrahabr_api\HttpAdapter;
 
+    use tmtm\Habrahabr_api\Exception\IncorrectUsageException;
+
     trait traitAdapter
     {
         protected $token;
@@ -22,8 +24,17 @@
 
         public function setEndpoint( $url )
         {
-            // @todo validation / normalization
             // @todo mb extract 'setVersion' ?
+
+            $check = parse_url( $url );
+
+            if( empty( $check['scheme'] ) || $check['scheme'] !== 'https' )
+            {
+                throw new IncorrectUsageException('Scheme of endpoint must be https');
+            }
+
+            $url = rtrim( $url, '/' );
+
             $this->endpoint = $url;
         }
 
