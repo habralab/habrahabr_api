@@ -30,9 +30,11 @@
          */
         public function __construct()
         {
-            if (!function_exists('curl_init'))
-                throw new ExtenstionNotLoadedException(
-                    'The cURL PHP extension was not loaded');
+            if( !function_exists( 'curl_init' ) )
+            {
+                throw new ExtenstionNotLoadedException( 'The cURL PHP extension was not loaded' );
+            }
+
             $this->curl = curl_init();
         }
 
@@ -76,7 +78,7 @@
          *
          * @return array|false Результат запроса
          */
-        public function delete($url)
+        public function delete($url, array $values = [])
         {
             return $this->request($url, 'DELETE', $values);
         }
@@ -107,17 +109,18 @@
         {
             $url = $this->getEndpoint() . $url;
             curl_setopt($this->curl, CURLOPT_URL, $url);
-       	    curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
 
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, array(
                 'client: ' . $this->client,
-                'token: ' . $this->token
+                'token: '  . $this->token
             ));
 
-            if ($method == 'PUT' || $method == 'POST')
-                curl_setopt($this->curl, CURLOPT_POSTFIELDS,
-                            http_build_query($values));
+            if( $method == 'PUT' || $method == 'POST' )
+            {
+                curl_setopt( $this->curl, CURLOPT_POSTFIELDS, http_build_query( $values ) );
+            }
 
             $result = curl_exec($this->curl);
             return $result ? json_decode($result, true) : false;
