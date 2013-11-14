@@ -1,6 +1,6 @@
 {
     "name": "tmtm/habrahabr_api",
-    "description": "write description here",
+    "description": "Official habrahabr.ru api client",
     "authors": [
         {
             "name": "Rpsl",
@@ -13,10 +13,5 @@
     },
     "autoload": {
         "psr-0": { "tmtm\\": "src/" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "master"
-        }
     }
 }
