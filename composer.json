@@ -8,7 +8,7 @@
             "email": "rpsl@tmtm.ru"
         }
     ],
-
+    "license": "MIT",
     "require": {
         "php": ">=5.4.0"
     },
@@ -19,7 +19,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "master"
+            "master": "master-dev"
         }
     }
 }
