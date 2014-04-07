@@ -143,4 +143,32 @@
         {
             return $this->adapter->delete( sprintf( '/users/%s/vote', $target ) );
         }
+
+        /**
+         * Посты которые пользователь добавил в избранное
+         *
+         * @param $login
+         *
+         * @param int $page
+         *
+         * @return mixed
+         */
+        public function getUserFavoritesPost( $login, $page = 1 )
+        {
+            return $this->adapter->get( sprintf( '/users/%s/favorites/posts?page=%d', $login, $page ) );
+        }
+
+        /**
+         * Комментарии которые пользователь добавил в избранное
+         *
+         * @param $login
+         *
+         * @param int $page
+         *
+         * @return mixed
+         */
+        public function getUserFavoritesComments( $login, $page = 1 )
+        {
+            return $this->adapter->get( sprintf( '/users/%s/favorites/comments?page=%d', $login, $page ) );
+        }
     }

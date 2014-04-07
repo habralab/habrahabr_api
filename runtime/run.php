@@ -3,7 +3,7 @@
     require_once realpath( __DIR__ . '/keys.php' );
     require_once realpath(__DIR__.'/../vendor/autoload.php');
 
-    $adapter = new \tmtm\Habrahabr_api\HttpAdapter\HttpRequestAdapter();
+    $adapter = new \tmtm\Habrahabr_api\HttpAdapter\CurlAdapter();
 
     $adapter->setEndpoint( $endpoint );
     $adapter->setToken( $token );
@@ -11,9 +11,9 @@
 
     $Api = new \tmtm\Habrahabr_api\Api( $adapter );
 
-    $User          = $Api->getUserResource()->getUser( 'me' );
+    $User          = $Api->getUserResource()->getUserFavoritesPost('rpsl');
 
-    print_r( $User );
+//    var_dump( $User );
     //    $Users         = $Api->getUserResource()->getUsersList( 2 );
     //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
     //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );

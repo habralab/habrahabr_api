@@ -111,6 +111,7 @@
             curl_setopt($this->curl, CURLOPT_URL, $url);
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 3);
 
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, array(
                 'client: ' . $this->client,
@@ -123,6 +124,12 @@
             }
 
             $result = curl_exec($this->curl);
+
+            if( curl_errno( $this->curl ) )
+            {
+                // @todo
+            }
+
             return $result ? json_decode($result, true) : false;
         }
     }
