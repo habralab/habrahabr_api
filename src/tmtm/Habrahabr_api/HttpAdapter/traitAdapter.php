@@ -9,6 +9,7 @@
         protected $token;
         protected $client;
         protected $endpoint;
+        protected $timeout = 5;
 
         public function setToken( $token )
         {
@@ -41,5 +42,15 @@
         public function getEndpoint()
         {
             return $this->endpoint;
+        }
+
+        public function setTimeout( $timeout )
+        {
+            $this->timeout = $timeout;
+        }
+
+        public function getTimeout()
+        {
+            return $this->timeout;
         }
     }
