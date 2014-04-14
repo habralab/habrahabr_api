@@ -9,7 +9,7 @@
         protected $token;
         protected $client;
         protected $endpoint;
-        protected $timeout = 5;
+        protected $connectionTimeout = 5;
 
         public function setToken( $token )
         {
@@ -44,13 +44,16 @@
             return $this->endpoint;
         }
 
-        public function setTimeout( $timeout )
+        /**
+         * Устанавливает количество секунд ожидания при попытке соединения
+         */
+        public function setConnectionTimeout( $connectionTimeout )
         {
-            $this->timeout = $timeout;
+            $this->connectionTimeout = $connectionTimeout;
         }
 
-        public function getTimeout()
+        public function getConnectionTimeout()
         {
-            return $this->timeout;
+            return $this->connectionTimeout;
         }
     }
