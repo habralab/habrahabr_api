@@ -15,6 +15,11 @@
         use traitAdapter;
 
         /**
+         * Таймаут соединения
+         */
+        const TIMEOUT = 3;
+
+        /**
          * Экземпляр cURL
          *
          * Переменнная объявлена как protected, чтобы можно было унаследовать
@@ -111,7 +116,7 @@
             curl_setopt($this->curl, CURLOPT_URL, $url);
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
-            curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 3);
+            curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, self::TIMEOUT);
 
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, array(
                 'client: ' . $this->client,
