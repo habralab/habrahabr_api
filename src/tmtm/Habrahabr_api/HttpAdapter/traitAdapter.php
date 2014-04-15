@@ -9,6 +9,7 @@
         protected $token;
         protected $client;
         protected $endpoint;
+        protected $connectionTimeout = 5;
 
         public function setToken( $token )
         {
@@ -41,5 +42,18 @@
         public function getEndpoint()
         {
             return $this->endpoint;
+        }
+
+        /**
+         * Устанавливает количество секунд ожидания при попытке соединения
+         */
+        public function setConnectionTimeout( $connectionTimeout )
+        {
+            $this->connectionTimeout = $connectionTimeout;
+        }
+
+        public function getConnectionTimeout()
+        {
+            return $this->connectionTimeout;
         }
     }
