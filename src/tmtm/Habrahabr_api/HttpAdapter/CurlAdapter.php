@@ -15,6 +15,11 @@
     {
         use traitAdapter;
 
+        const METHOD_GET = 'GET';
+        const METHOD_POST = 'POST';
+        const METHOD_PUT = 'PUT';
+        const METHOD_DELETE = 'DELETE';
+
         /**
          * Экземпляр cURL
          *
@@ -56,7 +61,7 @@
          */
         public function get($url)
         {
-            return $this->request($url, 'GET');
+            return $this->request( $this->createUrl( $url ), self::METHOD_GET );
         }
 
         /**
@@ -69,19 +74,20 @@
          */
         public function post($url, array $values = [])
         {
-            return $this->request($url, 'POST', $values);
+            return $this->request( $this->createUrl( $url ), self::METHOD_POST, $values );
         }
 
         /**
          * Выполняет DELETE-запрос
          *
          * @param string $url Запрашиваемый ресурс без endpoint'а
+         * @param array  $values Параметры, передаваемые в теле запроса
          *
          * @return array|false Результат запроса
          */
         public function delete($url, array $values = [])
         {
-            return $this->request($url, 'DELETE', $values);
+            return $this->request( $this->createUrl( $url ), self::METHOD_DELETE, $values );
         }
 
         /**
@@ -94,32 +100,31 @@
          */
         public function put($url, array $values = [])
         {
-            return $this->request($url, 'PUT', $values);
+            return $this->request( $this->createUrl( $url ), self::METHOD_PUT, $values );
         }
 
         /**
          * Выполняет HTTP-запрос
          *
-         * @param string $url    Запрашиваемый ресурс без endpoint'а
+         * @param string $url    URL, запрашиваемого ресурса
          * @param string $method HTTP-метод, например, GET
          * @param array  $values Параметры, передаваемые в теле запроса
          *
          * @return array|false Результат запроса
          */
-        protected function request($url, $method, array $values = [])
+        protected function request( $url, $method, array $values = [] )
         {
-            $url = $this->getEndpoint() . $url;
             curl_setopt($this->curl, CURLOPT_URL, $url);
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
 
-            curl_setopt($this->curl, CURLOPT_HTTPHEADER, array(
+            curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
                 'client: ' . $this->client,
                 'token: '  . $this->token
-            ));
+            ]);
 
-            if( $method == 'PUT' || $method == 'POST' )
+            if( $method == self::METHOD_PUT || $method == self::METHOD_POST )
             {
                 curl_setopt( $this->curl, CURLOPT_POSTFIELDS, http_build_query( $values ) );
             }

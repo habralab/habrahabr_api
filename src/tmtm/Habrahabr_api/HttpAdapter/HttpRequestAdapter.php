@@ -28,28 +28,26 @@
 
         public function get( $url )
         {
-            return $this->request( $url, HttpRequest::METH_GET );
+            return $this->request( $this->createUrl($url), HttpRequest::METH_GET );
         }
 
         public function post( $url, array $values = [ ] )
         {
-
+            return $this->request( $this->createUrl( $url ), HttpRequest::METH_POST, $values );
         }
 
         public function delete( $url )
         {
-            return $this->request( $url, HttpRequest::METH_DELETE );
+            return $this->request( $this->createUrl($url), HttpRequest::METH_DELETE );
         }
 
         public function put( $url, array $values = [ ] )
         {
-            return $this->request( $url, HttpRequest::METH_PUT, $values );
+            return $this->request( $this->createUrl($url), HttpRequest::METH_PUT, $values );
         }
 
         private function request( $url, $method, array $values = [ ] )
         {
-            $url = $this->getEndpoint() . $url;
-
             $req = new \HttpRequest( $url, $method );
 
             $req->setHeaders( [ 'client' => $this->client, 'token' => $this->token ] );
