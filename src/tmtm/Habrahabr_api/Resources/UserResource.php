@@ -12,6 +12,16 @@
     class UserResource extends abstractResource implements ResourceInterface
     {
         /**
+         * Информация о текущем пользователе
+         *
+         * @return mixed
+         */
+        public function getUserMe()
+        {
+            return $this->getUser('me');
+        }
+
+        /**
          * Информация о пользователе по логину
          *
          * @param string $login
