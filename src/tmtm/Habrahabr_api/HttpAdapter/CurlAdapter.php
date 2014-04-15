@@ -76,6 +76,7 @@
          * Выполняет DELETE-запрос
          *
          * @param string $url Запрашиваемый ресурс без endpoint'а
+         * @param array  $values
          *
          * @return array|false Результат запроса
          */
@@ -104,11 +105,14 @@
          * @param string $method HTTP-метод, например, GET
          * @param array  $values Параметры, передаваемые в теле запроса
          *
-         * @return array|false Результат запроса
+         * @throws NetworkException
+         *
+         * @return array|boolean Результат запроса
          */
         protected function request($url, $method, array $values = [])
         {
             $url = $this->getEndpoint() . $url;
+
             curl_setopt($this->curl, CURLOPT_URL, $url);
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
