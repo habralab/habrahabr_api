@@ -11,9 +11,9 @@
 
     $Api = new \tmtm\Habrahabr_api\Api( $adapter );
 
-    $User          = $Api->getUserResource()->getUser('rpsl');
+    //$User          = $Api->getUserResource()->getUser('rpsl');
 
-    var_dump( $User );
+    //var_dump( $User );
     //    $Users         = $Api->getUserResource()->getUsersList( 2 );
     //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
     //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
@@ -71,3 +71,7 @@
     // $mentions = $Api->getTrackerResource()->getMentions();
 
     // var_dump( $mentions );
+
+    $vote = $Api->getCommentsResource()->voteForComment('000', 1 );
+
+    var_dump( $vote);
