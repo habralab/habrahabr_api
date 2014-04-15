@@ -11,9 +11,9 @@
 
     $Api = new \tmtm\Habrahabr_api\Api( $adapter );
 
-    $User          = $Api->getUserResource()->getUserFavoritesPost('rpsl');
+    $User          = $Api->getUserResource()->getUser('rpsl');
 
-//    var_dump( $User );
+    var_dump( $User );
     //    $Users         = $Api->getUserResource()->getUsersList( 2 );
     //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
     //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
