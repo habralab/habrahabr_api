@@ -22,9 +22,11 @@
      */
     class Api
     {
+        /** @var \tmtm\Habrahabr_api\HttpAdapter\HttpAdapterInterface */
         protected $adapter;
 
-        private $singleton = [ ];
+        /** @var ResourceInterface[] */
+        protected $resource_instances = [ ];
 
         /**
          * @param HttpAdapterInterface $adapter
@@ -108,27 +110,39 @@
          *
          * @throws Exception\ResourceNotExistsException
          */
-        private function getResource( $name )
+        protected function getResource( $name )
         {
             $class_name = ucfirst( $name ) . 'Resource';
 
-            if( !class_exists( '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name ) )
+            if( !isset( $this->resource_instances[$class_name] ) )
+            {
+                $this->resource_instances[$class_name] = $this->createResourceInstance( $class_name );
+            }
+
+            return $this->resource_instances[$class_name];
+        }
+
+        /**
+         * Создание класса ресурса
+         *
+         * @param string $class_name Имя класса-ресурса
+         *
+         * @return ResourceInterface
+         * @throws Exception\ResourceNotExistsException
+         */
+        protected function createResourceInstance( $class_name )
+        {
+            $full_name = '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name;
+
+            if( !class_exists( $full_name ) )
             {
                 throw new ResourceNotExistsException( $class_name );
             }
 
-            if( isset( $this->singleton[$class_name] ) )
-            {
-                return $this->singleton[$class_name];
-            }
+            /** @var ResourceInterface $resource_instance */
+            $resource_instance = new $full_name();
+            $resource_instance->setAdapter( $this->adapter );
 
-            $full_name = '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name;
-
-            /** @var ResourceInterface $full_name */
-            $full_name = new $full_name();
-
-            $this->singleton[$class_name] = $full_name->setAdapter( $this->adapter );
-
-            return $this->singleton[$class_name];
+            return $resource_instance;
         }
     }

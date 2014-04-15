@@ -56,4 +56,16 @@
         {
             return $this->connectionTimeout;
         }
+
+        /**
+         * Создание полного URL для запроса ресурса
+         *
+         * @param string $resource_url Запрашиваемый ресурс
+         *
+         * @return string
+         */
+        public function createUrl( $resource_url )
+        {
+            return $this->getEndpoint() . $resource_url;
+        }
     }

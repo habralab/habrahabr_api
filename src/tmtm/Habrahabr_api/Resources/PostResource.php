@@ -12,7 +12,7 @@
     class PostResource extends abstractResource implements ResourceInterface
     {
         /**
-         * Получение поста по его id. ( без комментариве )
+         * Получение поста по его id. ( без комментариев )
          *
          * @param   int $id
          *
@@ -41,7 +41,7 @@
         public function vote( $id, $type )
         {
 
-            if( !in_array( $type, [ -1, 0, 1 ], 1 ) )
+            if( !in_array( $type, [ -1, 0, 1 ], true ) )
             {
                 throw new IncorrectUsageException( 'vote type incorrect' );
             }
@@ -60,7 +60,7 @@
          */
         public function addPostToFavorite( $id )
         {
-            return $this->adapter->put( sprintf( '/post/%d/favorite', $id ), [ ] );
+            return $this->adapter->put( sprintf( '/post/%d/favorite', $id ) );
         }
 
         /**
