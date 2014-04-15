@@ -1,4 +1,4 @@
-<phpunit>
+<phpunit bootstrap="vendor/autoload.php">
   <testsuites>
     <testsuite name="Core">
       <directory>src/tmtm/Habrahabr_api/Tests/</directory>
