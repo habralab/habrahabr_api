@@ -3,6 +3,7 @@
     namespace tmtm\Habrahabr_api\HttpAdapter;
 
     use tmtm\Habrahabr_api\Exception\ExtenstionNotLoadedException;
+    use tmtm\Habrahabr_api\Exception\NetworkException;
 
     /**
      * HTTP-адаптер, использующий библиотеку cURL
@@ -116,7 +117,7 @@
             curl_setopt($this->curl, CURLOPT_URL, $url);
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
-            curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 3);
+            curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
 
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
                 'client: ' . $this->client,
@@ -132,7 +133,7 @@
 
             if( curl_errno( $this->curl ) )
             {
-                // @todo
+                throw new NetworkException( curl_error( $this->curl ) );
             }
 
             return $result ? json_decode($result, true) : false;
