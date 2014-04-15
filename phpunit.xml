@@ -1,0 +1,10 @@
+<phpunit>
+  <testsuites>
+    <testsuite name="Core">
+      <directory>src/tmtm/Habrahabr_api/Tests/</directory>
+    </testsuite>
+    <testsuite name="Resources">
+      <directory>src/tmtm/Habrahabr_api/Resources/Tests/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
