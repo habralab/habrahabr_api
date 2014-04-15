@@ -72,6 +72,20 @@
 
     // var_dump( $mentions );
 
-    $vote = $Api->getCommentsResource()->voteForComment('000', 1 );
+//    $vote = $Api->getCommentsResource()->voteForComment('000', 1 );
+//
+//    var_dump( $vote);
 
-    var_dump( $vote);
+//    $hubs = $Api->getHubResource()->getHubList();
+//    $hubs = $Api->getHubResource()->getHubCategories();
+//    $hubs = $Api->getHubResource()->getHubOfCategory('telecommunications');
+//    $hubs = $Api->getHubResource()->searchHubs('апи');
+//    $hubs = $Api->getHubResource()->searchHubs('web');
+
+//    $hubs = $Api->getHubResource()->unsubscribeHub('php');
+//    $hubs = $Api->getHubResource()->subscribeHub('php');
+
+//    var_dump( $hubs );
+
+
+?>
