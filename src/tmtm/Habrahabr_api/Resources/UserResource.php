@@ -16,7 +16,7 @@
          *
          * @return mixed
          */
-        public function getUserMe()
+        public function getUserCurrent()
         {
             return $this->getUser('me');
         }
