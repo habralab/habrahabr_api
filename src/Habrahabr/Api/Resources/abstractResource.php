@@ -1,8 +1,8 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Resources;
+    namespace Habrahabr\Api\Resources;
 
-    use tmtm\Habrahabr_api\HttpAdapter\HttpAdapterInterface;
+    use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
 
     /**
      * Basic Resource class

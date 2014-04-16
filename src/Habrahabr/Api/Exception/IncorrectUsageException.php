@@ -1,6 +1,6 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Exception;
+    namespace Habrahabr\Api\Exception;
 
     class IncorrectUsageException extends \Exception
     {

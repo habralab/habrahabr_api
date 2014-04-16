@@ -1,9 +1,9 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\HttpAdapter;
+    namespace Habrahabr\Api\HttpAdapter;
 
-    use tmtm\Habrahabr_api\Exception\ExtenstionNotLoadedException;
-    use tmtm\Habrahabr_api\Exception\NetworkException;
+    use Habrahabr\Api\Exception\ExtenstionNotLoadedException;
+    use Habrahabr\Api\Exception\NetworkException;
 
     /**
      * HTTP-адаптер, использующий библиотеку cURL
@@ -120,6 +120,9 @@
             curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
+
+            // debug time !
+            //curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, FALSE );
 
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
                 'client: ' . $this->client,

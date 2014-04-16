@@ -1,19 +1,19 @@
 <?php
 
-    namespace tmtm\Habrahabr_api;
+    namespace Habrahabr\Api;
 
-    use tmtm\Habrahabr_api\Exception\ResourceNotExistsException;
+    use Habrahabr\Api\Exception\ResourceNotExistsException;
 
-    use tmtm\Habrahabr_api\HttpAdapter\HttpAdapterInterface;
-    use tmtm\Habrahabr_api\Resources\CommentsResource;
-    use tmtm\Habrahabr_api\Resources\CompanyResource;
-    use tmtm\Habrahabr_api\Resources\FeedResource;
-    use tmtm\Habrahabr_api\Resources\HubResource;
-    use tmtm\Habrahabr_api\Resources\PostResource;
-    use tmtm\Habrahabr_api\Resources\ResourceInterface;
-    use tmtm\Habrahabr_api\Resources\SearchResource;
-    use tmtm\Habrahabr_api\Resources\TrackerResource;
-    use tmtm\Habrahabr_api\Resources\UserResource;
+    use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
+    use Habrahabr\Api\Resources\CommentsResource;
+    use Habrahabr\Api\Resources\CompanyResource;
+    use Habrahabr\Api\Resources\FeedResource;
+    use Habrahabr\Api\Resources\HubResource;
+    use Habrahabr\Api\Resources\PostResource;
+    use Habrahabr\Api\Resources\ResourceInterface;
+    use Habrahabr\Api\Resources\SearchResource;
+    use Habrahabr\Api\Resources\TrackerResource;
+    use Habrahabr\Api\Resources\UserResource;
 
     /**
      * Базовый класс, который работает как точка входа.
@@ -22,7 +22,7 @@
      */
     class Api
     {
-        /** @var \tmtm\Habrahabr_api\HttpAdapter\HttpAdapterInterface */
+        /** @var \Habrahabr\Api\HttpAdapter\HttpAdapterInterface */
         protected $adapter;
 
         /** @var ResourceInterface[] */
@@ -132,7 +132,7 @@
          */
         protected function createResourceInstance( $class_name )
         {
-            $full_name = '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name;
+            $full_name = '\\Habrahabr\\Api\\Resources\\' . $class_name;
 
             if( !class_exists( $full_name ) )
             {

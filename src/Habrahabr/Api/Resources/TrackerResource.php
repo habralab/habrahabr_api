@@ -1,8 +1,8 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Resources;
+    namespace Habrahabr\Api\Resources;
 
-    use tmtm\Habrahabr_api\Exception\IncorrectUsageException;
+    use Habrahabr\Api\Exception\IncorrectUsageException;
 
     class TrackerResource extends abstractResource implements ResourceInterface
     {

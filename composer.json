@@ -1,5 +1,5 @@
 {
-    "name": "tmtm/habrahabr_api",
+    "name": "habrahabr/api",
     "type": "library",
     "description": "Official habrahabr.ru api client",
     "keywords": ["habrahabr", "habr", "tmtm", "thematic media"],
@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-0": {
-            "tmtm\\": "src/"
+            "Habrahabr\\": "src/"
         }
     },
     "extra": {

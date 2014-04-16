@@ -1,8 +1,8 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\HttpAdapter;
+    namespace Habrahabr\Api\HttpAdapter;
 
-    use tmtm\Habrahabr_api\Exception\IncorrectUsageException;
+    use Habrahabr\Api\Exception\IncorrectUsageException;
 
     trait traitAdapter
     {
