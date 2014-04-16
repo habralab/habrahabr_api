@@ -1,16 +1,26 @@
 {
     "name": "tmtm/habrahabr_api",
+    "type": "library",
     "description": "Official habrahabr.ru api client",
-    "keywords": ["habrahabr","habr", "tmtm", "thematic media"],
+    "keywords": ["habrahabr", "habr", "tmtm", "thematic media"],
     "authors": [
         {
             "name": "Rpsl",
             "email": "rpsl@tmtm.ru"
+        },
+        {
+            "name": "Github Contributors",
+            "homepage": "https://github.com/thematicmedia/habrapi/graphs/contributors"
         }
     ],
     "license": "MIT",
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "psr-0": {
