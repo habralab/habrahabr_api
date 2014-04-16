@@ -1,6 +1,6 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Tests;
+    namespace tmtm\Habrahabr_api;
 
     use tmtm\Habrahabr_api\Api;
     use tmtm\Habrahabr_api\HttpAdapter\MockAdapter;
