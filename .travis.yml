@@ -9,4 +9,5 @@ install:
 
 notifications:
   email:
+    - rpsl@tmtm.ru
     - kafemanw@gmail.com
