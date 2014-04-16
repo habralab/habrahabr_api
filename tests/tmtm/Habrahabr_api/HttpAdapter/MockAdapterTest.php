@@ -68,6 +68,7 @@
         protected function request($url, $method, array $values = [])
         {
             $key = $method . $url;
+
             if (array_key_exists($key, $this->routes))
             {
                 return $this->routes[$key];
