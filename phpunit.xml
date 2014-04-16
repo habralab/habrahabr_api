@@ -1,0 +1,10 @@
+<phpunit bootstrap="vendor/autoload.php">
+  <testsuites>
+    <testsuite name="Core">
+      <directory>tests/tmtm/Habrahabr_api/</directory>
+    </testsuite>
+    <testsuite name="Resources">
+      <directory>tests/tmtm/Habrahabr_api/Resources/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>

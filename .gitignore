@@ -2,3 +2,4 @@
 apigen/
 /vendor/
 runtime/keys.php
+composer.lock
