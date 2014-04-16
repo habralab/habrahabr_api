@@ -1,9 +1,9 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Resources;
+    namespace Habrahabr\Api\Resources;
 
-    use tmtm\Habrahabr_api\HttpAdapter\MockAdapter;
-    use tmtm\Habrahabr_api\Resources\TrackerResource;
+    use Habrahabr\Api\HttpAdapter\MockAdapter;
+    use Habrahabr\Api\Resources\TrackerResource;
 
     class TrackerResourceTest extends \PHPUnit_Framework_TestCase
     {
@@ -32,19 +32,19 @@
 
         public function testPushExceptionTitle()
         {
-            $this->setExpectedException( 'tmtm\Habrahabr_api\Exception\IncorrectUsageException', self::BAD_TITLE_EXCEPTION );
+            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_TITLE_EXCEPTION );
             $this->trackerResource->push( self::BAD_TITLE, self::GOOD_TEXT );
         }
 
         public function testPushExceptionText()
         {
-            $this->setExpectedException( 'tmtm\Habrahabr_api\Exception\IncorrectUsageException', self::BAD_TEXT_EXCEPTION );
+            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_TEXT_EXCEPTION );
             $this->trackerResource->push( self::GOOD_TITLE, self::BAD_TEXT );
         }
 
         public function testPushExceptionTitleAndText()
         {
-            $this->setExpectedException( 'tmtm\Habrahabr_api\Exception\IncorrectUsageException', self::BAD_TITLE_AND_TEXT_EXCEPTION );
+            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_TITLE_AND_TEXT_EXCEPTION );
             $this->trackerResource->push( self::BAD_TITLE, self::BAD_TEXT );
         }
 

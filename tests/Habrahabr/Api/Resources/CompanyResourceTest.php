@@ -1,9 +1,9 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Resources;
+    namespace Habrahabr\Api\Resources;
 
-    use tmtm\Habrahabr_api\HttpAdapter\MockAdapter;
-    use tmtm\Habrahabr_api\Resources\CompanyResource;
+    use Habrahabr\Api\HttpAdapter\MockAdapter;
+    use Habrahabr\Api\Resources\CompanyResource;
 
     class CompanyResourceTest extends \PHPUnit_Framework_TestCase
     {

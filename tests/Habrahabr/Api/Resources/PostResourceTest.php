@@ -1,9 +1,9 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\Resources;
+    namespace Habrahabr\Api\Resources;
 
-    use tmtm\Habrahabr_api\HttpAdapter\MockAdapter;
-    use tmtm\Habrahabr_api\Resources\PostResource;
+    use Habrahabr\Api\HttpAdapter\MockAdapter;
+    use Habrahabr\Api\Resources\PostResource;
 
     class PostResourceTest extends \PHPUnit_Framework_TestCase
     {
@@ -119,7 +119,7 @@
 
         public function testVoteException()
         {
-            $this->setExpectedException( 'tmtm\Habrahabr_api\Exception\IncorrectUsageException', self::BAD_VOTE_EXCEPTION );
+            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_VOTE_EXCEPTION );
             $this->postResource->vote( 123456, self::BAD_VOTE );
         }
     }

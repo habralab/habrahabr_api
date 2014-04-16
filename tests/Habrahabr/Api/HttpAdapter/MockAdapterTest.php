@@ -1,9 +1,9 @@
 <?php
 
-    namespace tmtm\Habrahabr_api\HttpAdapter;
+    namespace Habrahabr\Api\HttpAdapter;
 
-    use tmtm\Habrahabr_api\Exception\ExtenstionNotLoadedException;
-    use tmtm\Habrahabr_api\Exception\NetworkException;
+    use Habrahabr\Api\Exception\ExtenstionNotLoadedException;
+    use Habrahabr\Api\Exception\NetworkException;
 
     /**
      * Адаптер-заглушка, используемый для проведения различных тестов
