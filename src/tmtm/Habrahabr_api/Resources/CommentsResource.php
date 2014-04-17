@@ -11,7 +11,7 @@
      */
     class CommentsResource extends abstractResource implements ResourceInterface
     {
-        const VOTE_PLUS = 1;
+        const VOTE_PLUS  = 1;
         const VOTE_MINUS = -1;
 
         /**
@@ -46,16 +46,44 @@
         }
 
         /**
+         * Положительное голосование за комментарий.
+         *
+         * @param  int $comment_id
+         *
+         * @return mixed
+         *
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function votePlus( $comment_id )
+        {
+            return $this->vote( $comment_id, self::VOTE_PLUS );
+        }
+
+        /**
+         * Отрицательное голосование за комментарий.
+         *
+         * @param  int $comment_id
+         *
+         * @return mixed
+         *
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function voteMinus( $comment_id )
+        {
+            return $this->vote( $comment_id, self::VOTE_MINUS );
+        }
+
+        /**
          * Голосование за комментарий.
          *
-         * @param   int $id
+         * @param   int $comment_id
          * @param   int $vote
          *
          * @return  mixed
          *
          * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
-        public function vote( $id, $vote )
+        private function vote( $comment_id, $vote )
         {
             if( !in_array( $vote, [ self::VOTE_MINUS, self::VOTE_PLUS ], true ) )
             {
@@ -66,32 +94,6 @@
                 'vote' => $vote
             ];
 
-            return $this->adapter->put( sprintf('/comments/%d/vote', $id ), $params );
-        }
-
-        /**
-         * @see vote()
-         *
-         * @param $id
-         *
-         * @return mixed
-         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
-         */
-        public function votePlus( $id )
-        {
-            return $this->vote( $id, self::VOTE_PLUS );
-        }
-
-        /**
-         * @see vote()
-         *
-         * @param $id
-         *
-         * @return mixed
-         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
-         */
-        public function voteMinus( $id )
-        {
-            return $this->vote( $id, self::VOTE_MINUS );
+            return $this->adapter->put( sprintf('/comments/%d/vote', $comment_id ), $params );
         }
     }
