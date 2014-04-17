@@ -18,13 +18,13 @@
         /**
          * Получение поста по его id. ( без комментариев )
          *
-         * @param   int $id
+         * @param   int $post_id
          *
          * @return  mixed
          */
-        public function getPost( $id )
+        public function getPost( $post_id )
         {
-            return $this->adapter->get( sprintf( '/post/%d', $id ) );
+            return $this->adapter->get( sprintf( '/post/%d', $post_id ) );
         }
 
         /**
@@ -33,14 +33,14 @@
          * Этот метод может быть предоставлен дополнительно, по запросу.
          * http://habrahabr.ru/feedback/
 
-         * @param $id
+         * @param $post_id
          *
          * @return mixed
          * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
-        public function votePlus( $id )
+        public function votePlus( $post_id )
         {
-            return $this->vote( $id, self::VOTE_PLUS );
+            return $this->vote( $post_id, self::VOTE_PLUS );
         }
 
         /**
@@ -49,15 +49,15 @@
          * Этот метод может быть предоставлен дополнительно, по запросу.
          * http://habrahabr.ru/feedback/
 
-         * @param $id
+         * @param $post_id
          *
          * @return mixed
          *
          * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
-        public function voteMinus( $id )
+        public function voteMinus( $post_id )
         {
-            return $this->vote( $id, self::VOTE_PLUS );
+            return $this->vote( $post_id, self::VOTE_PLUS );
         }
 
         /**
@@ -66,38 +66,38 @@
          * Этот метод может быть предоставлен дополнительно, по запросу.
          * http://habrahabr.ru/feedback/
 
-         * @param $id
+         * @param $post_id
          *
          * @return mixed
          * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
-        public function voteNeutral( $id )
+        public function voteNeutral( $post_id )
         {
-            return $this->vote( $id, self::VOTE_NEUTRAL );
+            return $this->vote( $post_id, self::VOTE_NEUTRAL );
         }
 
         /**
          * Добавить пост в избранное
          *
-         * @param   int $id
+         * @param   int $post_id
          *
          * @return  mixed
          */
-        public function addPostToFavorite( $id )
+        public function addPostToFavorite( $post_id )
         {
-            return $this->adapter->put( sprintf( '/post/%d/favorite', $id ) );
+            return $this->adapter->put( sprintf( '/post/%d/favorite', $post_id ) );
         }
 
         /**
          * Удалить пост из избранного
          *
-         * @param   int $id
+         * @param   int $post_id
          *
          * @return  mixed
          */
-        public function removePostFromFavorite( $id )
+        public function removePostFromFavorite( $post_id )
         {
-            return $this->adapter->delete( sprintf( '/post/%d/favorite', $id ) );
+            return $this->adapter->delete( sprintf( '/post/%d/favorite', $post_id ) );
         }
 
         /**
@@ -106,14 +106,14 @@
          * Этот метод может быть предоставлен дополнительно, по запросу.
          * http://habrahabr.ru/feedback/
          *
-         * @param   int $id
+         * @param   int $post_id
          * @param   int $vote [ -1, 0, 1 ]
          *
          * @return mixed
          *
          * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
-        private function vote( $id, $vote )
+        private function vote( $post_id, $vote )
         {
             if( !in_array( $vote, [ self::VOTE_MINUS, self::VOTE_NEUTRAL, self::VOTE_PLUS ], true ) )
             {
@@ -122,6 +122,6 @@
 
             $params = [ 'vote' => $vote ];
 
-            return $this->adapter->put( sprintf( '/post/%d/vote', $id ), $params );
+            return $this->adapter->put( sprintf( '/post/%d/vote', $post_id ), $params );
         }
     }
