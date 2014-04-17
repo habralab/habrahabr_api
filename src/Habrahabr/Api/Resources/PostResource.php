@@ -11,6 +11,10 @@
      */
     class PostResource extends abstractResource implements ResourceInterface
     {
+        const VOTE_PLUS    = 1;
+        const VOTE_NEUTRAL = 0;
+        const VOTE_MINUS   = -1;
+
         /**
          * Получение поста по его id. ( без комментариев )
          *
@@ -24,31 +28,53 @@
         }
 
         /**
-         * Голосование за пост.
+         * Положительное за пост.
          *
          * Этот метод может быть предоставлен дополнительно, по запросу.
          * http://habrahabr.ru/feedback/
+
+         * @param $id
          *
-         * @param   int $id
-         * @param   int $type [ -1, 0, 1 ]
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function votePlus( $id )
+        {
+            return $this->vote( $id, self::VOTE_PLUS );
+        }
+
+        /**
+         * Отрицательное голосование за пост.
          *
-         * @deprecated
+         * Этот метод может быть предоставлен дополнительно, по запросу.
+         * http://habrahabr.ru/feedback/
+
+         * @param $id
          *
          * @return mixed
          *
          * @throws \Habrahabr\Api\Exception\IncorrectUsageException
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
-        public function vote( $id, $type )
+        public function voteMinus( $id )
         {
+            return $this->vote( $id, self::VOTE_PLUS );
+        }
 
-            if( !in_array( $type, [ -1, 0, 1 ], true ) )
-            {
-                throw new IncorrectUsageException( 'vote type incorrect' );
-            }
+        /**
+         * Нейтральное голосование за пост.
+         *
+         * Этот метод может быть предоставлен дополнительно, по запросу.
+         * http://habrahabr.ru/feedback/
 
-            $params = [ 'vote' => $type ];
-
-            return $this->adapter->put( sprintf( '/post/%d/vote', $id ), $params );
+         * @param $id
+         *
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function voteNeutral( $id )
+        {
+            return $this->vote( $id, self::VOTE_NEUTRAL );
         }
 
         /**
@@ -73,5 +99,30 @@
         public function removePostFromFavorite( $id )
         {
             return $this->adapter->delete( sprintf( '/post/%d/favorite', $id ) );
+        }
+
+        /**
+         * Голосование за пост.
+         *
+         * Этот метод может быть предоставлен дополнительно, по запросу.
+         * http://habrahabr.ru/feedback/
+         *
+         * @param   int $id
+         * @param   int $vote [ -1, 0, 1 ]
+         *
+         * @return mixed
+         *
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        private function vote( $id, $vote )
+        {
+            if( !in_array( $vote, [ self::VOTE_MINUS, self::VOTE_NEUTRAL, self::VOTE_PLUS ], true ) )
+            {
+                throw new IncorrectUsageException( 'vote type incorrect, must be (int) 1 || (int) -1 || (int) 0' );
+            }
+
+            $params = [ 'vote' => $vote ];
+
+            return $this->adapter->put( sprintf( '/post/%d/vote', $id ), $params );
         }
     }

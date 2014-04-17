@@ -31,7 +31,7 @@
         /**
          * @param HttpAdapterInterface $adapter
          */
-        public function __construct( HttpAdapterInterface $adapter = NULL )
+        public function __construct( HttpAdapterInterface $adapter )
         {
             $this->adapter = $adapter;
         }
@@ -102,7 +102,7 @@
         }
 
         /**
-         * Прокси синглтон метод. Он не красивый и надо все поправить.
+         * Прокси синглтон метод
          *
          * @param $name
          *
@@ -123,7 +123,7 @@
         }
 
         /**
-         * Создание класса ресурса
+         * Создание класса-ресурса
          *
          * @param string $class_name Имя класса-ресурса
          *

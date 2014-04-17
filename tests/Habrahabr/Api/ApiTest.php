@@ -7,6 +7,7 @@
 
     class ApiTest extends \PHPUnit_Framework_TestCase
     {
+        /** @var Api */
         protected $api;
 
         protected function setUp()

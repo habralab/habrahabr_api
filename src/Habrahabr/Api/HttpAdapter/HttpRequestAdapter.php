@@ -72,9 +72,7 @@
             }
             catch( HttpException $e )
             {
-
+                return FALSE;
             }
-
-            return FALSE;
         }
     }
