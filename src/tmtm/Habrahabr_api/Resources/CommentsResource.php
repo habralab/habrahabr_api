@@ -48,14 +48,14 @@
         /**
          * Голосование за комментарий.
          *
-         * @param   int $comment_id
+         * @param   int $id
          * @param   int $vote
          *
          * @return  mixed
          *
          * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
-        public function voteForComment( $comment_id, $vote )
+        public function vote( $id, $vote )
         {
             if( !in_array( $vote, [ self::VOTE_MINUS, self::VOTE_PLUS ], true ) )
             {
@@ -66,6 +66,32 @@
                 'vote' => $vote
             ];
 
-            return $this->adapter->put( sprintf('/comments/%d/vote', $comment_id ), $params );
+            return $this->adapter->put( sprintf('/comments/%d/vote', $id ), $params );
+        }
+
+        /**
+         * @see vote()
+         *
+         * @param $id
+         *
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function votePlus( $id )
+        {
+            return $this->vote( $id, self::VOTE_PLUS );
+        }
+
+        /**
+         * @see vote()
+         *
+         * @param $id
+         *
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function voteMinus( $id )
+        {
+            return $this->vote( $id, self::VOTE_MINUS );
         }
     }

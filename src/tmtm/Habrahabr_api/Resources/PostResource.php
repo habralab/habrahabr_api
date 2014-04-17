@@ -36,15 +36,12 @@
          * @param   int $id
          * @param   int $vote [ -1, 0, 1 ]
          *
-         * @deprecated
-         *
          * @return mixed
          *
          * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
         public function vote( $id, $vote )
         {
-
             if( !in_array( $vote, [ self::VOTE_MINUS, self::VOTE_NEUTRAL, self::VOTE_PLUS ], true ) )
             {
                 throw new IncorrectUsageException( 'vote type incorrect, must be (int) 1 || (int) -1 || (int) 0' );
@@ -53,6 +50,42 @@
             $params = [ 'vote' => $vote ];
 
             return $this->adapter->put( sprintf( '/post/%d/vote', $id ), $params );
+        }
+
+        /**
+         * @see vote()
+         * @param $id
+         *
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function votePlus( $id )
+        {
+            return $this->vote( $id, self::VOTE_PLUS );
+        }
+
+        /**
+         * @see vote()
+         * @param $id
+         *
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function voteMinus( $id )
+        {
+            return $this->vote( $id, self::VOTE_PLUS );
+        }
+
+        /**
+         * @see vote()
+         * @param $id
+         *
+         * @return mixed
+         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         */
+        public function voteNeutral( $id )
+        {
+            return $this->vote( $id, self::VOTE_NEUTRAL );
         }
 
         /**
