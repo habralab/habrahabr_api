@@ -36,7 +36,7 @@
          * @param $id
          *
          * @return mixed
-         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
         public function votePlus( $id )
         {
@@ -54,7 +54,6 @@
          * @return mixed
          *
          * @throws \Habrahabr\Api\Exception\IncorrectUsageException
-         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
          */
         public function voteMinus( $id )
         {
@@ -70,7 +69,7 @@
          * @param $id
          *
          * @return mixed
-         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
         public function voteNeutral( $id )
         {
@@ -112,7 +111,7 @@
          *
          * @return mixed
          *
-         * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException
+         * @throws \Habrahabr\Api\Exception\IncorrectUsageException
          */
         private function vote( $id, $vote )
         {
