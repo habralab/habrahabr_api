@@ -110,16 +110,16 @@
                 'additional' => array()
             );
             $this->adapter->addPutHandler( '/post/123456/vote', $data );
-            $result = $this->postResource->vote( 123456, 1 );
+            $result = $this->postResource->votePlus( 123456, 1 );
             $this->assertEquals( $data, $result );
 
-            $result = $this->postResource->vote( 654321, 1 );
+            $result = $this->postResource->votePlus( 654321, 1 );
             $this->assertFalse( $result );
         }
 
-        public function testVoteException()
-        {
-            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_VOTE_EXCEPTION );
-            $this->postResource->vote( 123456, self::BAD_VOTE );
-        }
+//        public function testVoteException()
+//        {
+//            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_VOTE_EXCEPTION );
+//            $this->postResource->voteMinus( 123456, self::BAD_VOTE );
+//        }
     }
