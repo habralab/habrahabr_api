@@ -11,9 +11,9 @@
 
     $Api = new \tmtm\Habrahabr_api\Api( $adapter );
 
-    $User          = $Api->getUserResource()->getUserFavoritesPost('rpsl');
+    //$User          = $Api->getUserResource()->getUser('rpsl');
 
-//    var_dump( $User );
+    //var_dump( $User );
     //    $Users         = $Api->getUserResource()->getUsersList( 2 );
     //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
     //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
@@ -71,3 +71,21 @@
     // $mentions = $Api->getTrackerResource()->getMentions();
 
     // var_dump( $mentions );
+
+//    $vote = $Api->getCommentsResource()->voteForComment('000', 1 );
+//
+//    var_dump( $vote);
+
+//    $hubs = $Api->getHubResource()->getHubList();
+//    $hubs = $Api->getHubResource()->getHubCategories();
+//    $hubs = $Api->getHubResource()->getHubOfCategory('telecommunications');
+//    $hubs = $Api->getHubResource()->searchHubs('апи');
+//    $hubs = $Api->getHubResource()->searchHubs('web');
+
+//    $hubs = $Api->getHubResource()->unsubscribeHub('php');
+//    $hubs = $Api->getHubResource()->subscribeHub('php');
+
+//    var_dump( $hubs );
+
+
+?>

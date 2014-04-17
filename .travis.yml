@@ -1,0 +1,13 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+
+install:
+  - composer install
+
+notifications:
+  email:
+    - rpsl@tmtm.ru
+    - kafemanw@gmail.com

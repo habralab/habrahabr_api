@@ -81,6 +81,77 @@
         }
 
         /**
+         * Все хабы
+         *
+         * @param int $page
+         *
+         * @return mixed
+         */
+        public function getHubList( $page = 1 )
+        {
+            return $this->adapter->get( sprintf('/hubs?page=%d', $page ) );
+        }
+
+        /**
+         * Корневые категории хабов
+         *
+         * @return mixed
+         */
+        public function getHubCategories()
+        {
+            return $this->adapter->get( '/hubs/categories' );
+        }
+
+        /**
+         * Хабы конкретной категории @see getHubCategories
+         *
+         * @param string    $category ( alias )
+         * @param int       $page
+         *
+         * @return mixed
+         */
+        public function getHubOfCategory( $category, $page = 1 )
+        {
+            return $this->adapter->get( sprintf( '/hubs/categories/%s?page=%d', $category, $page ) );
+        }
+
+        /**
+         * Поиск хабов
+         *
+         * @param $query
+         *
+         * @return mixed
+         */
+        public function searchHubs( $query )
+        {
+            return $this->adapter->get( sprintf( '/hubs/search/%s', urlencode( $query ) ) );
+        }
+
+        /**
+         * Подписаться на хаб
+         *
+         * @param $alias
+         *
+         * @return mixed
+         */
+        public function subscribeHub( $alias )
+        {
+            return $this->adapter->put( sprintf('/hub/%s', $alias ) );
+        }
+
+        /**
+         * Отписаться от хаба
+         *
+         * @param $alias
+         *
+         * @return mixed
+         */
+        public function unsubscribeHub( $alias )
+        {
+            return $this->adapter->delete( sprintf('/hub/%s', $alias ) );
+        }
+
+        /**
          * @param   string $alias
          *
          * @throws \tmtm\Habrahabr_api\Exception\IncorrectUsageException

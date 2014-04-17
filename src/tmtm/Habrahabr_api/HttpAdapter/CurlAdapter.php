@@ -15,9 +15,9 @@
     {
         use traitAdapter;
 
-        const METHOD_GET = 'GET';
-        const METHOD_POST = 'POST';
-        const METHOD_PUT = 'PUT';
+        const METHOD_GET    = 'GET';
+        const METHOD_POST   = 'POST';
+        const METHOD_PUT    = 'PUT';
         const METHOD_DELETE = 'DELETE';
 
         /**
@@ -110,7 +110,9 @@
          * @param string $method HTTP-метод, например, GET
          * @param array  $values Параметры, передаваемые в теле запроса
          *
-         * @return array|false Результат запроса
+         * @throws NetworkException
+         *
+         * @return array|boolean Результат запроса
          */
         protected function request( $url, $method, array $values = [] )
         {
@@ -136,6 +138,6 @@
                 throw new NetworkException( curl_error( $this->curl ) );
             }
 
-            return $result ? json_decode($result, true) : false;
+            return $result ? json_decode( $result, TRUE ) : FALSE;
         }
     }

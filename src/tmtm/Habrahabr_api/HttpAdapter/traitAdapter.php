@@ -56,7 +56,6 @@
         {
             return $this->connectionTimeout;
         }
-    }
 
         /**
          * Создание полного URL для запроса ресурса

@@ -13,6 +13,10 @@
      * @see     http://www.php.net/manual/ru/book.http.php
      *
      * @package Habrahabr_api\HttpAdapter
+     *
+     * @deprecated
+     *
+     * HttpRequest это устаревшая версия pecl_http, нужно переписать под v2
      */
     class HttpRequestAdapter implements HttpAdapterInterface
     {

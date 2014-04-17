@@ -114,7 +114,8 @@
         {
             $class_name = ucfirst( $name ) . 'Resource';
 
-            if ( !isset( $this->resource_instances[$class_name] ) ) {
+            if( !isset( $this->resource_instances[$class_name] ) )
+            {
                 $this->resource_instances[$class_name] = $this->createResourceInstance( $class_name );
             }
 
@@ -132,6 +133,7 @@
         protected function createResourceInstance( $class_name )
         {
             $full_name = '\\tmtm\\Habrahabr_api\\Resources\\' . $class_name;
+
             if( !class_exists( $full_name ) )
             {
                 throw new ResourceNotExistsException( $class_name );
