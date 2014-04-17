@@ -34,4 +34,16 @@
         {
             return $this->adapter->get( sprintf( '/search/users/%s?page=%d', urlencode( $string ), $page ) );
         }
+
+        /**
+         * Поиск хабов
+         *
+         * @param $query
+         *
+         * @return mixed
+         */
+        public function searchHubs( $query )
+        {
+            return $this->adapter->get( sprintf( '/hubs/search/%s', urlencode( $query ) ) );
+        }
     }

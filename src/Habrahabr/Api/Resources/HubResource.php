@@ -116,18 +116,6 @@
         }
 
         /**
-         * Поиск хабов
-         *
-         * @param $query
-         *
-         * @return mixed
-         */
-        public function searchHubs( $query )
-        {
-            return $this->adapter->get( sprintf( '/hubs/search/%s', urlencode( $query ) ) );
-        }
-
-        /**
          * Подписаться на хаб
          *
          * @param $alias
