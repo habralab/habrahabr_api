@@ -3,13 +3,13 @@
     require_once realpath( __DIR__ . '/keys.php' );
     require_once realpath(__DIR__.'/../vendor/autoload.php');
 
-    $adapter = new \tmtm\Habrahabr_api\HttpAdapter\CurlAdapter();
+    $adapter = new Habrahabr\Api\HttpAdapter\CurlAdapter();
 
     $adapter->setEndpoint( $endpoint );
     $adapter->setToken( $token );
     $adapter->setClient( $client );
 
-    $Api = new \tmtm\Habrahabr_api\Api( $adapter );
+    $Api = new Habrahabr\Api\Api( $adapter );
 
     //$User          = $Api->getUserResource()->getUser('rpsl');
 
@@ -83,9 +83,9 @@
 //    $hubs = $Api->getHubResource()->searchHubs('web');
 
 //    $hubs = $Api->getHubResource()->unsubscribeHub('php');
-//    $hubs = $Api->getHubResource()->subscribeHub('php');
+    $hubs = $Api->getHubResource()->subscribeHub('php');
 
-//    var_dump( $hubs );
+    var_dump( $hubs );
 
 
 ?>
