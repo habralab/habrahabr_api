@@ -20,7 +20,7 @@
      *
      * @package Habrahabr_api
      */
-    class Api
+    class Client
     {
         /** @var \Habrahabr\Api\HttpAdapter\HttpAdapterInterface */
         protected $adapter;
