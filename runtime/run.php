@@ -9,81 +9,81 @@
     $adapter->setToken( $token );
     $adapter->setClient( $client );
 
-    $Api = new Habrahabr\Api\Api( $adapter );
+    $client = new Habrahabr\Api\Client( $adapter );
 
-    //$User          = $Api->getUserResource()->getUser('rpsl');
+    //$User          = $client->getUserResource()->getUser('rpsl');
 
     //var_dump( $User );
-    //    $Users         = $Api->getUserResource()->getUsersList( 2 );
-    //    $UserComments  = $Api->getUserResource()->getUserComments( 'rpsl' );
-    //    $UserPosts     = $Api->getUserResource()->getUserPosts( 'rpsl' );
-    //    $UserHubs      = $Api->getUserResource()->getUserHubs( 'rpsl' );
-    //    $UserCompanies = $Api->getUserResource()->getUserCompanies( 'rpsl' );
-    //    $UserFollowers = $Api->getUserResource()->getUserFollowers( 'rpsl' );
-    //    $UserFollowed  = $Api->getUserResource()->getUserFollowed('rpsl');
+    //    $Users         = $client->getUserResource()->getUsersList( 2 );
+    //    $UserComments  = $client->getUserResource()->getUserComments( 'rpsl' );
+    //    $UserPosts     = $client->getUserResource()->getUserPosts( 'rpsl' );
+    //    $UserHubs      = $client->getUserResource()->getUserHubs( 'rpsl' );
+    //    $UserCompanies = $client->getUserResource()->getUserCompanies( 'rpsl' );
+    //    $UserFollowers = $client->getUserResource()->getUserFollowers( 'rpsl' );
+    //    $UserFollowed  = $client->getUserResource()->getUserFollowed('rpsl');
     //
-    //    $voteKarmaPlus = $Api->getUserResource()->voteKarmaPlus('habrahabr');
+    //    $voteKarmaPlus = $client->getUserResource()->voteKarmaPlus('habrahabr');
     //    print_r( $voteKarmaPlus );
 
-    //    $voteKarmaMinus= $Api->getUserResource()->voteKarmaMinus('habrahabr');
+    //    $voteKarmaMinus= $client->getUserResource()->voteKarmaMinus('habrahabr');
     //    print_r( $voteKarmaMinus );
     //
 
 
-    //    $SearchPosts = $Api->getSearchResource()->searchPosts('оптимизация');
-    //    $SearchUsers = $Api->getSearchResource()->searchUsers('habrahabr');
+    //    $SearchPosts = $client->getSearchResource()->searchPosts('оптимизация');
+    //    $SearchUsers = $client->getSearchResource()->searchUsers('habrahabr');
 
 
-    //    $Post = $Api->getPostResource()->getPost(2160);
-    //    $VotePost = $Api->getPostResource()->vote(2160, 1);
-    //    $FavoritePost = $Api->getPostResource()->addPostToFavorite(2160);
-    //    $unFavoritePost = $Api->getPostResource()->removePostFromFavorite(2160);
+    //    $Post = $client->getPostResource()->getPost(2160);
+    //    $VotePost = $client->getPostResource()->vote(2160, 1);
+    //    $FavoritePost = $client->getPostResource()->addPostToFavorite(2160);
+    //    $unFavoritePost = $client->getPostResource()->removePostFromFavorite(2160);
 
 
-    //    $HubInfo = $Api->getHubResource()->getHubInfo('php');
-    //    $HubHabred = $Api->getHubResource()->getFeedHabred('php', 2);
-    //    $HubUnhabred = $Api->getHubResource()->getFeedUnhabred('php',2);
-    //    $HubNew = $Api->getHubResource()->getFeedNew('php');
+    //    $HubInfo = $client->getHubResource()->getHubInfo('php');
+    //    $HubHabred = $client->getHubResource()->getFeedHabred('php', 2);
+    //    $HubUnhabred = $client->getHubResource()->getFeedUnhabred('php',2);
+    //    $HubNew = $client->getHubResource()->getFeedNew('php');
 
     //    print_r( $HubNew );
 
-    //    $FeedHabred = $Api->getFeedResource()->getFeedHabred();
-    //    $FeedUnhabred = $Api->getFeedResource()->getFeedUnhabred();
-    //    $FeedNew = $Api->getFeedResource()->getFeedNew();
+    //    $FeedHabred = $client->getFeedResource()->getFeedHabred();
+    //    $FeedUnhabred = $client->getFeedResource()->getFeedUnhabred();
+    //    $FeedNew = $client->getFeedResource()->getFeedNew();
 
     //    print_r( $FeedNew );
 
-    //    $CompanyPosts = $Api->getCompanyResource()->getCompanyPosts('yandex');
-    //    $CompanyInfo = $Api->getCompanyResource()->getCompanyInfo('yandex');
+    //    $CompanyPosts = $client->getCompanyResource()->getCompanyPosts('yandex');
+    //    $CompanyInfo = $client->getCompanyResource()->getCompanyInfo('yandex');
 
     //    print_r( $CompanyInfo );
 
-    //    $CommentsForPost = $Api->getCommentsResource()->getCommentsForPost(2160);
+    //    $CommentsForPost = $client->getCommentsResource()->getCommentsForPost(2160);
     //    print_r( $CommentsForPost );
-    //    $PostComment = $Api->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
+    //    $PostComment = $client->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
     //    print_r( $PostComment );
 
-    //	$counters = $Api->getTrackerResource()->getCounters();
-    //	$posts = $Api->getTrackerResource()->getPostsFeed();
-    //	$subs = $Api->getTrackerResource()->getSubscribersFeed();
-    //	$apps = $Api->getTrackerResource()->getAppsFeed();
+    //	$counters = $client->getTrackerResource()->getCounters();
+    //	$posts = $client->getTrackerResource()->getPostsFeed();
+    //	$subs = $client->getTrackerResource()->getSubscribersFeed();
+    //	$apps = $client->getTrackerResource()->getAppsFeed();
 
-    // $mentions = $Api->getTrackerResource()->getMentions();
+    // $mentions = $client->getTrackerResource()->getMentions();
 
     // var_dump( $mentions );
 
-//    $vote = $Api->getCommentsResource()->voteForComment('000', 1 );
+//    $vote = $client->getCommentsResource()->voteForComment('000', 1 );
 //
 //    var_dump( $vote);
 
-//    $hubs = $Api->getHubResource()->getHubList();
-//    $hubs = $Api->getHubResource()->getHubCategories();
-//    $hubs = $Api->getHubResource()->getHubOfCategory('telecommunications');
-//    $hubs = $Api->getHubResource()->searchHubs('апи');
-//    $hubs = $Api->getHubResource()->searchHubs('web');
+//    $hubs = $client->getHubResource()->getHubList();
+//    $hubs = $client->getHubResource()->getHubCategories();
+//    $hubs = $client->getHubResource()->getHubOfCategory('telecommunications');
+//    $hubs = $client->getHubResource()->searchHubs('апи');
+//    $hubs = $client->getHubResource()->searchHubs('web');
 
-//    $hubs = $Api->getHubResource()->unsubscribeHub('php');
-    $hubs = $Api->getHubResource()->subscribeHub('php');
+//    $hubs = $client->getHubResource()->unsubscribeHub('php');
+    $hubs = $client->getHubResource()->subscribeHub('php');
 
     var_dump( $hubs );
 
