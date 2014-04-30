@@ -1,4 +1,4 @@
-# Habrapi [![Build Status](https://travis-ci.org/thematicmedia/habrapi.svg)](https://travis-ci.org/thematicmedia/habrapi)
+# Habrapi [![Build Status](https://travis-ci.org/thematicmedia/habrahabr_api.svg)](https://travis-ci.org/thematicmedia/habrahabr_api)
 
 // @todo Написать документацию
 
