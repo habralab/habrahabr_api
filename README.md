@@ -1,6 +1,6 @@
 # Habrahabr Api Client [![Build Status](https://travis-ci.org/thematicmedia/habrahabr_api.svg)](https://travis-ci.org/thematicmedia/habrahabr_api)
 
-// @todo Написать документацию
+// @todo Написать документацию подробно
 // пока можно посмотреть [run.php](https://github.com/thematicmedia/habrahabr_api/blob/master/runtime/run.php)
 
 ## На других языках
