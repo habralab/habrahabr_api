@@ -83,9 +83,9 @@
 //    $hubs = $client->getHubResource()->searchHubs('web');
 
 //    $hubs = $client->getHubResource()->unsubscribeHub('php');
-    $hubs = $client->getHubResource()->subscribeHub('php');
+    $data = $client->getCompanyResource()->getList();
 
-    var_dump( $hubs );
+    var_dump( $data );
 
 
 ?>

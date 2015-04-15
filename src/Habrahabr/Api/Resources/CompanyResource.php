@@ -33,4 +33,16 @@
         {
             return $this->adapter->get( sprintf( '/company/%s/info', $alias ) );
         }
+
+        /**
+         * Получение списка компаний с пагинацией
+         *
+         * @param int $page
+         *
+         * @return mixed
+         */
+        public function getList( $page = 1 )
+        {
+            return $this->adapter->get( sprintf('/companies?page=%d', $page ) );
+        }
     }
