@@ -8,7 +8,7 @@ use Habrahabr\Api\Exception\NetworkException;
 /**
  * Class CurlAdapter
  *
- * Habrahabr Api HTTP adapted using cURL as transport
+ * Habrahabr Api HTTP adapter using cURL as transport
  *
  * @package Habrahabr\Api\HttpAdapter
  * @version 0.0.8

@@ -7,7 +7,7 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
 /**
  * Class BaseAdapter
  *
- * Base for all Habrahabr Api HTTP adapted
+ * Base for all Habrahabr Api HTTP adapters
  *
  * @package Habrahabr\Api\HttpAdapter
  * @version 0.0.8
@@ -28,29 +28,31 @@ abstract class BaseAdapter
 
     public function setToken($token)
     {
-        // @todo validation??
+        if (!preg_match('#(\w+)#', $token)) {
+            throw new IncorrectUsageException('Incorrect API Token');
+        }
+
         $this->token = $token;
     }
 
     public function setClient($client)
     {
-        // @todo validation??
+        if (!preg_match('#(\w+)#', $client)) {
+            throw new IncorrectUsageException('Incorrect API Client');
+        }
+
         $this->client = $client;
     }
 
     public function setEndpoint($url)
     {
-        // @todo mb extract 'setVersion' ?
-
         $check = parse_url($url);
 
-        if (empty($check['scheme']) || $check['scheme'] !== 'https') {
-            throw new IncorrectUsageException('Scheme of endpoint must be https');
+        if (empty($check['scheme']) OR $check['scheme'] !== 'https') {
+            throw new IncorrectUsageException('Scheme of endpoint must be HTTPS');
         }
 
-        $url = rtrim($url, '/');
-
-        $this->endpoint = $url;
+        $this->endpoint = rtrim($url, '/');
     }
 
     public function getEndpoint()
