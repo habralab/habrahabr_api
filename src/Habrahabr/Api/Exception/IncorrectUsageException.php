@@ -5,7 +5,7 @@ namespace Habrahabr\Api\Exception;
 /**
  * Class IncorrectUsageException
  *
- * @package Habrahabr
+ * @package Habrahabr\Api\Exception
  * @version 0.0.8
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/

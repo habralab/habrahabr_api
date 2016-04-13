@@ -4,7 +4,22 @@ namespace Habrahabr\Api\HttpAdapter;
 
 use Habrahabr\Api\Exception\IncorrectUsageException;
 
-trait traitAdapter
+/**
+ * Class BaseAdapter
+ *
+ * Base for all Habrahabr Api HTTP adapted
+ *
+ * @package Habrahabr\Api\HttpAdapter
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+abstract class BaseAdapter
 {
     protected $token;
     protected $client;

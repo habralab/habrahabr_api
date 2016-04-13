@@ -6,15 +6,22 @@ use Habrahabr\Api\Exception\ExtenstionNotLoadedException;
 use Habrahabr\Api\Exception\NetworkException;
 
 /**
- * HTTP-адаптер, использующий библиотеку cURL
+ * Class CurlAdapter
  *
- * @author kafeman <kafemanw@gmail.com>
- * @since  0.0.5
+ * Habrahabr Api HTTP adapted using cURL as transport
+ *
+ * @package Habrahabr\Api\HttpAdapter
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
-class CurlAdapter implements HttpAdapterInterface
+class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
 {
-    use traitAdapter;
-
     const METHOD_GET = 'GET';
     const METHOD_POST = 'POST';
     const METHOD_PUT = 'PUT';
