@@ -1,18 +1,18 @@
 <?php
 
-    namespace Habrahabr\Api\HttpAdapter;
+namespace Habrahabr\Api\HttpAdapter;
 
-    interface HttpAdapterInterface
-    {
-        public function setToken( $token );
+interface HttpAdapterInterface
+{
+    public function setToken($token);
 
-        public function setClient( $client );
+    public function setClient($client);
 
-        public function get( $url );
+    public function get($url);
 
-        public function post( $url, array $values = [ ] );
+    public function post($url, array $values = []);
 
-        public function delete( $url );
+    public function delete($url);
 
-        public function put( $url, array $values = [ ] );
-    }
+    public function put($url, array $values = []);
+}

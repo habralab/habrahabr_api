@@ -1,34 +1,34 @@
 <?php
 
-    namespace Habrahabr\Api\Resources;
+namespace Habrahabr\Api\Resources;
 
-    use Habrahabr\Api\HttpAdapter\MockAdapter;
-    use Habrahabr\Api\Resources\FeedResource;
+use Habrahabr\Api\HttpAdapter\MockAdapter;
+use Habrahabr\Api\Resources\FeedResource;
 
-    class FeedResourceTest extends \PHPUnit_Framework_TestCase
+class FeedResourceTest extends \PHPUnit_Framework_TestCase
+{
+    protected $adapter;
+    protected $feedResource;
+
+    protected function setUp()
     {
-        protected $adapter;
-        protected $feedResource;
-
-        protected function setUp()
-        {
-            $this->adapter = new MockAdapter();
-            $this->feedResource = new FeedResource();
-            $this->feedResource->setAdapter( $this->adapter );
-        }
-
-        public function testGetFeedHabred()
-        {
-            // TODO
-        }
-
-        public function testGetFeedUnhabred()
-        {
-            // TODO
-        }
-
-        public function testGetFeedNew()
-        {
-            // TODO
-        }
+        $this->adapter = new MockAdapter();
+        $this->feedResource = new FeedResource();
+        $this->feedResource->setAdapter($this->adapter);
     }
+
+    public function testGetFeedHabred()
+    {
+        // TODO
+    }
+
+    public function testGetFeedUnhabred()
+    {
+        // TODO
+    }
+
+    public function testGetFeedNew()
+    {
+        // TODO
+    }
+}

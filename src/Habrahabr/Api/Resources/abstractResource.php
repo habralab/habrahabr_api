@@ -1,32 +1,30 @@
 <?php
 
-    namespace Habrahabr\Api\Resources;
+namespace Habrahabr\Api\Resources;
 
-    use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
+use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
+
+/**
+ * Basic Resource class
+ *
+ * @package Habrahabr_api\Resources
+ */
+abstract class abstractResource
+{
+    /**
+     * @var HttpAdapterInterface
+     */
+    protected $adapter;
 
     /**
-     * Basic Resource class
+     * @param HttpAdapterInterface $adapter
      *
-     * @package Habrahabr_api\Resources
+     * @return $this
      */
-    abstract class abstractResource
+    public function setAdapter(HttpAdapterInterface $adapter)
     {
-        /**
-         * @var HttpAdapterInterface
-         */
-        protected $adapter;
+        $this->adapter = $adapter;
 
-        /**
-         * @param HttpAdapterInterface $adapter
-         *
-         * @return $this
-         */
-        public function setAdapter( HttpAdapterInterface $adapter )
-        {
-            $this->adapter = $adapter;
-
-            return $this;
-        }
-
-        // @todo magic methods ??
+        return $this;
     }
+}

@@ -1,7 +1,7 @@
 <?php
 
-    namespace Habrahabr\Api\Exception;
+namespace Habrahabr\Api\Exception;
 
-    class IncorrectUsageException extends \Exception
-    {
-    }
+class IncorrectUsageException extends \Exception
+{
+}

@@ -1,7 +1,7 @@
 <?php
 
-    namespace Habrahabr\Api\Exception;
+namespace Habrahabr\Api\Exception;
 
-    class ExtenstionNotLoadedException extends \Exception
-    {
-    }
+class ExtenstionNotLoadedException extends \Exception
+{
+}

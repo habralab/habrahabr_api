@@ -1,76 +1,76 @@
 <?php
 
-    require_once realpath( __DIR__ . '/keys.php' );
-    require_once realpath(__DIR__.'/../vendor/autoload.php');
+require_once realpath(__DIR__ . '/keys.php');
+require_once realpath(__DIR__ . '/../vendor/autoload.php');
 
-    $adapter = new Habrahabr\Api\HttpAdapter\CurlAdapter();
+$adapter = new Habrahabr\Api\HttpAdapter\CurlAdapter();
 
-    $adapter->setEndpoint( $endpoint );
-    $adapter->setToken( $token );
-    $adapter->setClient( $client );
+$adapter->setEndpoint($endpoint);
+$adapter->setToken($token);
+$adapter->setClient($client);
 
-    $client = new Habrahabr\Api\Client( $adapter );
+$client = new Habrahabr\Api\Client($adapter);
 
-    //$User          = $client->getUserResource()->getUser('rpsl');
+//$User          = $client->getUserResource()->getUser('rpsl');
 
-    //var_dump( $User );
-    //    $Users         = $client->getUserResource()->getUsersList( 2 );
-    //    $UserComments  = $client->getUserResource()->getUserComments( 'rpsl' );
-    //    $UserPosts     = $client->getUserResource()->getUserPosts( 'rpsl' );
-    //    $UserHubs      = $client->getUserResource()->getUserHubs( 'rpsl' );
-    //    $UserCompanies = $client->getUserResource()->getUserCompanies( 'rpsl' );
-    //    $UserFollowers = $client->getUserResource()->getUserFollowers( 'rpsl' );
-    //    $UserFollowed  = $client->getUserResource()->getUserFollowed('rpsl');
-    //
-    //    $voteKarmaPlus = $client->getUserResource()->voteKarmaPlus('habrahabr');
-    //    print_r( $voteKarmaPlus );
+//var_dump( $User );
+//    $Users         = $client->getUserResource()->getUsersList( 2 );
+//    $UserComments  = $client->getUserResource()->getUserComments( 'rpsl' );
+//    $UserPosts     = $client->getUserResource()->getUserPosts( 'rpsl' );
+//    $UserHubs      = $client->getUserResource()->getUserHubs( 'rpsl' );
+//    $UserCompanies = $client->getUserResource()->getUserCompanies( 'rpsl' );
+//    $UserFollowers = $client->getUserResource()->getUserFollowers( 'rpsl' );
+//    $UserFollowed  = $client->getUserResource()->getUserFollowed('rpsl');
+//
+//    $voteKarmaPlus = $client->getUserResource()->voteKarmaPlus('habrahabr');
+//    print_r( $voteKarmaPlus );
 
-    //    $voteKarmaMinus= $client->getUserResource()->voteKarmaMinus('habrahabr');
-    //    print_r( $voteKarmaMinus );
-    //
-
-
-    //    $SearchPosts = $client->getSearchResource()->searchPosts('оптимизация');
-    //    $SearchUsers = $client->getSearchResource()->searchUsers('habrahabr');
+//    $voteKarmaMinus= $client->getUserResource()->voteKarmaMinus('habrahabr');
+//    print_r( $voteKarmaMinus );
+//
 
 
-    //    $Post = $client->getPostResource()->getPost(2160);
-    //    $VotePost = $client->getPostResource()->vote(2160, 1);
-    //    $FavoritePost = $client->getPostResource()->addPostToFavorite(2160);
-    //    $unFavoritePost = $client->getPostResource()->removePostFromFavorite(2160);
+//    $SearchPosts = $client->getSearchResource()->searchPosts('оптимизация');
+//    $SearchUsers = $client->getSearchResource()->searchUsers('habrahabr');
 
 
-    //    $HubInfo = $client->getHubResource()->getHubInfo('php');
-    //    $HubHabred = $client->getHubResource()->getFeedHabred('php', 2);
-    //    $HubUnhabred = $client->getHubResource()->getFeedUnhabred('php',2);
-    //    $HubNew = $client->getHubResource()->getFeedNew('php');
+//    $Post = $client->getPostResource()->getPost(2160);
+//    $VotePost = $client->getPostResource()->vote(2160, 1);
+//    $FavoritePost = $client->getPostResource()->addPostToFavorite(2160);
+//    $unFavoritePost = $client->getPostResource()->removePostFromFavorite(2160);
 
-    //    print_r( $HubNew );
 
-    //    $FeedHabred = $client->getFeedResource()->getFeedHabred();
-    //    $FeedUnhabred = $client->getFeedResource()->getFeedUnhabred();
-    //    $FeedNew = $client->getFeedResource()->getFeedNew();
+//    $HubInfo = $client->getHubResource()->getHubInfo('php');
+//    $HubHabred = $client->getHubResource()->getFeedHabred('php', 2);
+//    $HubUnhabred = $client->getHubResource()->getFeedUnhabred('php',2);
+//    $HubNew = $client->getHubResource()->getFeedNew('php');
 
-    //    print_r( $FeedNew );
+//    print_r( $HubNew );
 
-    //    $CompanyPosts = $client->getCompanyResource()->getCompanyPosts('yandex');
-    //    $CompanyInfo = $client->getCompanyResource()->getCompanyInfo('yandex');
+//    $FeedHabred = $client->getFeedResource()->getFeedHabred();
+//    $FeedUnhabred = $client->getFeedResource()->getFeedUnhabred();
+//    $FeedNew = $client->getFeedResource()->getFeedNew();
 
-    //    print_r( $CompanyInfo );
+//    print_r( $FeedNew );
 
-    //    $CommentsForPost = $client->getCommentsResource()->getCommentsForPost(2160);
-    //    print_r( $CommentsForPost );
-    //    $PostComment = $client->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
-    //    print_r( $PostComment );
+//    $CompanyPosts = $client->getCompanyResource()->getCompanyPosts('yandex');
+//    $CompanyInfo = $client->getCompanyResource()->getCompanyInfo('yandex');
 
-    //	$counters = $client->getTrackerResource()->getCounters();
-    //	$posts = $client->getTrackerResource()->getPostsFeed();
-    //	$subs = $client->getTrackerResource()->getSubscribersFeed();
-    //	$apps = $client->getTrackerResource()->getAppsFeed();
+//    print_r( $CompanyInfo );
 
-    // $mentions = $client->getTrackerResource()->getMentions();
+//    $CommentsForPost = $client->getCommentsResource()->getCommentsForPost(2160);
+//    print_r( $CommentsForPost );
+//    $PostComment = $client->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
+//    print_r( $PostComment );
 
-    // var_dump( $mentions );
+//	$counters = $client->getTrackerResource()->getCounters();
+//	$posts = $client->getTrackerResource()->getPostsFeed();
+//	$subs = $client->getTrackerResource()->getSubscribersFeed();
+//	$apps = $client->getTrackerResource()->getAppsFeed();
+
+// $mentions = $client->getTrackerResource()->getMentions();
+
+// var_dump( $mentions );
 
 //    $vote = $client->getCommentsResource()->voteForComment('000', 1 );
 //
@@ -83,9 +83,6 @@
 //    $hubs = $client->getHubResource()->searchHubs('web');
 
 //    $hubs = $client->getHubResource()->unsubscribeHub('php');
-    $data = $client->getCompanyResource()->getList();
+$data = $client->getCompanyResource()->getList();
 
-    var_dump( $data );
-
-
-?>
+var_dump($data);

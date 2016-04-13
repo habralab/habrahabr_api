@@ -1,7 +1,7 @@
 <?php
 
-    namespace Habrahabr\Api\Exception;
+namespace Habrahabr\Api\Exception;
 
-    class ResourceNotExistsException extends \Exception
-    {
-    }
+class ResourceNotExistsException extends \Exception
+{
+}
