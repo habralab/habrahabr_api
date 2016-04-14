@@ -28,6 +28,6 @@ interface HttpAdapterInterface
     public function post($url, array $values = []);
 
     public function put($url, array $values = []);
-    
+
     public function delete($url);
 }

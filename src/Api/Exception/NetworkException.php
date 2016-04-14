@@ -4,7 +4,7 @@ namespace Habrahabr\Api\Exception;
 
 /**
  * Class NetworkException
- * 
+ *
  * Исключение выбрасываемое HTTP адаптером при ошибках сети
  *
  * @package Habrahabr\Api\Exception

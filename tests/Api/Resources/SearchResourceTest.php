@@ -61,12 +61,12 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
     {
         if ($this->mocking) {
             $expected = [
-                'pages'       => 10,
-                'next_page'   => [
+                'pages' => 10,
+                'next_page' => [
                     'url' => 'http://api.dotzero.devhabr.net/v1/search/users/habrahabr?page=3',
                     'int' => 3
                 ],
-                'data'        => [
+                'data' => [
                     // users data
                 ],
                 'server_time' => '2016-04-14T16:38:27+03:00'
@@ -89,7 +89,7 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
     {
         if ($this->mocking) {
             $expected = [
-                'data'        => [
+                'data' => [
                     // hubs data
                 ],
                 'server_time' => '2016-04-14T16:38:27+03:00'

@@ -107,7 +107,7 @@ abstract class BaseAdapter
 
     /**
      * Установить количество секунд ожидания при попытке соединения
-     * 
+     *
      * @param int $connectionTimeout Количество секунд ожидания при попытке соединения
      * @return $this
      */
@@ -120,7 +120,7 @@ abstract class BaseAdapter
 
     /**
      * Получить количество секунд ожидания при попытке соединения
-     * 
+     *
      * @return int
      */
     public function getConnectionTimeout()
@@ -130,7 +130,7 @@ abstract class BaseAdapter
 
     /**
      * Создание URL на базе OAuth Endpoint и URL ресурса
-     * 
+     *
      * @param $url URL ресурса
      * @return string
      */

@@ -10,7 +10,7 @@ $adapter->setClient(getenv('CLIENT'));
 
 $client = new Habrahabr\Api\Client($adapter);
 
-$User          = $client->getUserResource()->getUser('me');
+$User = $client->getUserResource()->getUser('me');
 
 var_dump($User);
 

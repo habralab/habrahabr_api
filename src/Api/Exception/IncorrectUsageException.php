@@ -4,8 +4,8 @@ namespace Habrahabr\Api\Exception;
 
 /**
  * Class IncorrectUsageException
- * 
- * Исключение выбрасываемое при некорретном использование метода 
+ *
+ * Исключение выбрасываемое при некорретном использование метода
  *
  * @package Habrahabr\Api\Exception
  * @version 0.0.8
