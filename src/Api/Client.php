@@ -54,7 +54,7 @@ class Client
     public function __call($name, $arguments)
     {
         if (preg_match('#^get([\w]+)Resource$#i', $name, $m)) {
-            $name = ucfirst($name) . 'Resource';
+            $name = ucfirst($m[1]) . 'Resource';
 
             if (!isset($this->resources[$name])) {
                 $this->resources[$name] = $this->createResourceInstance($name);
