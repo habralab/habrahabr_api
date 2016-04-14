@@ -2,48 +2,63 @@
 
 namespace Habrahabr\Api\Resources;
 
+use Habrahabr\Api\Exception\IncorrectUsageException;
+
 /**
- * Ресурс для поиска
+ * Class SearchResource
  *
- * @package Habrahabr_api\Resources
+ * Ресурс работы с поиском
+ *
+ * @package Habrahabr\Api\Resources
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 class SearchResource extends AbstractResource implements ResourceInterface
 {
     /**
-     * Поиск постов, с пагинацией
+     * Поиск произвольного запроса по постам
      *
-     * @param string $string
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $q Поисковая фраза
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
-    public function searchPosts($string, $page = 1)
+    public function searchPosts($q, $page = 1)
     {
-        return $this->adapter->get(sprintf('/search/posts/%s?page=%d', urlencode($string), $page));
+        $this->checkPageNumber($page);
+
+        return $this->adapter->get(sprintf('/search/posts/%s?page=%d', urlencode($q), $page));
     }
 
     /**
-     * Поиск пользователей, с пагинацией
+     * Поиск произвольного запроса по пользователям
      *
-     * @param string $string
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $q Поисковая фраза
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
-    public function searchUsers($string, $page = 1)
+    public function searchUsers($q, $page = 1)
     {
-        return $this->adapter->get(sprintf('/search/users/%s?page=%d', urlencode($string), $page));
+        $this->checkPageNumber($page);
+
+        return $this->adapter->get(sprintf('/search/users/%s?page=%d', urlencode($q), $page));
     }
 
     /**
-     * Поиск хабов
+     * Поиск произвольного запроса по хабам
      *
-     * @param $query
-     *
-     * @return mixed
+     * @param string $q Поисковая фраза
+     * @return array
      */
-    public function searchHubs($query)
+    public function searchHubs($q)
     {
-        return $this->adapter->get(sprintf('/hubs/search/%s', urlencode($query)));
+        return $this->adapter->get(sprintf('/hubs/search/%s', urlencode($q)));
     }
 }

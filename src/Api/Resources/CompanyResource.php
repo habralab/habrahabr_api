@@ -2,32 +2,45 @@
 
 namespace Habrahabr\Api\Resources;
 
+use Habrahabr\Api\Exception\IncorrectUsageException;
+
 /**
+ * Class CompanyResource
+ *
  * Ресурс работы с компаниями
  *
- * @package Habrahabr_api\Resources
+ * @package Habrahabr\Api\Resources
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 class CompanyResource extends AbstractResource implements ResourceInterface
 {
     /**
-     * Список постов компании, с пагинацией.
+     * Возвращает посты компании по алиасу компании
      *
-     * @param   string $alias
-     * @param   int $page
-     *
-     * @return mixed
+     * @param string $alias Алиасу компании на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getCompanyPosts($alias, $page = 1)
     {
+        $this->checkPageNumber($page);
+
         return $this->adapter->get(sprintf('/company/%s?page=%d', $alias, $page));
     }
 
     /**
-     * Получение информации о компании
+     * Возвращает профиль компании по алиасу компании
      *
-     * @param   string $alias
-     *
-     * @return mixed
+     * @param string $alias Алиасу компании на сайте
+     * @return array
      */
     public function getCompanyInfo($alias)
     {
@@ -35,14 +48,16 @@ class CompanyResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Получение списка компаний с пагинацией
+     * Возвращает список компаний
      *
-     * @param int $page
-     *
-     * @return mixed
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getList($page = 1)
     {
+        $this->checkPageNumber($page);
+
         return $this->adapter->get(sprintf('/companies?page=%d', $page));
     }
 }

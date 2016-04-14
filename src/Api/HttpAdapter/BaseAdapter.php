@@ -131,7 +131,7 @@ abstract class BaseAdapter
     /**
      * Создание URL на базе OAuth Endpoint и URL ресурса
      *
-     * @param $url URL ресурса
+     * @param string $url URL ресурса
      * @return string
      */
     public function createUrl($url)

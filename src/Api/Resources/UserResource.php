@@ -5,18 +5,26 @@ namespace Habrahabr\Api\Resources;
 use Habrahabr\Api\Exception\IncorrectUsageException;
 
 /**
- * Ресурс для работы с пользователеми.
- *
  * Class UserResource
  *
- * @package Habrahabr_api\Resources
+ * Ресурс работы с пользователями
+ *
+ * @package Habrahabr\Api\Resources
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 class UserResource extends AbstractResource implements ResourceInterface
 {
     /**
-     * Информация о текущем пользователе
+     * Возвращает профиль пользователя API ключа
      *
-     * @return mixed
+     * @return array
      */
     public function getUserCurrent()
     {
@@ -24,11 +32,10 @@ class UserResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Информация о пользователе по логину
+     * Возвращает профиль пользователя по логину
      *
-     * @param string $login
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @return array
      */
     public function getUser($login)
     {
@@ -36,55 +43,51 @@ class UserResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Список пользователей
+     * Возвращает список пользователей
      *
-     * @return mixed
+     * @return array
      */
     public function getUsersList()
     {
+        // @TODO возможно тут есть пагинация
         return $this->adapter->get('/users');
     }
 
     /**
-     * Комментарии пользователя с пагинацией
+     * Возвращает комментарии пользователя по логину
      *
-     * @param string $login
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserComments($login, $page = 1)
     {
-        if (intval($page) != $page OR $page < 1) {
-            throw new IncorrectUsageException('Page number must be integer and positive');
-        }
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/comments?page=%d', $login, $page));
     }
 
     /**
-     * Посты пользователя с пагинацией
+     * Возвращает посты пользователя по логину
      *
-     * @param string $login
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserPosts($login, $page = 1)
     {
-        if (intval($page) != $page OR $page < 1) {
-            throw new IncorrectUsageException('Page number must be integer and positive');
-        }
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/posts?page=%d', $login, $page));
     }
 
     /**
-     * Хабы на которые подписан пользователь
+     * Возвращает хабы на которые подписан пользователь
      *
-     * @param string $login
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @return array
      */
     public function getUserHubs($login)
     {
@@ -92,80 +95,70 @@ class UserResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Компании в которых работает пользователь
+     * Возвращает компании в которых работает пользователь
      *
-     * @param string $login
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @return array
      */
     public function getUserCompanies($login)
     {
         return $this->adapter->get(sprintf('/users/%s/companies', $login));
     }
 
-
     /**
-     * Кто подписан на пользователя, c пагинацией
+     * Возвращает список подписчиков пользователя по логину
      *
-     * @param string $login
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserFollowers($login, $page = 1)
     {
-        if (intval($page) != $page OR $page < 1) {
-            throw new IncorrectUsageException('Page number must be integer and positive');
-        }
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/followers?page=%d', $login, $page));
     }
 
     /**
-     * На кого подписан пользователь, c пагинацией
+     * Возвращает список на кого подписан пользователь по логину
      *
-     * @param string $login
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserFollowed($login, $page = 1)
     {
-        if (intval($page) != $page OR $page < 1) {
-            throw new IncorrectUsageException('Page number must be integer and positive');
-        }
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/followed?page=%d', $login, $page));
     }
 
     /**
-     * Плюсовать карму пользователю.
+     * Плюсовать карму пользователя по логину
      *
-     * Этот метод может быть предоставлен дополнительно, по запросу.
-     * http://habrahabr.ru/feedback/
-     *
-     * @param string $target
+     * Этот метод может быть предоставлен дополнительно, по запросу
+     * https://habrahabr.ru/feedback/
      *
      * @deprecated
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @return array
      */
-    public function voteKarmaPlus($target)
+    public function voteKarmaPlus($login)
     {
-        return $this->adapter->put(sprintf('/users/%s/vote', $target));
+        return $this->adapter->put(sprintf('/users/%s/vote', $login));
     }
 
     /**
-     * Минусовать карму пользователю
+     * Минусовать карму пользователя по логину
      *
-     * Этот метод может быть предоставлен дополнительно, по запросу.
-     * http://habrahabr.ru/feedback/
-     *
-     * @param string $target
+     * Этот метод может быть предоставлен дополнительно, по запросу
+     * https://habrahabr.ru/feedback/
      *
      * @deprecated
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @return array
      */
     public function voteKarmaMinus($target)
     {
@@ -173,30 +166,32 @@ class UserResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Посты которые пользователь добавил в избранное
+     * Возвращает список "избранных" постов пользователя по логину
      *
-     * @param $login
-     *
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserFavoritesPost($login, $page = 1)
     {
+        $this->checkPageNumber($page);
+
         return $this->adapter->get(sprintf('/users/%s/favorites/posts?page=%d', $login, $page));
     }
 
     /**
-     * Комментарии которые пользователь добавил в избранное
+     * Возвращает список "избранных" комментариев пользователя по логину
      *
-     * @param $login
-     *
-     * @param int $page
-     *
-     * @return mixed
+     * @param string $login Логин пользователя на сайте
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserFavoritesComments($login, $page = 1)
     {
+        $this->checkPageNumber($page);
+
         return $this->adapter->get(sprintf('/users/%s/favorites/comments?page=%d', $login, $page));
     }
 }
