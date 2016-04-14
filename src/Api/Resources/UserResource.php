@@ -2,6 +2,8 @@
 
 namespace Habrahabr\Api\Resources;
 
+use Habrahabr\Api\Exception\IncorrectUsageException;
+
 /**
  * Ресурс для работы с пользователеми.
  *
@@ -53,6 +55,10 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserComments($login, $page = 1)
     {
+        if (intval($page) != $page OR $page < 1) {
+            throw new IncorrectUsageException('Page number must be integer and positive');
+        }
+
         return $this->adapter->get(sprintf('/users/%s/comments?page=%d', $login, $page));
     }
 
@@ -66,6 +72,10 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserPosts($login, $page = 1)
     {
+        if (intval($page) != $page OR $page < 1) {
+            throw new IncorrectUsageException('Page number must be integer and positive');
+        }
+
         return $this->adapter->get(sprintf('/users/%s/posts?page=%d', $login, $page));
     }
 
@@ -104,6 +114,10 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserFollowers($login, $page = 1)
     {
+        if (intval($page) != $page OR $page < 1) {
+            throw new IncorrectUsageException('Page number must be integer and positive');
+        }
+
         return $this->adapter->get(sprintf('/users/%s/followers?page=%d', $login, $page));
     }
 
@@ -117,6 +131,10 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserFollowed($login, $page = 1)
     {
+        if (intval($page) != $page OR $page < 1) {
+            throw new IncorrectUsageException('Page number must be integer and positive');
+        }
+
         return $this->adapter->get(sprintf('/users/%s/followed?page=%d', $login, $page));
     }
 
