@@ -15,7 +15,7 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        if (getenv('ENDPOINT')) {
+        if (defined('USE_CURL')) {
             $this->adapter = new CurlAdapter();
             $this->adapter->setEndpoint(getenv('ENDPOINT'));
             $this->adapter->setToken(getenv('TOKEN'));
