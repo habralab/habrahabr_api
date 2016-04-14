@@ -4,7 +4,7 @@ namespace Habrahabr\Api\Resources;
 
 use Habrahabr\Api\Exception\IncorrectUsageException;
 
-class TrackerResource extends abstractResource implements ResourceInterface
+class TrackerResource extends AbstractResource implements ResourceInterface
 {
     /**
      * Отправляем сообщение в трекер пользователя.

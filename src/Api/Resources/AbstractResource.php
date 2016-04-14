@@ -9,7 +9,7 @@ use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
  *
  * @package Habrahabr_api\Resources
  */
-abstract class abstractResource
+abstract class AbstractResource
 {
     /**
      * @var HttpAdapterInterface

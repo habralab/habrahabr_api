@@ -7,7 +7,7 @@ namespace Habrahabr\Api\Resources;
  *
  * @package Habrahabr_api\Resources
  */
-class SearchResource extends abstractResource implements ResourceInterface
+class SearchResource extends AbstractResource implements ResourceInterface
 {
     /**
      * Поиск постов, с пагинацией

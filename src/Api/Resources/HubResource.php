@@ -9,7 +9,7 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
  *
  * @package Habrahabr_api\Resources
  */
-class HubResource extends abstractResource implements ResourceInterface
+class HubResource extends AbstractResource implements ResourceInterface
 {
     /**
      * Получение информации о хабе по алиасу.

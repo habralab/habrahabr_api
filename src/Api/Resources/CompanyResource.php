@@ -7,7 +7,7 @@ namespace Habrahabr\Api\Resources;
  *
  * @package Habrahabr_api\Resources
  */
-class CompanyResource extends abstractResource implements ResourceInterface
+class CompanyResource extends AbstractResource implements ResourceInterface
 {
     /**
      * Список постов компании, с пагинацией.

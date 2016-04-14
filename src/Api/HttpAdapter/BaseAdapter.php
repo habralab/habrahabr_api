@@ -28,31 +28,35 @@ abstract class BaseAdapter
 
     public function setToken($token)
     {
-        if (!preg_match('#(\w+)#', $token)) {
+        if (!preg_match('#([a-z0-9]+)#ui', $token)) {
             throw new IncorrectUsageException('Incorrect API Token');
         }
 
         $this->token = $token;
+
+        return $this;
     }
 
     public function setClient($client)
     {
-        if (!preg_match('#(\w+)#', $client)) {
+        if (!preg_match('#([a-z0-9]+)\.([a-z0-9]+)#ui', $client)) {
             throw new IncorrectUsageException('Incorrect API Client');
         }
 
         $this->client = $client;
+
+        return $this;
     }
 
     public function setEndpoint($url)
     {
-        $check = parse_url($url);
-
-        if (empty($check['scheme']) OR $check['scheme'] !== 'https') {
+        if (!preg_match('#^(https://)#ui', $url)) {
             throw new IncorrectUsageException('Scheme of endpoint must be HTTPS');
         }
 
         $this->endpoint = rtrim($url, '/');
+
+        return $this;
     }
 
     public function getEndpoint()
@@ -66,6 +70,8 @@ abstract class BaseAdapter
     public function setConnectionTimeout($connectionTimeout)
     {
         $this->connectionTimeout = $connectionTimeout;
+
+        return $this;
     }
 
     public function getConnectionTimeout()

@@ -74,39 +74,39 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
      * Выполняет POST-запрос
      *
      * @param string $url Запрашиваемый ресурс без endpoint'а
-     * @param array $values Параметры, передаваемые в теле запроса
+     * @param array $params Параметры, передаваемые в теле запроса
      *
      * @return array|false Результат запроса
      */
-    public function post($url, array $values = [])
+    public function post($url, array $params = [])
     {
-        return $this->request($this->createUrl($url), self::METHOD_POST, $values);
+        return $this->request($this->createUrl($url), self::METHOD_POST, $params);
     }
 
     /**
      * Выполняет DELETE-запрос
      *
      * @param string $url Запрашиваемый ресурс без endpoint'а
-     * @param array $values Параметры, передаваемые в теле запроса
+     * @param array $params Параметры, передаваемые в теле запроса
      *
      * @return array|false Результат запроса
      */
-    public function delete($url, array $values = [])
+    public function delete($url, array $params = [])
     {
-        return $this->request($this->createUrl($url), self::METHOD_DELETE, $values);
+        return $this->request($this->createUrl($url), self::METHOD_DELETE, $params);
     }
 
     /**
      * Выполняет PUT-запрос
      *
      * @param string $url Запрашиваемый ресурс без endpoint'а
-     * @param array $values Параметры, передаваемые в теле запроса
+     * @param array $params Параметры, передаваемые в теле запроса
      *
      * @return array|false Результат запроса
      */
-    public function put($url, array $values = [])
+    public function put($url, array $params = [])
     {
-        return $this->request($this->createUrl($url), self::METHOD_PUT, $values);
+        return $this->request($this->createUrl($url), self::METHOD_PUT, $params);
     }
 
     /**
@@ -114,35 +114,31 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
      *
      * @param string $url URL, запрашиваемого ресурса
      * @param string $method HTTP-метод, например, GET
-     * @param array $values Параметры, передаваемые в теле запроса
+     * @param array $params Параметры, передаваемые в теле запроса
      *
      * @throws NetworkException
      *
      * @return array|boolean Результат запроса
      */
-    protected function request($url, $method, array $values = [])
+    protected function request($url, $method, array $params = [])
     {
         curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
-
-        // debug time !
-        //curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, FALSE );
-
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
             'client: ' . $this->client,
             'token: ' . $this->token
         ]);
 
         if ($method == self::METHOD_PUT || $method == self::METHOD_POST) {
-            curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($values));
+            curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($params));
         }
 
-        $result = curl_exec($this->curl);
-
-        if (curl_errno($this->curl)) {
-            throw new NetworkException(curl_error($this->curl));
+        if (!$result = curl_exec($this->curl)) {
+            $error = curl_error($ch);
+            $errno = curl_errno($ch);
+            throw new NetworkException($error, $errno);
         }
 
         return $result ? json_decode($result, true) : false;

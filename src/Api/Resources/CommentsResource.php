@@ -9,7 +9,7 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
  *
  * @package Habrahabr_api\Resources
  */
-class CommentsResource extends abstractResource implements ResourceInterface
+class CommentsResource extends AbstractResource implements ResourceInterface
 {
     const VOTE_PLUS = 1;
     const VOTE_MINUS = -1;

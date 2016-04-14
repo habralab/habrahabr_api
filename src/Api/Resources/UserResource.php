@@ -9,7 +9,7 @@ namespace Habrahabr\Api\Resources;
  *
  * @package Habrahabr_api\Resources
  */
-class UserResource extends abstractResource implements ResourceInterface
+class UserResource extends AbstractResource implements ResourceInterface
 {
     /**
      * Информация о текущем пользователе

@@ -7,7 +7,7 @@ namespace Habrahabr\Api\Resources;
  *
  * @package Habrahabr_api\Resources
  */
-class FeedResource extends abstractResource implements ResourceInterface
+class FeedResource extends AbstractResource implements ResourceInterface
 {
     /**
      * Список постов из ленты, с пагинацией, фильтр "Захабренные"
