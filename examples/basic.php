@@ -1,15 +1,18 @@
 <?php
 
-require_once realpath(__DIR__ . '/keys.php');
 require_once realpath(__DIR__ . '/../vendor/autoload.php');
 
 $adapter = new Habrahabr\Api\HttpAdapter\CurlAdapter();
-
-$adapter->setEndpoint($endpoint);
-$adapter->setToken($token);
-$adapter->setClient($client);
+$adapter->setStrictSSL(true);
+$adapter->setEndpoint(getenv('ENDPOINT'));
+$adapter->setToken(getenv('TOKEN'));
+$adapter->setClient(getenv('CLIENT'));
 
 $client = new Habrahabr\Api\Client($adapter);
+
+$User          = $client->getUserResource()->getUser('me');
+
+var_dump($User);
 
 //$User          = $client->getUserResource()->getUser('rpsl');
 
@@ -83,6 +86,6 @@ $client = new Habrahabr\Api\Client($adapter);
 //    $hubs = $client->getHubResource()->searchHubs('web');
 
 //    $hubs = $client->getHubResource()->unsubscribeHub('php');
-$data = $client->getCompanyResource()->getList();
+//$data = $client->getCompanyResource()->getList();
 
-var_dump($data);
+//var_dump($data);

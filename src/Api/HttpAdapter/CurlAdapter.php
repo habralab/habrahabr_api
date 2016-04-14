@@ -176,6 +176,8 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
             throw new NetworkException($error, $errno);
         }
 
-        return $result ? json_decode($result, true) : [];
+        $result = json_decode($result, true);
+
+        return $result ? $result : [];
     }
 }
