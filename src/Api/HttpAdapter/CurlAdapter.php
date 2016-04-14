@@ -48,6 +48,11 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     protected $curl = null;
 
     /**
+     * @var bool Строгая проверка SSL сертификата
+     */
+    protected $strictSSL = true;
+
+    /**
      * CurlAdapter constructor
      *
      * @throws ExtenstionNotLoadedException
@@ -73,7 +78,7 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
 
     /**
      * Выполнить HTTP GET запрос и вернуть тело ответа
-     * 
+     *
      * @param string $url URL суффикс запрашиваемого ресурса
      * @return array
      * @throws NetworkException
@@ -87,7 +92,7 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
      * Выполнить HTTP POST запрос и вернуть тело ответа
      *
      * @param string $url URL суффикс запрашиваемого ресурса
-     * @param array $params Параметры, передаваемые в теле запроса                   
+     * @param array $params Параметры, передаваемые в теле запроса
      * @return array
      * @throws NetworkException
      */
@@ -108,7 +113,7 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     {
         return $this->request($this->createUrl($url), self::METHOD_PUT, $params);
     }
-    
+
     /**
      * Выполнить HTTP DELETE запрос и вернуть тело ответа
      *
@@ -123,8 +128,21 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
+     * Устанавливает или убирает строгую проверку SSL сертификата
+     *
+     * @param bool $flag Флаг строгой проверки SSL сертификата
+     * @return $this
+     */
+    public function setStrictSSL($flag = true)
+    {
+        $this->strictSSL = $flag;
+
+        return $this;
+    }
+
+    /**
      * Выполнить HTTP запрос и вернуть тело ответа
-     * 
+     *
      * @param string $url URL суффикс запрашиваемого ресурса
      * @param string $method метод HTTP запроса
      * @param array $params Параметры, передаваемые в теле запроса
@@ -142,6 +160,11 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
             'client: ' . $this->client,
             'token: ' . $this->token
         ]);
+
+        if ($this->strictSSL === false) {
+            curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, 0);
+        }
 
         if ($method == self::METHOD_PUT || $method == self::METHOD_POST) {
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($params));
