@@ -25,9 +25,11 @@ class HubResourceTest extends \PHPUnit_Framework_TestCase
         // TODO
     }
 
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
     public function testGetHubInfoException()
     {
-        $this->setExpectedException('Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_ALIAS_EXCEPTION);
         $this->hubResource->getHubInfo(self::BAD_ALIAS);
     }
 
@@ -36,9 +38,11 @@ class HubResourceTest extends \PHPUnit_Framework_TestCase
         // TODO
     }
 
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
     public function testGetFeedHabredException()
     {
-        $this->setExpectedException('Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_ALIAS_EXCEPTION);
         $this->hubResource->getFeedHabred(self::BAD_ALIAS);
     }
 
@@ -47,9 +51,11 @@ class HubResourceTest extends \PHPUnit_Framework_TestCase
         // TODO
     }
 
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
     public function testGetFeedUnhabredException()
     {
-        $this->setExpectedException('Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_ALIAS_EXCEPTION);
         $this->hubResource->getFeedUnhabred(self::BAD_ALIAS);
     }
 
@@ -58,9 +64,11 @@ class HubResourceTest extends \PHPUnit_Framework_TestCase
         // TODO
     }
 
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
     public function testGetFeedNewException()
     {
-        $this->setExpectedException('Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_ALIAS_EXCEPTION);
         $this->hubResource->getFeedNew(self::BAD_ALIAS);
     }
 }
