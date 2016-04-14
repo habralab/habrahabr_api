@@ -1,6 +1,9 @@
 <?php
 
-namespace Habrahabr\Api\HttpAdapter;
+namespace Habrahabr\Tests\Api\HttpAdapter;
+
+use Habrahabr\Api\HttpAdapter\BaseAdapter;
+use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
 
 /**
  * Адаптер, используемый для проведения Unit-тестов.
@@ -9,10 +12,8 @@ namespace Habrahabr\Api\HttpAdapter;
  *
  * @internal
  */
-class MockAdapter implements HttpAdapterInterface
+class MockAdapter extends BaseAdapter implements HttpAdapterInterface
 {
-    use traitAdapter;
-
     /**
      * @var array
      */

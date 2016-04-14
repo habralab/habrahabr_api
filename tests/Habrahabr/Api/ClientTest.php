@@ -1,9 +1,9 @@
 <?php
 
-namespace Habrahabr\Api;
+namespace Habrahabr\Tests\Api;
 
 use Habrahabr\Api\Client;
-use Habrahabr\Api\HttpAdapter\MockAdapter;
+use Habrahabr\Tests\Api\HttpAdapter\MockAdapter;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Habrahabr\Api\Resources;
+namespace Habrahabr\Tests\Api\Resources;
 
-use Habrahabr\Api\HttpAdapter\MockAdapter;
+use Habrahabr\Tests\Api\HttpAdapter\MockAdapter;
 use Habrahabr\Api\Resources\PostResource;
 
 class PostResourceTest extends \PHPUnit_Framework_TestCase
