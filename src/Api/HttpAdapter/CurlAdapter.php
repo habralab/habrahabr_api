@@ -146,7 +146,6 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
      * @param string $url URL суффикс запрашиваемого ресурса
      * @param string $method метод HTTP запроса
      * @param array $params Параметры, передаваемые в теле запроса
-     *
      * @return array
      * @throws NetworkException
      */

@@ -6,25 +6,33 @@ use Habrahabr\Api\HttpAdapter\BaseAdapter;
 use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
 
 /**
- * Адаптер, используемый для проведения Unit-тестов.
+ * Class MockAdapter
  *
- * @author kafeman <kafemanw@gmail.com>
+ * Mock HTTP адаптер использующийся тестирования,
+ * имитирует запросы и ответы Habrahabr Api HTTP
  *
- * @internal
+ * @package Habrahabr\Tests\Api\HttpAdapter
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 class MockAdapter extends BaseAdapter implements HttpAdapterInterface
 {
     /**
-     * @var array
+     * @var array Список предустановленых ответов на HTTP запросы
      */
     protected $routes = [];
 
     /**
-     * Имитирует выполнение GET-запроса к серверу.
+     * Имитирует выполнение GET-запроса к серверу
      *
-     * @param string $url URL запрашиваемого ресурса
-     *
-     * @return mixed Результат запроса
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @return mixed
      */
     public function get($url)
     {
@@ -32,48 +40,45 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Имитирует выполнение POST-запроса к серверу.
+     * Имитирует выполнение POST-запроса к серверу
      *
-     * @param string $url URL запрашиваемого ресурса
-     * @param array $values Параметры, передаваемые в теле запроса
-     *
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param array $params Параметры, передаваемые в теле запроса
      * @return mixed Результат запроса
      */
-    public function post($url, array $values = [])
+    public function post($url, array $params = [])
     {
-        return $this->request($url, 'POST', $values);
-    }
-
-    /**
-     * Имитирует выполнение DELETE-запроса к серверу.
-     *
-     * @param string $url URL запрашиваемого ресурса
-     * @param array $values Параметры, передаваемые в теле запроса
-     *
-     * @return mixed Результат запроса
-     */
-    public function delete($url, array $values = [])
-    {
-        return $this->request($url, 'DELETE', $values);
+        return $this->request($url, 'POST', $params);
     }
 
     /**
      * Имитирует выполнение PUT-запроса к серверу.
      *
-     * @param string $url URL запрашиваемого ресурса
-     * @param array $values Параметры, передаваемые в теле запроса
-     *
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param array $params Параметры, передаваемые в теле запроса
      * @return mixed Результат запроса
      */
-    public function put($url, array $values = [])
+    public function put($url, array $params = [])
     {
-        return $this->request($url, 'PUT', $values);
+        return $this->request($url, 'PUT', $params);
     }
 
     /**
-     * Добавляет GET-ресурс с отдаваемыми назад данными.
+     * Имитирует выполнение DELETE-запроса к серверу.
      *
-     * @param string $url URL запрашиваемого ресурса
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param array $params Параметры, передаваемые в теле запроса
+     * @return mixed Результат запроса
+     */
+    public function delete($url, array $params = [])
+    {
+        return $this->request($url, 'DELETE', $params);
+    }
+
+    /**
+     * Добавляет GET-ресурс в список предустановленых ответов
+     *
+     * @param string $url URL суффикс запрашиваемого ресурса
      * @param mixed $data Возвращаемый ответ
      */
     public function addGetHandler($url, $data)
@@ -82,9 +87,9 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Добавляет POST-ресурс с отдаваемыми назад данными.
+     * Добавляет POST-ресурс в список предустановленых ответов
      *
-     * @param string $url URL запрашиваемого ресурса
+     * @param string $url URL суффикс запрашиваемого ресурса
      * @param mixed $data Возвращаемый ответ
      */
     public function addPostHandler($url, $data)
@@ -93,20 +98,9 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Добавляет DELETE-ресурс с отдаваемыми назад данными.
+     * Добавляет PUT-ресурс в список предустановленых ответов
      *
-     * @param string $url URL запрашиваемого ресурса
-     * @param mixed $data Возвращаемый ответ
-     */
-    public function addDeleteHandler($url, $data)
-    {
-        $this->addHandler($url, $data, 'DELETE');
-    }
-
-    /**
-     * Добавляет PUT-ресурс с отдаваемыми назад данными.
-     *
-     * @param string $url URL запрашиваемого ресурса
+     * @param string $url URL суффикс запрашиваемого ресурса
      * @param mixed $data Возвращаемый ответ
      */
     public function addPutHandler($url, $data)
@@ -115,9 +109,20 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Добавляет ресурс с отдаваемыми назад данными.
+     * Добавляет DELETE-ресурс в список предустановленых ответов
      *
-     * @param string $url URL запрашиваемого ресурса
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param mixed $data Возвращаемый ответ
+     */
+    public function addDeleteHandler($url, $data)
+    {
+        $this->addHandler($url, $data, 'DELETE');
+    }
+
+    /**
+     * Добавляет ресурс в список предустановленых ответов
+     *
+     * @param string $url URL суффикс запрашиваемого ресурса
      * @param mixed $data Возвращаемый ответ
      * @param string $method HTTP-метод, например, GET
      */
@@ -128,37 +133,32 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Имитирует выполнение запроса к серверу.
+     * Имитирует выполнение запроса к серверу
+     * возвращает ответ из списока предустановленых ответов
      *
-     * @param string $url URL запрашиваемого ресурса
-     * @param string $method HTTP-метод, например, GET
-     * @param array $values Параметры, передаваемые в теле запроса
-     *
-     * @return mixed Результат запроса
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param string $method метод HTTP запроса
+     * @param array $params Параметры, передаваемые в теле запроса
+     * @return mixed
+     * @throws \Exception
      */
-    protected function request($url, $method, array $values = [])
+    protected function request($url, $method, array $params = [])
     {
         $key = $this->createKey($url, $method);
 
         if (array_key_exists($key, $this->routes)) {
             return $this->routes[$key];
         } else {
-            // 404 Not Found
-            return false;
+            throw new \Exception('Fake responce not found');
         }
     }
 
     /**
-     * Создает уникальный ключ для массива маршрутов.
+     * Уникальный ключ для кеширования предустановленного ответа
      *
-     * Для одинаковых пар url/method создаваемые ключи всегда будут
-     * одинаковыми, поэтому метод можно использовать как при добавлении,
-     * так и при извлечении данных.
-     *
-     * @param string $url URL запрашиваемого ресурса
-     * @param string $method HTTP-метод, например, GET
-     *
-     * @return string Уникальный ключ
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param string $method метод HTTP запроса
+     * @return string
      */
     protected function createKey($url, $method)
     {
