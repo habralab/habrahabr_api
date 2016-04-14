@@ -51,6 +51,11 @@ class Client
         $this->adapter = $adapter;
     }
 
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement __call() method.
+    }
+
     /**
      * @return UserResource
      */
