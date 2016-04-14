@@ -5,20 +5,28 @@ namespace Habrahabr\Api\Resources;
 use Habrahabr\Api\Exception\IncorrectUsageException;
 
 /**
- * Ресурс для работы с Хабами
+ * Class HubResource
  *
- * @package Habrahabr_api\Resources
+ * Ресурс работы с хабами
+ *
+ * @package Habrahabr\Api\Resources
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 class HubResource extends AbstractResource implements ResourceInterface
 {
     /**
-     * Получение информации о хабе по алиасу.
+     * Возвращает информацию о хабе по алиасу
      *
-     * @param string $alias
-     *
+     * @param string $alias Алиаса хаба
+     * @return array
      * @throws IncorrectUsageException
-     *
-     * @return mixed
      */
     public function getHubInfo($alias)
     {
@@ -28,126 +36,94 @@ class HubResource extends AbstractResource implements ResourceInterface
     }
 
     /**
-     * Получение ленты хаба, с пагинацией, фильтр "Захабренные"
+     * Возвращает "Захабренные" посты связаные с хабом
      *
-     * @param   string $alias
-     * @param   int $page
-     *
+     * @param string $alias Алиаса хаба
+     * @param int $page Номер страницы
+     * @return array
      * @throws IncorrectUsageException
-     *
-     * @return mixed
      */
     public function getFeedHabred($alias, $page = 1)
     {
         $this->checkAliasName($alias);
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/hub/%s/habred?page=%d', $alias, $page));
     }
 
     /**
-     * Получение ленты хаба, с пагинацией, фильтр "Отхабренные"
+     * Возвращает "Отхабренные" посты связаные с хабом
      *
-     * @param   string $alias
-     * @param   int $page
-     *
+     * @param string $alias Алиаса хаба
+     * @param int $page Номер страницы
+     * @return array
      * @throws IncorrectUsageException
-     *
-     * @return mixed
      */
     public function getFeedUnhabred($alias, $page = 1)
     {
         $this->checkAliasName($alias);
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/hub/%s/unhabred?page=%d', $alias, $page));
 
     }
 
     /**
-     * Получение ленты хаба, с пагинацией, фильтр "Новые"
+     * Возвращает "Новые" посты связаные с хабом
      *
-     * @param   string $alias
-     * @param   int $page
-     *
+     * @param string $alias Алиаса хаба
+     * @param int $page Номер страницы
+     * @return array
      * @throws IncorrectUsageException
-     *
-     * @return mixed
      */
     public function getFeedNew($alias, $page = 1)
     {
         $this->checkAliasName($alias);
+        $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/hub/%s/new?page=%d', $alias, $page));
 
     }
 
     /**
-     * Все хабы
+     * Возвращает список хабов
      *
-     * @param int $page
-     *
-     * @return mixed
+     * @param int $page Номер страницы
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function getHubList($page = 1)
     {
+        $this->checkPageNumber($page);
+
         return $this->adapter->get(sprintf('/hubs?page=%d', $page));
-    }
-
-    /**
-     * Корневые категории хабов
-     *
-     * @return mixed
-     */
-    public function getHubCategories()
-    {
-        return $this->adapter->get('/hubs/categories');
-    }
-
-    /**
-     * Хабы конкретной категории @see getHubCategories
-     *
-     * @param string $category ( alias )
-     * @param int $page
-     *
-     * @return mixed
-     */
-    public function getHubOfCategory($category, $page = 1)
-    {
-        return $this->adapter->get(sprintf('/hubs/categories/%s?page=%d', $category, $page));
     }
 
     /**
      * Подписаться на хаб
      *
-     * @param $alias
-     *
-     * @return mixed
+     * @param string $alias Алиаса хаба
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function subscribeHub($alias)
     {
+        $this->checkAliasName($alias);
+
         return $this->adapter->put(sprintf('/hub/%s', $alias));
     }
 
     /**
      * Отписаться от хаба
      *
-     * @param $alias
-     *
-     * @return mixed
+     * @param string $alias Алиаса хаба
+     * @return array
+     * @throws IncorrectUsageException
      */
     public function unsubscribeHub($alias)
     {
-        return $this->adapter->delete(sprintf('/hub/%s', $alias));
-    }
+        $this->checkAliasName($alias);
 
-    /**
-     * @param   string $alias
-     *
-     * @throws \Habrahabr\Api\Exception\IncorrectUsageException
-     */
-    private function checkAliasName($alias)
-    {
-        if (!preg_match('/^[a-z0-9\-_]+$/i', $alias)) {
-            throw new IncorrectUsageException('bad alias - ' . $alias);
-        }
+        return $this->adapter->delete(sprintf('/hub/%s', $alias));
     }
 }
