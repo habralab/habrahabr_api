@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Habrahabr\\Tests": "src/"
+            "Habrahabr\\Tests\\": "tests/"
         }
     },
     "extra": {
