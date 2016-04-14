@@ -4,15 +4,7 @@ namespace Habrahabr\Api;
 
 use Habrahabr\Api\Exception\ResourceNotExistsException;
 use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
-use Habrahabr\Api\Resources\CommentsResource;
-use Habrahabr\Api\Resources\CompanyResource;
-use Habrahabr\Api\Resources\FeedResource;
-use Habrahabr\Api\Resources\HubResource;
-use Habrahabr\Api\Resources\PostResource;
 use Habrahabr\Api\Resources\ResourceInterface;
-use Habrahabr\Api\Resources\SearchResource;
-use Habrahabr\Api\Resources\TrackerResource;
-use Habrahabr\Api\Resources\UserResource;
 
 /**
  * Class Client
@@ -51,115 +43,47 @@ class Client
         $this->adapter = $adapter;
     }
 
+    /**
+     * Возращает экземпляр ресурса для работы с Habrahabr Api
+     *
+     * @param string $name Название метода по шаблону get[Ресурс]Resource
+     * @param array $arguments Список передаваемых экземпляру аргументов
+     * @return ResourceInterface
+     * @throws ResourceNotExistsException
+     */
     public function __call($name, $arguments)
     {
-        // TODO: Implement __call() method.
-    }
+        if (preg_match('#^get([\w]+)Resource$#i', $name, $m)) {
+            $name = ucfirst($name) . 'Resource';
 
-    /**
-     * @return UserResource
-     */
-    public function getUserResource()
-    {
-        return $this->getResource('user');
-    }
+            if (!isset($this->resources[$name])) {
+                $this->resources[$name] = $this->createResourceInstance($name);
+            }
 
-    /**
-     * @return SearchResource
-     */
-    public function getSearchResource()
-    {
-        return $this->getResource('search');
-    }
-
-    /**
-     * @return PostResource
-     */
-    public function getPostResource()
-    {
-        return $this->getResource('post');
-    }
-
-    /**
-     * @return HubResource
-     */
-    public function getHubResource()
-    {
-        return $this->getResource('hub');
-    }
-
-    /**
-     * @return FeedResource
-     */
-    public function getFeedResource()
-    {
-        return $this->getResource('feed');
-    }
-
-    /**
-     * @return CompanyResource
-     */
-    public function getCompanyResource()
-    {
-        return $this->getResource('company');
-    }
-
-    /**
-     * @return CommentsResource
-     */
-    public function getCommentsResource()
-    {
-        return $this->getResource('comments');
-    }
-
-    /**
-     * @return TrackerResource
-     */
-    public function getTrackerResource()
-    {
-        return $this->getResource('tracker');
-    }
-
-    /**
-     * Прокси синглтон метод
-     *
-     * @param $name
-     *
-     * @return mixed
-     *
-     * @throws Exception\ResourceNotExistsException
-     */
-    protected function getResource($name)
-    {
-        $class_name = ucfirst($name) . 'Resource';
-
-        if (!isset($this->resources[$class_name])) {
-            $this->resources[$class_name] = $this->createResourceInstance($class_name);
+            return $this->resources[$name];
         }
 
-        return $this->resources[$class_name];
+        throw new ResourceNotExistsException('Method ' . $name . ' not implemented');
     }
 
     /**
-     * Создание класса-ресурса
+     * Создания экземпляра ресурса для работы с Habrahabr Api
      *
-     * @param string $class_name Имя класса-ресурса
-     *
+     * @param string $name Название класса для инициализации
      * @return ResourceInterface
-     * @throws Exception\ResourceNotExistsException
+     * @throws ResourceNotExistsException
      */
-    protected function createResourceInstance($class_name)
+    protected function createResourceInstance($name)
     {
-        $full_name = '\\Habrahabr\\Api\\Resources\\' . $class_name;
+        $classname = '\\Habrahabr\\Api\\Resources\\' . $name;
 
-        if (!class_exists($full_name)) {
-            throw new ResourceNotExistsException($class_name);
+        if (!class_exists($classname)) {
+            throw new ResourceNotExistsException($name);
         }
 
-        /** @var ResourceInterface $resource_instance */
-        $resource_instance = new $full_name();
-        $resource_instance->setAdapter($this->adapter);
+        $resource = new $classname();
+        $resource->setAdapter($this->adapter);
 
-        return $resource_instance;
+        return $resource;
     }
 }
