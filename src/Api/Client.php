@@ -3,7 +3,6 @@
 namespace Habrahabr\Api;
 
 use Habrahabr\Api\Exception\ResourceNotExistsException;
-
 use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
 use Habrahabr\Api\Resources\CommentsResource;
 use Habrahabr\Api\Resources\CompanyResource;
@@ -16,20 +15,36 @@ use Habrahabr\Api\Resources\TrackerResource;
 use Habrahabr\Api\Resources\UserResource;
 
 /**
- * Базовый класс, который работает как точка входа.
+ * Class Client
  *
- * @package Habrahabr_api
+ * Основной класс для получения доступа к классам Habrahabr Api ресурсов
+ *
+ * @package Habrahabr\Api
+ * @version 0.0.8
+ * @author thematicmedia <info@tmtm.ru>
+ * @link https://tmtm.ru/
+ * @link https://habrahabr.ru/
+ * @link https://github.com/thematicmedia/habrahabr_api
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 class Client
 {
-    /** @var \Habrahabr\Api\HttpAdapter\HttpAdapterInterface */
-    protected $adapter;
-
-    /** @var ResourceInterface[] */
-    protected $resource_instances = [];
+    /**
+     * @type HttpAdapterInterface|null Экземпляр Habrahabr Api HTTP адаптера
+     */
+    protected $adapter = null;
 
     /**
-     * @param HttpAdapterInterface $adapter
+     * @type array Контейнер для хранения экземпляров классов ресурсов
+     */
+    protected $resources = [];
+
+    /**
+     * Client constructor.
+     *
+     * @param HttpAdapterInterface $adapter Экземпляр Habrahabr Api HTTP адаптера
      */
     public function __construct(HttpAdapterInterface $adapter)
     {
@@ -113,11 +128,11 @@ class Client
     {
         $class_name = ucfirst($name) . 'Resource';
 
-        if (!isset($this->resource_instances[$class_name])) {
-            $this->resource_instances[$class_name] = $this->createResourceInstance($class_name);
+        if (!isset($this->resources[$class_name])) {
+            $this->resources[$class_name] = $this->createResourceInstance($class_name);
         }
 
-        return $this->resource_instances[$class_name];
+        return $this->resources[$class_name];
     }
 
     /**
