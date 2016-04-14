@@ -3,7 +3,7 @@
 namespace Habrahabr\Api\Exception;
 
 /**
- * Class ExtenstionNotLoadedException
+ * Class ExtensionNotLoadedException
  *
  * Исключение выбрасываемое при недоступности PHP модуля
  *
@@ -17,6 +17,6 @@ namespace Habrahabr\Api\Exception;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-class ExtenstionNotLoadedException extends \Exception
+class ExtensionNotLoadedException extends \Exception
 {
 }

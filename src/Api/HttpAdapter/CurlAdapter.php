@@ -2,7 +2,7 @@
 
 namespace Habrahabr\Api\HttpAdapter;
 
-use Habrahabr\Api\Exception\ExtenstionNotLoadedException;
+use Habrahabr\Api\Exception\ExtensionNotLoadedException;
 use Habrahabr\Api\Exception\NetworkException;
 
 /**
@@ -55,12 +55,12 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     /**
      * CurlAdapter constructor
      *
-     * @throws ExtenstionNotLoadedException
+     * @throws ExtensionNotLoadedException
      */
     public function __construct()
     {
         if (!function_exists('curl_init')) {
-            throw new ExtenstionNotLoadedException('The cURL PHP extension was not loaded');
+            throw new ExtensionNotLoadedException('The cURL PHP extension was not loaded');
         }
 
         $this->curl = curl_init();
