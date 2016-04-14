@@ -17,7 +17,7 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
     /**
      * @var array
      */
-    protected $routes;
+    protected $routes = [];
 
     /**
      * Имитирует выполнение GET-запроса к серверу.
