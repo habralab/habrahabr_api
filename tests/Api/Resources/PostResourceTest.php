@@ -110,14 +110,18 @@ class PostResourceTest extends \PHPUnit_Framework_TestCase
         $data = array(
             'code' => 403,
             'message' => 'Authorization required, bad scope',
-            'additional' => array()
+            'additional' => []
         );
         $this->adapter->addPutHandler('/post/123456/vote', $data);
         $result = $this->postResource->votePlus(123456, 1);
         $this->assertEquals($data, $result);
 
-        $result = $this->postResource->votePlus(654321, 1);
-        $this->assertFalse($result);
+        try {
+            $result = $this->postResource->votePlus(654321, 1);
+            $this->assertFalse($result);
+        } catch (\Exception $e) {
+
+        }
     }
 
 //        public function testVoteException()
