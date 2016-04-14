@@ -5,7 +5,7 @@ namespace Habrahabr\Api\HttpAdapter;
 /**
  * Interface HttpAdapterInterface
  *
- * Base interface for all Habrahabr Api HTTP adapters.
+ * Базовый интерфейс для всех Habrahabr Api HTTP адаптеров
  *
  * @package Habrahabr\Api\HttpAdapter
  * @version 0.0.8
@@ -27,7 +27,7 @@ interface HttpAdapterInterface
 
     public function post($url, array $values = []);
 
-    public function delete($url);
-
     public function put($url, array $values = []);
+    
+    public function delete($url);
 }

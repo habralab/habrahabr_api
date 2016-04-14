@@ -5,6 +5,8 @@ namespace Habrahabr\Api\Exception;
 /**
  * Class ResourceNotExistsException
  *
+ * Исключение выбрасываемое при обращении к несуществующему ресурсу
+ *
  * @package Habrahabr\Api\Exception
  * @version 0.0.8
  * @author thematicmedia <info@tmtm.ru>

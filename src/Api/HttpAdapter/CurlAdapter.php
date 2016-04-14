@@ -8,7 +8,7 @@ use Habrahabr\Api\Exception\NetworkException;
 /**
  * Class CurlAdapter
  *
- * Habrahabr Api HTTP adapter using cURL as transport
+ * Habrahabr Api HTTP адаптер использующий cURL как транспорт
  *
  * @package Habrahabr\Api\HttpAdapter
  * @version 0.0.8
@@ -22,24 +22,35 @@ use Habrahabr\Api\Exception\NetworkException;
  */
 class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
 {
+    /**
+     * @const string Тип HTTP запроса GET
+     */
     const METHOD_GET = 'GET';
+
+    /**
+     * @const string Тип HTTP запроса POST
+     */
     const METHOD_POST = 'POST';
+
+    /**
+     * @const string Тип HTTP запроса PUT
+     */
     const METHOD_PUT = 'PUT';
+
+    /**
+     * @const string Тип HTTP запроса DELETE
+     */
     const METHOD_DELETE = 'DELETE';
 
     /**
-     * Экземпляр cURL
-     *
-     * Переменнная объявлена как protected, чтобы можно было унаследовать
-     * этот класс для для проведения различных Unit-тестов.
-     *
-     * @var resource
+     * @var null|resource Экземпляр cURL
      */
-    protected $curl;
+    protected $curl = null;
 
     /**
-     * Проверяет наличие функций для работы с cURL и
-     * инициализирует библиотеку
+     * CurlAdapter constructor
+     *
+     * @throws ExtenstionNotLoadedException
      */
     public function __construct()
     {
@@ -51,19 +62,21 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Завершает работу с cURL
+     * CurlAdapter destructor
      */
     public function __destruct()
     {
-        curl_close($this->curl);
+        if ($this->curl) {
+            curl_close($this->curl);
+        }
     }
 
     /**
-     * Выполняет GET-запрос
-     *
-     * @param string $url Запрашиваемый ресурс без endpoint'а
-     *
-     * @return array|false Результат запроса
+     * Выполнить HTTP GET запрос и вернуть тело ответа
+     * 
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @return array
+     * @throws NetworkException
      */
     public function get($url)
     {
@@ -71,12 +84,12 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Выполняет POST-запрос
+     * Выполнить HTTP POST запрос и вернуть тело ответа
      *
-     * @param string $url Запрашиваемый ресурс без endpoint'а
-     * @param array $params Параметры, передаваемые в теле запроса
-     *
-     * @return array|false Результат запроса
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param array $params Параметры, передаваемые в теле запроса                   
+     * @return array
+     * @throws NetworkException
      */
     public function post($url, array $params = [])
     {
@@ -84,12 +97,25 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Выполняет DELETE-запрос
+     * Выполнить HTTP PUT запрос и вернуть тело ответа
      *
-     * @param string $url Запрашиваемый ресурс без endpoint'а
+     * @param string $url URL суффикс запрашиваемого ресурса
      * @param array $params Параметры, передаваемые в теле запроса
+     * @return array
+     * @throws NetworkException
+     */
+    public function put($url, array $params = [])
+    {
+        return $this->request($this->createUrl($url), self::METHOD_PUT, $params);
+    }
+    
+    /**
+     * Выполнить HTTP DELETE запрос и вернуть тело ответа
      *
-     * @return array|false Результат запроса
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param array $params Параметры, передаваемые в теле запроса
+     * @return array
+     * @throws NetworkException
      */
     public function delete($url, array $params = [])
     {
@@ -97,28 +123,14 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
     }
 
     /**
-     * Выполняет PUT-запрос
-     *
-     * @param string $url Запрашиваемый ресурс без endpoint'а
+     * Выполнить HTTP запрос и вернуть тело ответа
+     * 
+     * @param string $url URL суффикс запрашиваемого ресурса
+     * @param string $method метод HTTP запроса
      * @param array $params Параметры, передаваемые в теле запроса
      *
-     * @return array|false Результат запроса
-     */
-    public function put($url, array $params = [])
-    {
-        return $this->request($this->createUrl($url), self::METHOD_PUT, $params);
-    }
-
-    /**
-     * Выполняет HTTP-запрос
-     *
-     * @param string $url URL, запрашиваемого ресурса
-     * @param string $method HTTP-метод, например, GET
-     * @param array $params Параметры, передаваемые в теле запроса
-     *
+     * @return array
      * @throws NetworkException
-     *
-     * @return array|boolean Результат запроса
      */
     protected function request($url, $method, array $params = [])
     {
@@ -136,11 +148,11 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
         }
 
         if (!$result = curl_exec($this->curl)) {
-            $error = curl_error($ch);
-            $errno = curl_errno($ch);
+            $error = curl_error($this->curl);
+            $errno = curl_errno($this->curl);
             throw new NetworkException($error, $errno);
         }
 
-        return $result ? json_decode($result, true) : false;
+        return $result ? json_decode($result, true) : [];
     }
 }

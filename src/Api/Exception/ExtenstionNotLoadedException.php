@@ -5,6 +5,8 @@ namespace Habrahabr\Api\Exception;
 /**
  * Class ExtenstionNotLoadedException
  *
+ * Исключение выбрасываемое при недоступности PHP модуля
+ *
  * @package Habrahabr\Api\Exception
  * @version 0.0.8
  * @author thematicmedia <info@tmtm.ru>

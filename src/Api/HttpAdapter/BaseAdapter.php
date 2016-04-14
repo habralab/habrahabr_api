@@ -7,7 +7,7 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
 /**
  * Class BaseAdapter
  *
- * Base for all Habrahabr Api HTTP adapters
+ * Базовый класс для всех Habrahabr Api HTTP адаптеров
  *
  * @package Habrahabr\Api\HttpAdapter
  * @version 0.0.8
@@ -21,11 +21,33 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
  */
 abstract class BaseAdapter
 {
-    protected $token;
-    protected $client;
+    /**
+     * @var null|string OAuth Token для доступа к API
+     */
+    protected $token = null;
+
+    /**
+     * @var null|string OAuth Client для доступа к API
+     */
+    protected $client = null;
+
+    /**
+     * @var null|string OAuth Endpoint для доступа к API
+     */
     protected $endpoint;
+
+    /**
+     * @var int Количество секунд ожидания при попытке соединения
+     */
     protected $connectionTimeout = 5;
 
+    /**
+     * Установить OAuth Token для доступа к API
+     *
+     * @param null|string $token OAuth Token для доступа к API
+     * @return $this
+     * @throws IncorrectUsageException
+     */
     public function setToken($token)
     {
         if (!preg_match('#([a-z0-9]+)#ui', $token)) {
@@ -37,6 +59,13 @@ abstract class BaseAdapter
         return $this;
     }
 
+    /**
+     * Установить OAuth Client для доступа к API
+     *
+     * @param null|string $client OAuth Client для доступа к API
+     * @return $this
+     * @throws IncorrectUsageException
+     */
     public function setClient($client)
     {
         if (!preg_match('#([a-z0-9]+)\.([a-z0-9]+)#ui', $client)) {
@@ -48,6 +77,13 @@ abstract class BaseAdapter
         return $this;
     }
 
+    /**
+     * Установить OAuth Endpoint для доступа к API
+     *
+     * @param null|string $url OAuth Endpoint для доступа к API
+     * @return $this
+     * @throws IncorrectUsageException
+     */
     public function setEndpoint($url)
     {
         if (!preg_match('#^(https://)#ui', $url)) {
@@ -59,35 +95,47 @@ abstract class BaseAdapter
         return $this;
     }
 
+    /**
+     * Получить OAuth Endpoint для доступа к API
+     *
+     * @return null|string
+     */
     public function getEndpoint()
     {
         return $this->endpoint;
     }
 
     /**
-     * Устанавливает количество секунд ожидания при попытке соединения
+     * Установить количество секунд ожидания при попытке соединения
+     * 
+     * @param int $connectionTimeout Количество секунд ожидания при попытке соединения
+     * @return $this
      */
-    public function setConnectionTimeout($connectionTimeout)
+    public function setConnectionTimeout($connectionTimeout = 0)
     {
         $this->connectionTimeout = $connectionTimeout;
 
         return $this;
     }
 
+    /**
+     * Получить количество секунд ожидания при попытке соединения
+     * 
+     * @return int
+     */
     public function getConnectionTimeout()
     {
         return $this->connectionTimeout;
     }
 
     /**
-     * Создание полного URL для запроса ресурса
-     *
-     * @param string $resource_url Запрашиваемый ресурс
-     *
+     * Создание URL на базе OAuth Endpoint и URL ресурса
+     * 
+     * @param $url URL ресурса
      * @return string
      */
-    public function createUrl($resource_url)
+    public function createUrl($url)
     {
-        return $this->getEndpoint() . $resource_url;
+        return $this->getEndpoint() . $url;
     }
 }
