@@ -1,7 +1,0 @@
-<phpunit bootstrap="./tests/bootstrap.php">
-  <testsuites>
-    <testsuite>
-      <directory>./tests/Habrahabr/Api/</directory>
-    </testsuite>
-  </testsuites>
-</phpunit>
