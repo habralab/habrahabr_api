@@ -22,7 +22,7 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
 class TrackerResource extends AbstractResource implements ResourceInterface
 {
     /**
-     * Отправить сообщение в трекер
+     * Отправить сообщение в трекер на вкладку "Приложения"
      *
      * @param string $title Заголова для пуша
      * @param string $text Текст для пуша
@@ -31,8 +31,6 @@ class TrackerResource extends AbstractResource implements ResourceInterface
      */
     public function push($title, $text)
     {
-        // @TODO Работает ли это вообще?
-
         if (!is_string($title) || !is_string($text)) {
             throw new IncorrectUsageException('Push failed: Title or Text is not string');
         }
@@ -59,6 +57,7 @@ class TrackerResource extends AbstractResource implements ResourceInterface
      */
     public function getPostsFeed()
     {
+        // @TODO add page
         return $this->adapter->get('/tracker/posts');
     }
 
@@ -70,6 +69,7 @@ class TrackerResource extends AbstractResource implements ResourceInterface
      */
     public function getSubscribersFeed()
     {
+        // @TODO add page
         return $this->adapter->get('/tracker/subscribers');
     }
 
