@@ -36,9 +36,12 @@ class UserResource extends AbstractResource implements ResourceInterface
      *
      * @param string $login Логин пользователя на сайте
      * @return array
+     * @throws IncorrectUsageException
      */
     public function getUser($login)
     {
+        $this->checkAliasName($login);
+
         return $this->adapter->get(sprintf('/users/%s', $login));
     }
 
@@ -63,6 +66,7 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserComments($login, $page = 1)
     {
+        $this->checkAliasName($login);
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/comments?page=%d', $login, $page));
@@ -78,6 +82,7 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserPosts($login, $page = 1)
     {
+        $this->checkAliasName($login);
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/posts?page=%d', $login, $page));
@@ -88,9 +93,12 @@ class UserResource extends AbstractResource implements ResourceInterface
      *
      * @param string $login Логин пользователя на сайте
      * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserHubs($login)
     {
+        $this->checkAliasName($login);
+        
         return $this->adapter->get(sprintf('/users/%s/hubs', $login));
     }
 
@@ -99,9 +107,12 @@ class UserResource extends AbstractResource implements ResourceInterface
      *
      * @param string $login Логин пользователя на сайте
      * @return array
+     * @throws IncorrectUsageException
      */
     public function getUserCompanies($login)
     {
+        $this->checkAliasName($login);
+        
         return $this->adapter->get(sprintf('/users/%s/companies', $login));
     }
 
@@ -115,6 +126,7 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserFollowers($login, $page = 1)
     {
+        $this->checkAliasName($login);
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/followers?page=%d', $login, $page));
@@ -130,6 +142,7 @@ class UserResource extends AbstractResource implements ResourceInterface
      */
     public function getUserFollowed($login, $page = 1)
     {
+        $this->checkAliasName($login);
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/users/%s/followed?page=%d', $login, $page));
@@ -144,9 +157,12 @@ class UserResource extends AbstractResource implements ResourceInterface
      * @deprecated
      * @param string $login Логин пользователя на сайте
      * @return array
+     * @throws IncorrectUsageException
      */
     public function voteKarmaPlus($login)
     {
+        $this->checkAliasName($login);
+        
         return $this->adapter->put(sprintf('/users/%s/vote', $login));
     }
 
