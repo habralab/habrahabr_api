@@ -3,130 +3,194 @@
 namespace Habrahabr\Tests\Api\Resources;
 
 use Habrahabr\Tests\Api\HttpAdapter\MockAdapter;
+use Habrahabr\Api\HttpAdapter\CurlAdapter;
 use Habrahabr\Api\Resources\PostResource;
 
 class PostResourceTest extends \PHPUnit_Framework_TestCase
 {
-    const BAD_VOTE = -5;
-    const BAD_VOTE_EXCEPTION = 'vote type incorrect';
-
     protected $adapter;
-    protected $postResource;
+    protected $resource;
+
+    private $mocking = false;
+
+    private $fixturePost = [];
 
     protected function setUp()
     {
-        $this->adapter = new MockAdapter();
-        $this->postResource = new PostResource();
-        $this->postResource->setAdapter($this->adapter);
+        if (getenv('ENDPOINT')) {
+            $this->adapter = new CurlAdapter();
+            $this->adapter->setEndpoint(getenv('ENDPOINT'));
+            $this->adapter->setToken(getenv('TOKEN'));
+            $this->adapter->setClient(getenv('CLIENT'));
+        } else {
+            $this->mocking = true;
+            $this->adapter = new MockAdapter();
+
+            // Fixture Post Data
+            $this->fixturePost = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_post.json'), true);
+        }
+        
+        $this->resource = new PostResource();
+        $this->resource->setAdapter($this->adapter);
     }
 
     public function testGetPost()
     {
-        $data = array(
-            'data' => array(
-                'id' => 123456,
-                'is_tutorial' => false,
-                'time_published' => '2006-07-13T18:23:39+04:00',
-                'time_interesting' => '',
-                'comments_count' => 39,
-                'score' => 1,
-                'votes_count' => 1,
-                'favorites_count' => 6,
-                'tags_string' => 'хабрахабр, api, unit-test, kafeman',
-                'title' => 'Unit-test для API Хабрахабра',
-                'preview_html' => 'Hello World! Long lo',
-                'text_cut' => '',
-                'text_html' => 'Hello World! Long long text.',
-                'is_recovery_mode' => false,
-                'hubs' => array(
-                    array(
-                        'count_posts' => 1569,
-                        'count_subscribers' => 86428,
-                        'is_profiled' => false,
-                        'rating' => 0,
-                        'alias' => 'ilovetests',
-                        'title' => 'Unit-тесты',
-                        'tags_string' => 'хабрахабр, habrhabr',
-                        'about' => 'Unit-тесты всегда в тренде.',
-                        'is_membership' => 1,
-                        'is_company' => false
-                    )
-                ),
-                'reading_count' => 7323,
-                'author' => array(
-                    'id' => 100500,
-                    'login' => 'kafeman',
-                    'time_registered' => '2006-06-02T16:52:56+04:00',
-                    'score' => 361.5,
-                    'fullname' => 'Кафеман Кафеманович',
-                    'sex' => 1,
-                    'rating' => 180.9,
-                    'vote' => 1,
-                    'rating_position' => 2,
-                    'geo' => array(
-                        'country' => 'Россия',
-                        'region' => 'Москва и Московская обл.',
-                        'city' => 'Москва'
-                    ),
-                    'counters' => array(
-                        'posts' => 337,
-                        'comments' => 1379,
-                        'followed' => 188,
-                        'followers' => 504
-                    ),
-                    'badges' => array(
-                        array(
-                            'alias' => 'habred',
-                            'title' => 'Захабренный',
-                            'plural' => 'Захабренные',
-                            'description' => 'Пользователь с кармой >0.'
-                        )
-                    ),
-                    'avatar' => 'http://habrastorage.org/getpro/habr/avatars/e1e/24c/4dd/e1e24c4dd18535b196b3b5c19d359bff.jpg',
-                    'is_readonly' => false
-                ),
-                'has_polls' => false,
-                'url' => 'http://habrahabr.ru/post/123456',
-                'post_type' => 1,
-                'post_type_str' => 'simple',
-                'vote' => false,
-                'is_can_vote' => false,
-                'is_habred' => 1,
-                'is_interesting' => false,
-                'is_favorite' => false,
-                'comments_new' => 2
-            ),
-            'server_time' => '2014-04-15T16:56:30+04:00'
-        );
-        $this->adapter->addGetHandler('/post/123456', $data);
-        $result = $this->postResource->getPost(123456);
-        $this->assertEquals($data, $result);
-    }
-
-    public function testVote()
-    {
-        // TODO(kafeman): Тут лучше разместить нормальный ответ, а не
-        // ошибку. Но у меня нет прав для этого.
-        $data = array(
-            'code' => 403,
-            'message' => 'Authorization required, bad scope',
-            'additional' => []
-        );
-        $this->adapter->addPutHandler('/post/123456/vote', $data);
-        $result = $this->postResource->votePlus(123456, 1);
-        $this->assertEquals($data, $result);
-
-        try {
-            $result = $this->postResource->votePlus(654321, 1);
-            $this->assertFalse($result);
-        } catch (\Exception $e) {
-
+        if ($this->mocking) {
+            $this->adapter->addGetHandler('/post/259787', $this->fixturePost);
         }
+
+        $actual = $this->resource->getPost(259787);
+
+        $this->assertArrayHasKey('data', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+        $this->assertInternalType('array', $actual['data']);
+
+        $this->assertArrayHasKey('id', $actual['data']);
+        $this->assertArrayHasKey('time_published', $actual['data']);
+        $this->assertArrayHasKey('time_interesting', $actual['data']);
+        $this->assertArrayHasKey('title', $actual['data']);
+        $this->assertArrayHasKey('preview_html', $actual['data']);
+        $this->assertArrayHasKey('text_cut', $actual['data']);
+        $this->assertArrayHasKey('text_html', $actual['data']);
+        $this->assertArrayHasKey('url', $actual['data']);
+
+        $this->assertArrayHasKey('score', $actual['data']);
+        $this->assertArrayHasKey('vote', $actual['data']);
+        $this->assertArrayHasKey('votes_count', $actual['data']);
+        $this->assertArrayHasKey('reading_count', $actual['data']);
+        $this->assertArrayHasKey('favorites_count', $actual['data']);
+        $this->assertArrayHasKey('comments_count', $actual['data']);
+        $this->assertArrayHasKey('comments_new', $actual['data']);
+        $this->assertArrayHasKey('tags_string', $actual['data']);
+
+        $this->assertArrayHasKey('hubs', $actual['data']);
+        $this->assertInternalType('array', $actual['data']['hubs']);
+        $this->assertGreaterThan(0, count($actual['data']['hubs']));
+
+        $this->assertArrayHasKey('author', $actual['data']);
+        $this->assertInternalType('array', $actual['data']['author']);
+        $this->assertGreaterThan(0, count($actual['data']['author']));
+
+        $this->assertArrayHasKey('has_polls', $actual['data']);
+        $this->assertArrayHasKey('post_type', $actual['data']);
+        $this->assertArrayHasKey('post_type_str', $actual['data']);
+        $this->assertArrayHasKey('is_can_vote', $actual['data']);
+        $this->assertArrayHasKey('is_habred', $actual['data']);
+        $this->assertArrayHasKey('is_interesting', $actual['data']);
+        $this->assertArrayHasKey('is_favorite', $actual['data']);
+        $this->assertArrayHasKey('is_tutorial', $actual['data']);
+        $this->assertArrayHasKey('is_recovery_mode', $actual['data']);
+        $this->assertArrayHasKey('is_comments_hide', $actual['data']);
     }
 
-//        public function testVoteException()
-//        {
-//            $this->setExpectedException( 'Habrahabr\Api\Exception\IncorrectUsageException', self::BAD_VOTE_EXCEPTION );
-//            $this->postResource->voteMinus( 123456, self::BAD_VOTE );
-//        }
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testGetPostFail()
+    {
+        $this->resource->getPost(-1);
+    }
+
+    public function testVotePlus()
+    {
+        $fixtureVote = [
+            'ok' => 1,
+            'score' => 100,
+            'server_time' => '2016-04-15T13:12:45+03:00'
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addPutHandler('/post/259787/vote', $fixtureVote);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->votePlus(259787);
+
+        $this->assertArrayHasKey('ok', $actual);
+        $this->assertArrayHasKey('score', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+    }
+
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testVotePlusFail()
+    {
+        $this->resource->votePlus(-1);
+    }
+
+    public function testVoteNeutral()
+    {
+        $fixtureVote = [
+            'ok' => 1,
+            'score' => 100,
+            'server_time' => '2016-04-15T13:12:45+03:00'
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addPutHandler('/post/259787/vote', $fixtureVote);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->voteNeutral(259787);
+
+        $this->assertArrayHasKey('ok', $actual);
+        $this->assertArrayHasKey('score', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+    }
+
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testVoteNeutralFail()
+    {
+        $this->resource->voteNeutral(-1);
+    }
+
+    public function testVoteMinus()
+    {
+        $fixtureVote = [
+            'ok' => 1,
+            'score' => 100,
+            'server_time' => '2016-04-15T13:12:45+03:00'
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addPutHandler('/post/259787/vote', $fixtureVote);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->voteMinus(259787);
+
+        $this->assertArrayHasKey('ok', $actual);
+        $this->assertArrayHasKey('score', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+    }
+
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testVoteMinusFail()
+    {
+        $this->resource->voteMinus(-1);
+    }
+
+    public function testVoteFail()
+    {
+        $fixtureVote = [
+            'code' => 400,
+            'message' => 'Incorrect parameters',
+            'additional' => [
+                'Повторное голосование запрещено'
+            ]
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addPutHandler('/post/259787/vote', $fixtureVote);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->voteNeutral(259787);
+
+        $this->assertArrayHasKey('code', $actual);
+        $this->assertArrayHasKey('message', $actual);
+        $this->assertArrayHasKey('additional', $actual);
+    }
 }

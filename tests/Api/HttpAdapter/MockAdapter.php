@@ -149,7 +149,7 @@ class MockAdapter extends BaseAdapter implements HttpAdapterInterface
         if (array_key_exists($key, $this->routes)) {
             return $this->routes[$key];
         } else {
-            throw new \Exception('Fake responce not found');
+            throw new \Exception(sprintf('Fake responce "%s" not found', $key));
         }
     }
 
