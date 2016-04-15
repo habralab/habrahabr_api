@@ -31,6 +31,7 @@ class CompanyResource extends AbstractResource implements ResourceInterface
      */
     public function getCompanyPosts($alias, $page = 1)
     {
+        $this->checkAliasName($alias);
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/company/%s?page=%d', $alias, $page));
@@ -41,9 +42,12 @@ class CompanyResource extends AbstractResource implements ResourceInterface
      *
      * @param string $alias Алиасу компании на сайте
      * @return array
+     * @throws IncorrectUsageException
      */
     public function getCompanyInfo($alias)
     {
+        $this->checkAliasName($alias);
+        
         return $this->adapter->get(sprintf('/company/%s/info', $alias));
     }
 
