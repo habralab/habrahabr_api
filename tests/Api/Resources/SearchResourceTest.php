@@ -11,7 +11,11 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
     protected $adapter;
     protected $resource;
 
-    protected $mocking = false;
+    private $mocking = false;
+
+    private $fixturePost = [];
+    private $fixtureUser = [];
+    private $fixtureHub = [];
 
     protected function setUp()
     {
@@ -23,6 +27,18 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         } else {
             $this->mocking = true;
             $this->adapter = new MockAdapter();
+
+            // Fixture Post Data
+            $fixture = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_post.json'), true);
+            $this->fixturePost = $fixture['data'];
+
+            // Fixture User Data
+            $fixture = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_user.json'), true);
+            $this->fixtureUser = $fixture['data'];
+
+            // Fixture Hub Data
+            $fixture = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_hub.json'), true);
+            $this->fixtureHub = $fixture['data'];
         }
 
         $this->resource = new SearchResource();
@@ -35,11 +51,11 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
             $expected = [
                 'pages' => 10,
                 'next_page' => [
-                    'url' => 'http://api.dotzero.devhabr.net/v1/search/posts/php?page=3',
+                    'url' => 'http://api.dev/v1/search/posts/php?page=3',
                     'int' => 3
                 ],
                 'data' => [
-                    // posts data
+                    $this->fixturePost,
                 ],
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
@@ -55,6 +71,8 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('int', $actual['next_page']);
         $this->assertArrayHasKey('data', $actual);
         $this->assertArrayHasKey('server_time', $actual);
+        $this->assertInternalType('array', $actual['data']);
+        $this->assertGreaterThanOrEqual(0, count($actual['data']));
     }
 
     public function testSearchUsers()
@@ -63,11 +81,11 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
             $expected = [
                 'pages' => 10,
                 'next_page' => [
-                    'url' => 'http://api.dotzero.devhabr.net/v1/search/users/habrahabr?page=3',
+                    'url' => 'http://api.dev/v1/search/users/habrahabr?page=3',
                     'int' => 3
                 ],
                 'data' => [
-                    // users data
+                    $this->fixtureUser,
                 ],
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
@@ -83,6 +101,8 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('int', $actual['next_page']);
         $this->assertArrayHasKey('data', $actual);
         $this->assertArrayHasKey('server_time', $actual);
+        $this->assertInternalType('array', $actual['data']);
+        $this->assertGreaterThanOrEqual(0, count($actual['data']));
     }
 
     public function testSearchHubs()
@@ -90,7 +110,7 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         if ($this->mocking) {
             $expected = [
                 'data' => [
-                    // hubs data
+                    $this->fixtureHub
                 ],
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
@@ -102,5 +122,7 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('data', $actual);
         $this->assertArrayHasKey('server_time', $actual);
+        $this->assertInternalType('array', $actual['data']);
+        $this->assertGreaterThanOrEqual(0, count($actual['data']));
     }
 }
