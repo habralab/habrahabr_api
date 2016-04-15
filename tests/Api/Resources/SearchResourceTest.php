@@ -75,6 +75,14 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThanOrEqual(0, count($actual['data']));
     }
 
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testSearchPostsFail()
+    {
+        $this->resource->searchPosts('');
+    }
+
     public function testSearchUsers()
     {
         if ($this->mocking) {
@@ -105,6 +113,14 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThanOrEqual(0, count($actual['data']));
     }
 
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testSearchUsersFail()
+    {
+        $this->resource->searchUsers('');
+    }
+
     public function testSearchHubs()
     {
         if ($this->mocking) {
@@ -124,5 +140,13 @@ class SearchResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('server_time', $actual);
         $this->assertInternalType('array', $actual['data']);
         $this->assertGreaterThanOrEqual(0, count($actual['data']));
+    }
+
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testSearchHubsFail()
+    {
+        $this->resource->searchHubs(-1);
     }
 }
