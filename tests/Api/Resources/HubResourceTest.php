@@ -28,7 +28,7 @@ class HubResourceTest extends \PHPUnit_Framework_TestCase
             $this->adapter = new MockAdapter();
 
             // Fixture Hub Data
-            $this->fixtureHub  = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_hub.json'), true);
+            $this->fixtureHub = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_hub.json'), true);
 
             // Fixture Post Data
             $fixture = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_post.json'), true);

@@ -39,6 +39,7 @@ class CompanyResourceTest extends \PHPUnit_Framework_TestCase
         $this->resource = new CompanyResource();
         $this->resource->setAdapter($this->adapter);
     }
+
     public function testGetCompanyPosts()
     {
         if ($this->mocking) {

@@ -29,7 +29,7 @@ class PostResourceTest extends \PHPUnit_Framework_TestCase
             // Fixture Post Data
             $this->fixturePost = json_decode(file_get_contents(__DIR__ . '/../Fixtures/fixture_post.json'), true);
         }
-        
+
         $this->resource = new PostResource();
         $this->resource->setAdapter($this->adapter);
     }
