@@ -14,16 +14,16 @@ $User = $client->getUserResource()->getUser('me');
 
 var_dump($User);
 
-//$User          = $client->getUserResource()->getUser('rpsl');
+//$User          = $client->getUserResource()->getUser('habrahabr');
 
 //var_dump( $User );
 //    $Users         = $client->getUserResource()->getUsersList( 2 );
-//    $UserComments  = $client->getUserResource()->getUserComments( 'rpsl' );
-//    $UserPosts     = $client->getUserResource()->getUserPosts( 'rpsl' );
-//    $UserHubs      = $client->getUserResource()->getUserHubs( 'rpsl' );
-//    $UserCompanies = $client->getUserResource()->getUserCompanies( 'rpsl' );
-//    $UserFollowers = $client->getUserResource()->getUserFollowers( 'rpsl' );
-//    $UserFollowed  = $client->getUserResource()->getUserFollowed('rpsl');
+//    $UserComments  = $client->getUserResource()->getUserComments( 'habrahabr' );
+//    $UserPosts     = $client->getUserResource()->getUserPosts( 'habrahabr' );
+//    $UserHubs      = $client->getUserResource()->getUserHubs( 'habrahabr' );
+//    $UserCompanies = $client->getUserResource()->getUserCompanies( 'habrahabr' );
+//    $UserFollowers = $client->getUserResource()->getUserFollowers( 'habrahabr' );
+//    $UserFollowed  = $client->getUserResource()->getUserFollowed('habrahabr');
 //
 //    $voteKarmaPlus = $client->getUserResource()->voteKarmaPlus('habrahabr');
 //    print_r( $voteKarmaPlus );
