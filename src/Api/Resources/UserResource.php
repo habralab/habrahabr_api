@@ -98,7 +98,7 @@ class UserResource extends AbstractResource implements ResourceInterface
     public function getUserHubs($login)
     {
         $this->checkAliasName($login);
-        
+
         return $this->adapter->get(sprintf('/users/%s/hubs', $login));
     }
 
@@ -112,7 +112,7 @@ class UserResource extends AbstractResource implements ResourceInterface
     public function getUserCompanies($login)
     {
         $this->checkAliasName($login);
-        
+
         return $this->adapter->get(sprintf('/users/%s/companies', $login));
     }
 
@@ -162,7 +162,7 @@ class UserResource extends AbstractResource implements ResourceInterface
     public function voteKarmaPlus($login)
     {
         $this->checkAliasName($login);
-        
+
         return $this->adapter->put(sprintf('/users/%s/vote', $login));
     }
 
@@ -176,9 +176,9 @@ class UserResource extends AbstractResource implements ResourceInterface
      * @param string $login Логин пользователя на сайте
      * @return array
      */
-    public function voteKarmaMinus($target)
+    public function voteKarmaMinus($login)
     {
-        return $this->adapter->delete(sprintf('/users/%s/vote', $target));
+        return $this->adapter->delete(sprintf('/users/%s/vote', $login));
     }
 
     /**
