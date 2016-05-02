@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/thematicmedia/habrahabr_api.svg?branch=master)](https://travis-ci.org/thematicmedia/habrahabr_api)
 [![Latest Stable Version](https://poser.pugx.org/tmtm/habrahabr_api/version)](https://packagist.org/packages/tmtm/habrahabr_api)
 [![License](https://poser.pugx.org/tmtm/habrahabr_api/license)](https://packagist.org/packages/tmtm/habrahabr_api)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thematicmedia/habrahabr_api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thematicmedia/habrahabr_api/?branch=master)
 
 Хабрахабр - самое крупное в Рунете сообщество людей, занятых в индустрии высоких
 технологий. Уникальная аудитория, свежая информация, конструктивное общение и
