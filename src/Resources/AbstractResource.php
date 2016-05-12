@@ -49,7 +49,7 @@ abstract class AbstractResource
      */
     protected function checkId($id)
     {
-        if (intval($id) != $id OR $id < 1) {
+        if (intval($id) != $id || $id < 1) {
             throw new IncorrectUsageException('Id must be integer and positive');
         }
 
@@ -81,7 +81,7 @@ abstract class AbstractResource
      */
     protected function checkPageNumber($page = 1)
     {
-        if (intval($page) != $page OR $page < 1) {
+        if (intval($page) != $page || $page < 1) {
             throw new IncorrectUsageException('Page number must be integer and positive');
         }
 

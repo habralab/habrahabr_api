@@ -31,7 +31,7 @@ class SearchResource extends AbstractResource implements ResourceInterface
      */
     public function searchPosts($q, $page = 1)
     {
-        if (!is_string($q) OR empty($q)) {
+        if (!is_string($q) || empty($q)) {
             throw new IncorrectUsageException('Query must not be empty');
         }
 
@@ -50,10 +50,10 @@ class SearchResource extends AbstractResource implements ResourceInterface
      */
     public function searchUsers($q, $page = 1)
     {
-        if (!is_string($q) OR empty($q)) {
+        if (!is_string($q) || empty($q)) {
             throw new IncorrectUsageException('Query must not be empty');
         }
-        
+
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/search/users/%s?page=%d', urlencode($q), $page));
@@ -68,10 +68,10 @@ class SearchResource extends AbstractResource implements ResourceInterface
      */
     public function searchHubs($q)
     {
-        if (!is_string($q) OR empty($q)) {
+        if (!is_string($q) || empty($q)) {
             throw new IncorrectUsageException('Query must not be empty');
         }
-        
+
         return $this->adapter->get(sprintf('/hubs/search/%s', urlencode($q)));
     }
 }
