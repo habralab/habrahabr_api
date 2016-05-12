@@ -25,17 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Habrahabr\\": "src/"
+            "Habrahabr\\Api\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Habrahabr\\Tests\\": "tests/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "master": "master-dev"
+            "Habrahabr\\Tests\\Api\\": "tests/"
         }
     }
 }
