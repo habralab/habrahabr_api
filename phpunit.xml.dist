@@ -9,14 +9,14 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false">
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./tests/</directory>
-        </whitelist>
-    </filter>
     <testsuites>
         <testsuite name="Habrahabr API Test Suite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/</directory>
+        </whitelist>
+    </filter>
 </phpunit>
