@@ -16,51 +16,42 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new Client($adapter);
     }
 
-    public function testGetUserResource()
+    /**
+     * @dataProvider resourcesProvider
+     */
+    public function testGetResource($name, $expected)
     {
-        $userResource = $this->client->getUserResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\UserResource', $userResource);
+        $resource = call_user_func([$this->client, 'get' . $name . 'Resource']);
+        $this->assertInstanceOf($expected, $resource);
     }
 
-    public function testGetSearchResource()
+    /**
+     * @expectedException \Habrahabr\Api\Exception\ResourceNotExistsException
+     */
+    public function testGetResourceFail()
     {
-        $searchResource = $this->client->getSearchResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\SearchResource', $searchResource);
+        $this->client->getFoobarResource();
     }
 
-    public function testGetPostResource()
+    /**
+     * @expectedException \Habrahabr\Api\Exception\ResourceNotExistsException
+     */
+    public function testMethodFail()
     {
-        $postResource = $this->client->getPostResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\PostResource', $postResource);
+        $this->client->getFoobar();
     }
 
-    public function testGetHubResource()
+    public function resourcesProvider()
     {
-        $hubResource = $this->client->getHubResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\HubResource', $hubResource);
-    }
-
-    public function testGetFeedResource()
-    {
-        $feedResource = $this->client->getFeedResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\FeedResource', $feedResource);
-    }
-
-    public function testGetCompanyResource()
-    {
-        $companyResource = $this->client->getCompanyResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\CompanyResource', $companyResource);
-    }
-
-    public function testGetCommentsResource()
-    {
-        $commentsResource = $this->client->getCommentsResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\CommentsResource', $commentsResource);
-    }
-
-    public function testGetTrackerResource()
-    {
-        $trackerResource = $this->client->getTrackerResource();
-        $this->assertInstanceOf('Habrahabr\Api\Resources\TrackerResource', $trackerResource);
+        return [
+            ['User', 'Habrahabr\Api\Resources\UserResource'],
+            ['Search', 'Habrahabr\Api\Resources\SearchResource'],
+            ['Post', 'Habrahabr\Api\Resources\PostResource'],
+            ['Hub', 'Habrahabr\Api\Resources\HubResource'],
+            ['Feed', 'Habrahabr\Api\Resources\FeedResource'],
+            ['Company', 'Habrahabr\Api\Resources\CompanyResource'],
+            ['Comments', 'Habrahabr\Api\Resources\CommentsResource'],
+            ['Tracker', 'Habrahabr\Api\Resources\TrackerResource'],
+        ];
     }
 }
