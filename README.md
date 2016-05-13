@@ -97,7 +97,7 @@ $ composer require tmtm/habrahabr_api
     * `getFeedUnhabred($page = 1)` - Возвращает "Отхабренные" посты из "основной" лентой постов
     * `getFeedNew($page = 1)` - Возвращает "Новые" посты из "основной" лентой постов
 
-- `FeedResource` - Ресурс работы с потоками
+- `FlowResource` - Ресурс работы с потоками
 
     * `getFlows()` - Возвращает список потоков
     * `getFeedInteresting($alias, $page = 1)` - Возвращает "Интересные" посты из потока
