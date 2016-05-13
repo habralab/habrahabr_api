@@ -11,6 +11,8 @@ $adapter->setClient(getenv('CLIENT'));
 $client = new \Habrahabr\Api\Client($adapter);
 
 $Post = $client->getPostResource()->getPost(2160);
-$VotePost = $client->getPostResource()->vote(2160, 1);
+$VotePost = $client->getPostResource()->votePlus(2160);
+$VotePost = $client->getPostResource()->voteMinus(2160);
+$VotePost = $client->getPostResource()->voteNeutral(2160);
 $FavoritePost = $client->getPostResource()->addPostToFavorite(2160);
 $unFavoritePost = $client->getPostResource()->removePostFromFavorite(2160);

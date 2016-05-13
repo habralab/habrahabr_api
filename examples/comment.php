@@ -16,5 +16,8 @@ var_dump($CommentsForPost);
 $PostComment = $client->getCommentsResource()->postComment(2160, 'hello habr', 6706618);
 var_dump($PostComment);
 
-$vote = $client->getCommentsResource()->voteForComment('000', 1);
+$vote = $client->getCommentsResource()->votePlus(2160);
+var_dump($vote);
+
+$vote = $client->getCommentsResource()->voteMinus(2160);
 var_dump($vote);

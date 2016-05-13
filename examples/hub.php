@@ -16,9 +16,10 @@ $HubUnhabred = $client->getHubResource()->getFeedUnhabred('php', 2);
 $HubNew = $client->getHubResource()->getFeedNew('php');
 
 $hubs = $client->getHubResource()->getHubList();
-$hubs = $client->getHubResource()->getHubCategories();
-$hubs = $client->getHubResource()->getHubOfCategory('telecommunications');
-$hubs = $client->getHubResource()->searchHubs('web');
+var_dump($hubs);
+
+$hubs = $client->getHubResource()->subscribeHub('php');
+var_dump($hubs);
 
 $hubs = $client->getHubResource()->unsubscribeHub('php');
 var_dump($hubs);

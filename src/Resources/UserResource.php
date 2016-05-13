@@ -157,7 +157,6 @@ class UserResource extends AbstractResource implements ResourceInterface
      * Этот метод может быть предоставлен дополнительно, по запросу
      * https://habrahabr.ru/feedback/
      *
-     * @deprecated
      * @param string $login Логин пользователя на сайте
      * @return array
      * @throws IncorrectUsageException
@@ -175,7 +174,6 @@ class UserResource extends AbstractResource implements ResourceInterface
      * Этот метод может быть предоставлен дополнительно, по запросу
      * https://habrahabr.ru/feedback/
      *
-     * @deprecated
      * @param string $login Логин пользователя на сайте
      * @return array
      */
