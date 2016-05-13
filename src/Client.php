@@ -22,6 +22,7 @@ use Habrahabr\Api\Resources\ResourceInterface;
  * @method Resources\PostResource getPostResource()
  * @method Resources\HubResource getHubResource()
  * @method Resources\FeedResource getFeedResource()
+ * @method Resources\FlowResource getFlowResource()
  * @method Resources\CompanyResource getCompanyResource()
  * @method Resources\CommentsResource getCommentsResource()
  * @method Resources\TrackerResource getTrackerResource()

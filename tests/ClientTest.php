@@ -49,6 +49,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ['Post', 'Habrahabr\Api\Resources\PostResource'],
             ['Hub', 'Habrahabr\Api\Resources\HubResource'],
             ['Feed', 'Habrahabr\Api\Resources\FeedResource'],
+            ['Flow', 'Habrahabr\Api\Resources\FlowResource'],
             ['Company', 'Habrahabr\Api\Resources\CompanyResource'],
             ['Comments', 'Habrahabr\Api\Resources\CommentsResource'],
             ['Tracker', 'Habrahabr\Api\Resources\TrackerResource'],
