@@ -69,7 +69,6 @@ class UserResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('fullname', $actual['data']);
         $this->assertArrayHasKey('sex', $actual['data']);
         $this->assertArrayHasKey('rating', $actual['data']);
-        $this->assertArrayHasKey('vote', $actual['data']);
         $this->assertArrayHasKey('rating_position', $actual['data']);
         $this->assertArrayHasKey('geo', $actual['data']);
         $this->assertArrayHasKey('counters', $actual['data']);
