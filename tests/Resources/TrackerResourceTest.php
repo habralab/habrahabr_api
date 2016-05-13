@@ -105,7 +105,7 @@ class TrackerResourceTest extends \PHPUnit_Framework_TestCase
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
 
-            $this->adapter->addGetHandler('/tracker/posts', $expected);
+            $this->adapter->addGetHandler('/tracker/posts?page=1', $expected);
         }
 
         $actual = $this->resource->getPostsFeed();
@@ -141,7 +141,7 @@ class TrackerResourceTest extends \PHPUnit_Framework_TestCase
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
 
-            $this->adapter->addGetHandler('/tracker/subscribers', $expected);
+            $this->adapter->addGetHandler('/tracker/subscribers?page=1', $expected);
         }
 
         $actual = $this->resource->getSubscribersFeed();
@@ -176,7 +176,7 @@ class TrackerResourceTest extends \PHPUnit_Framework_TestCase
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
 
-            $this->adapter->addGetHandler('/tracker/mentions', $expected);
+            $this->adapter->addGetHandler('/tracker/mentions?page=1', $expected);
         }
 
         $actual = $this->resource->getMentions();

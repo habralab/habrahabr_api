@@ -101,7 +101,7 @@ class UserResourceTest extends \PHPUnit_Framework_TestCase
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
 
-            $this->adapter->addGetHandler('/users', $expected);
+            $this->adapter->addGetHandler('/users?page=1', $expected);
         }
 
         $actual = $this->resource->getUsersList();
@@ -294,10 +294,10 @@ class UserResourceTest extends \PHPUnit_Framework_TestCase
                 'server_time' => '2016-04-14T16:38:27+03:00'
             ];
 
-            $this->adapter->addGetHandler('/users/habrahabr/followed?page=1', $expected);
+            $this->adapter->addGetHandler('/users/deniskin/followed?page=1', $expected);
         }
 
-        $actual = $this->resource->getUserFollowed('habrahabr');
+        $actual = $this->resource->getUserFollowed('deniskin');
 
         $this->assertArrayHasKey('data', $actual);
         $this->assertArrayHasKey('server_time', $actual);

@@ -53,35 +53,46 @@ class TrackerResource extends AbstractResource implements ResourceInterface
      * Возвращает список постов из трекера,
      * элементы не отмечаются как просмотренные
      *
+     * @param int $page Номер страницы
      * @return array
+     * @throws IncorrectUsageException
      */
-    public function getPostsFeed()
+    public function getPostsFeed($page = 1)
     {
-        // @TODO add page
-        return $this->adapter->get('/tracker/posts');
+        $this->checkPageNumber($page);
+
+        return $this->adapter->get(sprintf('/tracker/posts?page=%d', $page));
     }
 
     /**
      * Возвращает список подписчиков из трекера,
      * элементы не отмечаются как просмотренные
      *
+     * @param int $page Номер страницы
      * @return array
+     * @throws IncorrectUsageException
      */
-    public function getSubscribersFeed()
+    public function getSubscribersFeed($page = 1)
     {
-        // @TODO add page
-        return $this->adapter->get('/tracker/subscribers');
+        $this->checkPageNumber($page);
+
+        return $this->adapter->get(sprintf('/tracker/subscribers?page=%d', $page));
     }
+
 
     /**
      * Возвращает список упоминаний из трекера,
      * элементы не отмечаются как просмотренные
      *
+     * @param int $page Номер страницы
      * @return array
+     * @throws IncorrectUsageException
      */
-    public function getMentions()
+    public function getMentions($page = 1)
     {
-        return $this->adapter->get('/tracker/mentions');
+        $this->checkPageNumber($page);
+
+        return $this->adapter->get(sprintf('/tracker/mentions?page=%d', $page));
     }
 
     /**

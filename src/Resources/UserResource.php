@@ -48,12 +48,15 @@ class UserResource extends AbstractResource implements ResourceInterface
     /**
      * Возвращает список пользователей
      *
+     * @param int $page Номер страницы
      * @return array
+     * @throws IncorrectUsageException
      */
-    public function getUsersList()
+    public function getUsersList($page = 1)
     {
-        // @TODO возможно тут есть пагинация
-        return $this->adapter->get('/users');
+        $this->checkPageNumber($page);
+
+        return $this->adapter->get(sprintf('/users?page=%d', $page));
     }
 
     /**
