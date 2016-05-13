@@ -65,7 +65,6 @@ class HubResource extends AbstractResource implements ResourceInterface
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/hub/%s/unhabred?page=%d', $alias, $page));
-
     }
 
     /**
@@ -82,7 +81,6 @@ class HubResource extends AbstractResource implements ResourceInterface
         $this->checkPageNumber($page);
 
         return $this->adapter->get(sprintf('/hub/%s/new?page=%d', $alias, $page));
-
     }
 
     /**
