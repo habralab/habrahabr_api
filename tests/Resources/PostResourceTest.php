@@ -193,4 +193,38 @@ class PostResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('message', $actual);
         $this->assertArrayHasKey('additional', $actual);
     }
+
+    public function testAddPostToFavorite()
+    {
+        $fixtureVote = [
+            'ok' => 1,
+            'server_time' => '2016-04-15T13:12:45+03:00'
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addPutHandler('/post/290938/favorite', $fixtureVote);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->addPostToFavorite(290938);
+
+        $this->assertArrayHasKey('ok', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+    }
+
+    public function testRemovePostFromFavorite()
+    {
+        $fixtureVote = [
+            'ok' => 1,
+            'server_time' => '2016-04-15T13:12:45+03:00'
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addDeleteHandler('/post/290938/favorite', $fixtureVote);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->removePostFromFavorite(290938);
+
+        $this->assertArrayHasKey('ok', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+    }
 }

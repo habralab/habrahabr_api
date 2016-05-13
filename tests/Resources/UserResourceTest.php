@@ -49,6 +49,35 @@ class UserResourceTest extends \PHPUnit_Framework_TestCase
         $this->resource->setAdapter($this->adapter);
     }
 
+    public function testGetUserCurrent()
+    {
+        if ($this->mocking) {
+            $this->adapter->addGetHandler('/users/me', $this->fixtureUser);
+        }
+
+        $actual = $this->resource->getUserCurrent();
+
+        $this->assertArrayHasKey('data', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+        $this->assertInternalType('array', $actual['data']);
+        $this->assertGreaterThanOrEqual(0, count($actual['data']));
+
+        $this->assertArrayHasKey('id', $actual['data']);
+        $this->assertArrayHasKey('login', $actual['data']);
+        $this->assertArrayHasKey('time_registered', $actual['data']);
+        $this->assertArrayHasKey('score', $actual['data']);
+        $this->assertArrayHasKey('fullname', $actual['data']);
+        $this->assertArrayHasKey('sex', $actual['data']);
+        $this->assertArrayHasKey('rating', $actual['data']);
+        $this->assertArrayHasKey('vote', $actual['data']);
+        $this->assertArrayHasKey('rating_position', $actual['data']);
+        $this->assertArrayHasKey('geo', $actual['data']);
+        $this->assertArrayHasKey('counters', $actual['data']);
+        $this->assertArrayHasKey('badges', $actual['data']);
+        $this->assertArrayHasKey('avatar', $actual['data']);
+        $this->assertArrayHasKey('is_readonly', $actual['data']);
+    }
+
     public function testGetUser()
     {
         if ($this->mocking) {
