@@ -17,14 +17,14 @@ use Habrahabr\Api\Resources\ResourceInterface;
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/
  * @link https://github.com/thematicmedia/habrahabr_api
- * @method ResourceInterface getUserResource()
- * @method ResourceInterface getSearchResource()
- * @method ResourceInterface getPostResource()
- * @method ResourceInterface getHubResource()
- * @method ResourceInterface getFeedResource()
- * @method ResourceInterface getCompanyResource()
- * @method ResourceInterface getCommentsResource()
- * @method ResourceInterface getTrackerResource()
+ * @method Resources\UserResource getUserResource()
+ * @method Resources\SearchResource getSearchResource()
+ * @method Resources\PostResource getPostResource()
+ * @method Resources\HubResource getHubResource()
+ * @method Resources\FeedResource getFeedResource()
+ * @method Resources\CompanyResource getCompanyResource()
+ * @method Resources\CommentsResource getCommentsResource()
+ * @method Resources\TrackerResource getTrackerResource()
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
