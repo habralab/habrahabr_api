@@ -19,6 +19,14 @@ IT-проектом в России.
 $ composer require tmtm/habrahabr_api
 ```
 
+или добавить
+
+```json
+"tmtm/habrahabr_api": ">=0.8.0"
+```
+
+в секцию `require` файла composer.json.
+
 ## Быстрый старт
 
 Перед началом работы с API Хабрахабра потребуется пройти несколько несложных
