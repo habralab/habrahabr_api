@@ -22,7 +22,7 @@ $ composer require tmtm/habrahabr_api
 или добавить
 
 ```json
-"tmtm/habrahabr_api": ">=0.8.0"
+"tmtm/habrahabr_api": ">=0.1.0"
 ```
 
 в секцию `require` файла composer.json.

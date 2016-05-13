@@ -12,7 +12,7 @@ use Habrahabr\Api\Resources\ResourceInterface;
  * Основной класс для получения доступа к классам Habrahabr Api ресурсов
  *
  * @package Habrahabr\Api
- * @version 0.0.8
+ * @version 0.1.0
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/

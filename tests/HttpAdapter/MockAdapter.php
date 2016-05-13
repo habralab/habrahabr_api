@@ -12,7 +12,7 @@ use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
  * имитирует запросы и ответы Habrahabr Api HTTP
  *
  * @package Habrahabr\Tests\Api\HttpAdapter
- * @version 0.0.8
+ * @version 0.1.0
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/

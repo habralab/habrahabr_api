@@ -8,7 +8,7 @@ namespace Habrahabr\Api\Exception;
  * Исключение выбрасываемое при недоступности PHP модуля
  *
  * @package Habrahabr\Api\Exception
- * @version 0.0.8
+ * @version 0.1.0
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/
