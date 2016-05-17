@@ -76,6 +76,25 @@ class Client
     }
 
     /**
+     * Возращает URL для OAuth авторизации Habrahabr Api
+     *
+     * @param string $redirect_uri OAuth Redirect URL
+     * @param string $response_type OAuth Response type
+     * @return string
+     */
+    public function getAuthorizationUrl($redirect_uri, $response_type = 'code')
+    {
+        return sprintf('https://%s/auth/o/login/?%s',
+            str_replace('api.', '', parse_url($this->adapter->getEndpoint(), PHP_URL_HOST)),
+            http_build_query([
+                'response_type' => $response_type,
+                'client_id' => $this->adapter->getClient(),
+                'redirect_uri' => $redirect_uri,
+            ])
+        );
+    }
+
+    /**
      * Создания экземпляра ресурса для работы с Habrahabr Api
      *
      * @param string $name Название класса для инициализации

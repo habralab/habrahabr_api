@@ -41,6 +41,7 @@ class BaseAdapterTest extends \PHPUnit_Framework_TestCase
         $this->adapter->setClient('foo.bar');
 
         $this->assertAttributeContains('foo.bar', 'client', $this->adapter);
+        $this->assertEquals('foo.bar', $this->adapter->getClient());
     }
 
     /**

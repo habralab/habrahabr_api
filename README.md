@@ -22,7 +22,7 @@ $ composer require tmtm/habrahabr_api
 или добавить
 
 ```json
-"tmtm/habrahabr_api": ">=0.1.0"
+"tmtm/habrahabr_api": "0.1.*"
 ```
 
 в секцию `require` файла composer.json.
@@ -49,7 +49,7 @@ $ composer require tmtm/habrahabr_api
    Для получения токена можно воспользоваться следующим простым способом.
    Перейдите по следующей ссылке
 
-       https://auth.habrahabr.ru/o/login/?redirect_uri=САЙТ&response_type=token&client_id=КЛИЕНТ
+       https://habrahabr.ru/auth/o/login/?client_id=КЛИЕНТ&response_type=token&redirect_uri=САЙТ
 
    поставив адрес сайта приложения вместо `САЙТ` и полученный на первом шаге
    идентификатор вместо `КЛИЕНТ`.

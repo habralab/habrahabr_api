@@ -78,6 +78,16 @@ abstract class BaseAdapter
     }
 
     /**
+     * Получить OAuth Client для доступа к API
+     *
+     * @return null|string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
      * Установить OAuth Endpoint для доступа к API
      *
      * @param null|string $url OAuth Endpoint для доступа к API

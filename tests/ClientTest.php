@@ -41,6 +41,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->client->getFoobar();
     }
 
+    public function testGetAuthorizationUrl()
+    {
+        $actual = $this->client->getAuthorizationUrl('https://tmtm.ru/', 'token');
+        $expected = '/auth/o/login/?response_type=token&redirect_uri=https%3A%2F%2Ftmtm.ru%2F';
+        
+        $this->assertStringEndsWith($expected, $actual);
+    }
+
     public function resourcesProvider()
     {
         return [
