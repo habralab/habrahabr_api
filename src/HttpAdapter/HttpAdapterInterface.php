@@ -19,6 +19,8 @@ namespace Habrahabr\Api\HttpAdapter;
  */
 interface HttpAdapterInterface
 {
+    public function setApikey($apikey);
+
     public function setToken($token);
 
     public function setClient($client);

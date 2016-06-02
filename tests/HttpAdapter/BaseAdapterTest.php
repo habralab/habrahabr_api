@@ -21,6 +21,21 @@ class BaseAdapterTest extends \PHPUnit_Framework_TestCase
         $this->adapter = new MockBaseAdapter();
     }
 
+    public function testSetApikey()
+    {
+        $this->adapter->setApikey('foobar');
+
+        $this->assertAttributeContains('foobar', 'apikey', $this->adapter);
+    }
+
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testSetApikeyFail()
+    {
+        $this->adapter->setApikey('!@#');
+    }
+
     public function testSetToken()
     {
         $this->adapter->setToken('foobar');
@@ -78,7 +93,6 @@ class BaseAdapterTest extends \PHPUnit_Framework_TestCase
     public function testCreateUrl()
     {
         $this->adapter->setEndpoint('https://habrahabr.ru/');
-
 
         $this->assertEquals('https://habrahabr.ru/foobar', $this->adapter->createUrl('/foobar'));
     }

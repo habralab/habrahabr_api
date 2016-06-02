@@ -22,6 +22,11 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
 abstract class BaseAdapter
 {
     /**
+     * @var null|string Ключ для доступа к не персонализированным данным API
+     */
+    protected $apikey = null;
+
+    /**
      * @var null|string OAuth Token для доступа к API
      */
     protected $token = null;
@@ -40,6 +45,24 @@ abstract class BaseAdapter
      * @var int Количество секунд ожидания при попытке соединения
      */
     protected $connectionTimeout = 5;
+
+    /**
+     * Установить ключ для доступа к не персонализированным данным API
+     *
+     * @param null|string $apikey Ключ для доступа к не персонализированным данным API
+     * @return $this
+     * @throws IncorrectUsageException
+     */
+    public function setApikey($apikey)
+    {
+        if (!preg_match('#([a-z0-9]+)#ui', $apikey)) {
+            throw new IncorrectUsageException('Incorrect API Key');
+        }
+
+        $this->apikey = $apikey;
+
+        return $this;
+    }
 
     /**
      * Установить OAuth Token для доступа к API

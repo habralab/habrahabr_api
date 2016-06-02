@@ -155,10 +155,17 @@ class CurlAdapter extends BaseAdapter implements HttpAdapterInterface
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, $this->connectionTimeout);
-        curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
-            'client: ' . $this->client,
-            'token: ' . $this->token
-        ]);
+
+        if ($this->client && $this->token) {
+            curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
+                'client: ' . $this->client,
+                'token: ' . $this->token
+            ]);
+        } elseif ($this->apikey) {
+            curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
+                'apikey: ' . $this->apikey,
+            ]);
+        }
 
         if ($this->strictSSL === false) {
             curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, 0);
