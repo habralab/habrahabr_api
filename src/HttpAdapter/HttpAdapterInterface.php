@@ -8,7 +8,7 @@ namespace Habrahabr\Api\HttpAdapter;
  * Базовый интерфейс для всех Habrahabr Api HTTP адаптеров
  *
  * @package Habrahabr\Api\HttpAdapter
- * @version 0.1.0
+ * @version 0.1.2
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/
