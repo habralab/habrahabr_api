@@ -8,3 +8,8 @@ tools:
     # and a huge bunch of false-positives
     php_sim: false
     php_cpd: false
+
+filter:
+    excluded_paths:
+        - 'build/*'
+        - 'tests/*'
