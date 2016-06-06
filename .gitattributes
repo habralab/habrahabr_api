@@ -9,3 +9,4 @@
 /tests              export-ignore
 /docs               export-ignore
 /build              export-ignore
+/Makefile           export-ignore
