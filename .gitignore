@@ -33,3 +33,6 @@ composer.lock
 
 # phpunit itself is not needed
 phpunit.phar
+
+# Burgomaster stage directory
+build/artifacts/
