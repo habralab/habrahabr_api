@@ -177,6 +177,10 @@ $ vendor/bin/phpunit
 
 Библиотека доступна на условиях лицензии MIT: http://www.opensource.org/licenses/mit-license.php
 
+## Альтернативные адаптеры:
+
+* [habrahabr-guzzle](https://github.com/dotzero/habrahabr-guzzle-php)
+
 ## Реализации на других языках:
 
 * Python: [habrahabr-python](https://github.com/kafeman/habrahabr-python)
