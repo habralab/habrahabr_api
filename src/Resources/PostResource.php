@@ -51,6 +51,24 @@ class PostResource extends AbstractResource implements ResourceInterface
     }
 
     /**
+     * Получить мета-информацию постов (не более 30 постов за раз)
+     *
+     * @param int $posts_id Номера постов
+     * @return array
+     * @throws IncorrectUsageException
+     */
+    public function getMeta($posts_id)
+    {
+        if (!is_array($posts_id)) {
+            $posts_id = [$posts_id];
+        }
+
+        array_map([$this, 'checkId'], $posts_id);
+
+        return $this->adapter->get(sprintf('/posts/meta?ids=%s', implode(',', $posts_id)));
+    }
+
+    /**
      * Положительное голосование за пост
      *
      * Этот метод может быть предоставлен дополнительно, по запросу

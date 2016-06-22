@@ -92,6 +92,37 @@ class PostResourceTest extends \PHPUnit_Framework_TestCase
         $this->resource->getPost(-1);
     }
 
+    public function testGetMeta()
+    {
+        if ($this->mocking) {
+            $data = [
+                'data' => [
+                    259787 => $this->fixturePost,
+                    262653 => $this->fixturePost,
+                ],
+                'server_time' => '2016-04-15T13:12:45+03:00'
+            ];
+            $this->adapter->addGetHandler('/posts/meta?ids=259787,262653', $data);
+        }
+
+        $actual = $this->resource->getMeta([259787, 262653]);
+
+        $this->assertArrayHasKey('data', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+        $this->assertInternalType('array', $actual['data']);
+
+        $this->assertArrayHasKey('259787', $actual['data']);
+        $this->assertArrayHasKey('262653', $actual['data']);
+    }
+
+    /**
+     * @expectedException \Habrahabr\Api\Exception\IncorrectUsageException
+     */
+    public function testGetMetaFail()
+    {
+        $this->resource->getMeta([259787, 262653, 'foobar']);
+    }
+
     public function testVotePlus()
     {
         $fixtureVote = [
