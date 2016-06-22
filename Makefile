@@ -22,6 +22,7 @@ clean:
 tag:
 	$(if $(TAG),,$(error TAG is not defined. Pass via "make tag TAG=0.1.2"))
 	@echo Tagging $(TAG)
+	sed -i '' -e "s/@version .*/@version $(TAG)/" src/*.php
 	sed -i '' -e "s/@version .*/@version $(TAG)/" src/**/*.php
 
 package:

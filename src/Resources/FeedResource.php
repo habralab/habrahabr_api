@@ -10,7 +10,7 @@ use Habrahabr\Api\Exception\IncorrectUsageException;
  * Ресурс работы с "основной" лентой постов
  *
  * @package Habrahabr\Api\Resources
- * @version 0.1.2
+ * @version 0.1.3
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/

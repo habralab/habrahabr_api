@@ -11,7 +11,7 @@ use Habrahabr\Api\HttpAdapter\HttpAdapterInterface;
  * Базовый интерфейс для всех Habrahabr Api ресурсов
  *
  * @package Habrahabr\Api\Resources
- * @version 0.1.2
+ * @version 0.1.3
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/
