@@ -25,7 +25,6 @@ class PollResource extends AbstractResource implements ResourceInterface
      * Возвращает опрос по номеру
      *
      * @param int $poll_id Номер опроса
-     *
      * @return array
      * @throws IncorrectUsageException
      */

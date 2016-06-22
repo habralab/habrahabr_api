@@ -122,6 +122,7 @@ $ composer require tmtm/habrahabr_api
     * `voteNeutral($post_id)` - Нейтральное голосование за пост (*Этот метод может быть предоставлен дополнительно, по запросу*)
     * `addPostToFavorite($post_id)` - Добавить пост в избранное
     * `removePostFromFavorite($post_id)` - Удалить пост из избранного
+    * `increaseCount($post_id)` - Увеличить счетчик просмотров поста
 
 - `PollResource` - Ресурс работы с опросами
 

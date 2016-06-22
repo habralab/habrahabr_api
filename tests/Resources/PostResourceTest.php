@@ -227,4 +227,21 @@ class PostResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('ok', $actual);
         $this->assertArrayHasKey('server_time', $actual);
     }
+
+    public function testIncreaseCount()
+    {
+        $fixture = [
+            'ok' => 1,
+            'server_time' => '2016-04-15T13:12:45+03:00'
+        ];
+
+        $this->adapter = new MockAdapter();
+        $this->adapter->addPutHandler('/post/290938/viewcount', $fixture);
+        $this->resource->setAdapter($this->adapter);
+
+        $actual = $this->resource->increaseCount(290938);
+
+        $this->assertArrayHasKey('ok', $actual);
+        $this->assertArrayHasKey('server_time', $actual);
+    }
 }

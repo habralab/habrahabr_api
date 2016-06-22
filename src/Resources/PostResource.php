@@ -130,6 +130,20 @@ class PostResource extends AbstractResource implements ResourceInterface
     }
 
     /**
+     * Увеличить счетчик просмотров поста
+     *
+     * @param int $post_id Номер поста
+     * @return array
+     * @throws IncorrectUsageException
+     */
+    public function increaseCount($post_id)
+    {
+        $this->checkId($post_id);
+
+        return $this->adapter->put(sprintf('/post/%d/viewcount', $post_id));
+    }
+
+    /**
      * Голосование за пост
      *
      * @param int $post_id Номер поста
