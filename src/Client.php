@@ -27,6 +27,7 @@ use Habrahabr\Api\Resources\ResourceInterface;
  * @method Resources\CompanyResource getCompanyResource()
  * @method Resources\CommentsResource getCommentsResource()
  * @method Resources\TrackerResource getTrackerResource()
+ * @method Resources\SettingsResource getSettingsResource()
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.

@@ -159,6 +159,10 @@ $ composer require tmtm/habrahabr_api
     * `getUserFavoritesPost($login, $page = 1)` - Возвращает список "избранных" постов пользователя по логину
     * `getUserFavoritesComments($login, $page = 1)` - Возвращает список "избранных" комментариев пользователя по логину
 
+- `SettingsResource` - Ресурс работы с настройками профиля
+
+    * `acceptAgreement()` - Принять соглашение
+
 ## Тестирование
 
 Для начала установить `--dev` зависимости. После чего запустить:
