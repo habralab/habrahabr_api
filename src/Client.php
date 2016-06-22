@@ -19,6 +19,7 @@ use Habrahabr\Api\Resources\ResourceInterface;
  * @link https://github.com/thematicmedia/habrahabr_api
  * @method Resources\UserResource getUserResource()
  * @method Resources\SearchResource getSearchResource()
+ * @method Resources\PollResource getPollResource()
  * @method Resources\PostResource getPostResource()
  * @method Resources\HubResource getHubResource()
  * @method Resources\FeedResource getFeedResource()

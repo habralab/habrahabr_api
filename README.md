@@ -123,6 +123,11 @@ $ composer require tmtm/habrahabr_api
     * `addPostToFavorite($post_id)` - Добавить пост в избранное
     * `removePostFromFavorite($post_id)` - Удалить пост из избранного
 
+- `PollResource` - Ресурс работы с опросами
+
+    * `getPoll($poll_id)` - Возвращает опрос по номеру
+    * `vote($poll_id, $votes = [])` - Голосование в опросе за один или несколько варинатов ответа (*Этот метод может быть предоставлен дополнительно, по запросу*)
+
 - `SearchResource` - Ресурс работы с поиском
 
     * `searchPosts($q, $page = 1)` - Поиск произвольного запроса по постам
