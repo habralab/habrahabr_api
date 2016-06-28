@@ -194,4 +194,5 @@ $ vendor/bin/phpunit
 
 ## Реализации на других языках:
 
-* Python: [habrahabr-python](https://github.com/kafeman/habrahabr-python)
+* Python: [habrahabr-api-python](https://github.com/dotzero/habrahabr-api-python)
+* Python: [habrahabr-python](https://github.com/kafeman/habrahabr-python) *deprecated*
