@@ -115,6 +115,7 @@ class CompanyResourceTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('description', $actual['data']);
         $this->assertArrayHasKey('fans_count', $actual['data']);
         $this->assertArrayHasKey('workers_count', $actual['data']);
+        $this->assertArrayHasKey('posts_count', $actual['data']);
         $this->assertArrayHasKey('is_fan', $actual['data']);
         $this->assertArrayHasKey('icon', $actual['data']);
     }
