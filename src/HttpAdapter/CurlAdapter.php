@@ -11,7 +11,7 @@ use Habrahabr\Api\Exception\NetworkException;
  * Habrahabr Api HTTP адаптер использующий cURL как транспорт
  *
  * @package Habrahabr\Api\HttpAdapter
- * @version 0.1.3
+ * @version 0.1.5
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/

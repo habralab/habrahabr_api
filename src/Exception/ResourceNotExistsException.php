@@ -8,7 +8,7 @@ namespace Habrahabr\Api\Exception;
  * Исключение выбрасываемое при обращении к несуществующему ресурсу
  *
  * @package Habrahabr\Api\Exception
- * @version 0.1.3
+ * @version 0.1.5
  * @author thematicmedia <info@tmtm.ru>
  * @link https://tmtm.ru/
  * @link https://habrahabr.ru/

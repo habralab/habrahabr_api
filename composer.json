@@ -1,8 +1,8 @@
 {
     "name": "tmtm/habrahabr_api",
-    "description": "Provides an interface to the API at habrahabr.ru",
+    "description": "Официальный клиент для работы с API сайтов habrahabr.ru и geektimes.ru",
     "license": "MIT",
-    "keywords": ["habrahabr", "habr", "tmtm", "thematic media", "api"],
+    "keywords": ["habrahabr", "geektimes", "habr", "tmtm", "thematic media", "api"],
     "authors": [
         {
             "name": "Rpsl",
